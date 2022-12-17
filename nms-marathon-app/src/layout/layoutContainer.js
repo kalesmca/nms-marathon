@@ -6,6 +6,7 @@ import LoginComponent from '../containers/login';
 import UserComponent from '../containers/userComponent';
 import HeaderComponent from "./header";
 import ApproverComponent from '../containers/approverComponent';
+import UserRegistration from "../containers/userRegistration";
 
 const LayoutContainer = () => {
     return (
@@ -17,6 +18,8 @@ const LayoutContainer = () => {
                 <Route path="user" element={<UserComponent />} />
                 <Route path="dashboard" element={<DashboardComponent />} />
                 <Route path="users-update" element={<ApproverComponent />} />
+                <Route path="users-registration" element={<UserRegistration />} />
+
 
 
             </Routes>

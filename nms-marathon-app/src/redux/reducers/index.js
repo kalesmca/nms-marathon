@@ -1,15 +1,9 @@
-import customerReducer from "./customers";
-import categoryReducer from "./category";
-import taskReducer from "./task";
-import transaction from "./transaction";
+import user from './user';
 
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-    customers:customerReducer,
-    taskInfo: taskReducer,
-    categoryInfo: categoryReducer,
-    transaction
+    user
 })
 
 export default rootReducer;
