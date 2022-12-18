@@ -4,35 +4,50 @@ import {feMaleCategory, maleCategory, gender, tShirtSizes} from '../constants/co
 const initObj = {
     name: "",
     mobile: "",
-    category: "",
+    category: "M-U14",
     isPaid: false,
     city: "",
-    tShirtSize: "",
-    chestNumber:"",
-    gender:"FEMALE"
+    tShirtSize: "SMALL",
+    chestNumber:"payment pending",
+    gender:"MALE"
 
 }
 
-const UserRegistration = () => {
-    console.log('gneee:', gender)
-    const [obj, setObj] = useState(initObj);
-    const [errMsg, setErrorMsg] = useState("")
+const errMsgs = {
+    name: "",
+    mobile:""
+}
 
+const UserRegistration = () => {
+    const [obj, setObj] = useState(initObj);
+    const [errMsg, setErrorMsg] = useState(errMsgs)
+
+    const mobileNumberValidation = () => {
+        if(!obj.mobile || obj.mobile.length !==10 ){
+            setErrorMsg( {...errMsg, mobile:'Please enter valid mobile number.'})
+        }
+    }
+
+    const saveUser = () => {
+        console.log('user:', obj)
+    }
     return (
         <div className="reg-flex-container">
             <div className="reg-container">
                 <h3 className="header">Registration</h3>
                 <div className="form-containter">
                     <label ><b>Name</b></label>
-                    <input className="input-box" placeholder="Your name.." />
+                    <input className="input-box" onBlur={()=> {!obj.name ? setErrorMsg({...errMsg, name:'Please enter you Name'}) : setErrorMsg({...errMsg, name:''})}}
+                     placeholder="Your name.." value={obj.name} onChange={(e) => { setObj({...obj, name: e.target.value});setErrorMsg({...errMsg, name:''}) } } />
+                     {errMsg.name ? (<div className="err-msg">{errMsg.name}</div>) : ""}
                     <label ><b>Mobile</b></label>
-                    <input className="input-box" placeholder="Your Mobile number 10 digit.." />
-                    {errMsg ? (<span className="err-msg">{errMsg}</span>) : ""}
+                    <input className="input-box" type="number" onBlur={()=> mobileNumberValidation()} placeholder="Your Mobile number 10 digit.." value={obj.mobile} onChange={(e) => {setObj({...obj, mobile: e.target.value}); setErrorMsg({...errMsg, mobile:''})}}  />
+                    {errMsg.mobile ? (<div className="err-msg">{errMsg.mobile}</div>) : ""}
                     
                     <label ><b>City</b></label>
-                    <input className="input-box" placeholder="Your City.." />
+                    <input className="input-box" placeholder="Your City.." value={obj.city} onChange={(e) => setObj({...obj, city: e.target.value})} />
                     <label ><b>Gender</b></label>
-                    <select className="input-box" id="gender" value={obj.gender} name="gender"  onChange={(e)=> setObj({...obj, gender:e.target.value}) }>
+                    <select className="input-box" id="gender" value={obj.gender} name="gender"  onChange={(e)=> {setObj({...obj, gender:e.target.value, category: e.target.value === 'MALE'? 'M-U14': "F-U14" }) } }>
                         {
                             gender.map((item, genderIndex) =>{
                                 return(<option key={genderIndex} value={item}>{item}</option>)
@@ -61,7 +76,7 @@ const UserRegistration = () => {
                         }
                     </select>
 
-                    <input className="submit-btn" type="submit" value="Submit" />
+                    <input className="submit-btn" type="submit" value="Submit" onClick={()=> saveUser()}/>
 
 
 
