@@ -1,33 +1,64 @@
 import React, { useState } from "react";
+import {feMaleCategory, maleCategory, gender, tShirtSizes} from '../constants/config'
 
 const initObj = {
     name: "",
     mobile: "",
     category: "",
     isPaid: false,
-    isAdmin: false,
     city: "",
-    tShirtSize: ""
+    tShirtSize: "",
+    chestNumber:"",
+    gender:"FEMALE"
 
 }
+
 const UserRegistration = () => {
-    const [obj, setObj] = useState()
+    console.log('gneee:', gender)
+    const [obj, setObj] = useState(initObj);
+    const [errMsg, setErrorMsg] = useState("")
+
     return (
         <div className="reg-flex-container">
             <div className="reg-container">
-                <h2 className="header">Registration</h2>
+                <h3 className="header">Registration</h3>
                 <div className="form-containter">
-                    <label >Name</label>
+                    <label ><b>Name</b></label>
                     <input className="input-box" placeholder="Your name.." />
-                    <label >Mobile</label>
+                    <label ><b>Mobile</b></label>
                     <input className="input-box" placeholder="Your Mobile number 10 digit.." />
-                    <label >City</label>
+                    {errMsg ? (<span className="err-msg">{errMsg}</span>) : ""}
+                    
+                    <label ><b>City</b></label>
                     <input className="input-box" placeholder="Your City.." />
-                    <label >T-shirt Size</label>
-                    <select className="input-box" id="country" name="country">
-                        <option value="australia">Australia</option>
-                        <option value="canada">Canada</option>
-                        <option value="usa">USA</option>
+                    <label ><b>Gender</b></label>
+                    <select className="input-box" id="gender" value={obj.gender} name="gender"  onChange={(e)=> setObj({...obj, gender:e.target.value}) }>
+                        {
+                            gender.map((item, genderIndex) =>{
+                                return(<option key={genderIndex} value={item}>{item}</option>)
+                            })
+                        }
+                    </select>
+                    <label ><b>Category</b></label>
+                    <select className="input-box"  value={obj.category} onChange={(e)=> setObj({...obj, category:e.target.value}) }>
+                        {
+                            obj.gender === 'MALE' ? 
+                            maleCategory.map((item, categoryIndex) =>{
+                                return(<option key={categoryIndex} value={item}>{item}</option>)
+                            }) :
+                            feMaleCategory.map((item, categoryIndex) =>{
+                                return(<option key={categoryIndex} value={item}>{item}</option>)
+                            }) 
+                        }
+                    </select>
+                
+                    <label ><b>T-shirt Size</b> </label>
+                    <select className="input-box" id="gender" value={obj.tShirtSize} name="gender"  onChange={(e)=> setObj({...obj, tShirtSize:e.target.value}) }>
+                        {
+                            tShirtSizes.map((item, tIndex) =>{
+                                return(<option key={tIndex} value={item}>{item}</option>)
+                            })
+                        }
                     </select>
 
                     <input className="submit-btn" type="submit" value="Submit" />
