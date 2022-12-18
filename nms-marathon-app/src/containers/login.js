@@ -8,14 +8,18 @@ const LoginComponent = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [mobile, setMobile] = useState("");
-    const [isAdmin, setAdmin] = useState(false)
+    const [isAdmin, setAdmin] = useState(false);
+    const [isValidForm, setFormValid] = useState(false);
+    const [errMsg, setErrorMsg] = useState("")
     const applicationState = useSelector((state) => state);
 
     const loginUser = () => {
-        dispatch(getUser())
-
-        console.log('applicationState :', applicationState)
-
+        if(!mobile || mobile.length !==10){
+            setErrorMsg("Please enter valid mobile number")
+        } else {
+            dispatch(getUser())
+        }
+        
     }
     useEffect(() => {
         console.log(' use Effect applicationState :', applicationState)
@@ -39,8 +43,8 @@ const LoginComponent = () => {
         <div className="form-containter">
             
             <label >Mobile</label>
-            <input  className="input-box" onBlur={()=>{adminCheck()}} placeholder="Your Mobile number 10 digit.."  value={mobile} onChange={(e) => { setMobile(e.target.value) }}/>
-            
+            <input type="number"  className="input-box" onBlur={()=>{adminCheck()}} placeholder="Your Mobile number 10 digit.."  value={mobile} onChange={(e) => { setMobile(e.target.value); setErrorMsg("") }}/>
+            <span className="err-msg">{errMsg}</span>
             {
                 isAdmin ? (<div><label >Password</label>
                 <input  className="input-box" placeholder="Password" /></div>) : ""
