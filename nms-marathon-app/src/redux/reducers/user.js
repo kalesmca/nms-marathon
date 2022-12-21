@@ -1,8 +1,18 @@
-import {GET_USER} from '../../constants/actions';
+import {GET_USER, ADD_USER} from '../../constants/actions';
 
 
 const initState = {
-        userList: []
+        userList: [],
+        name:"",
+        dob:"",
+        city:"",
+        mobile:"",
+        id:"",
+        category:"",
+        chestNumber:"",
+        gender:"",
+        isPaid:"",
+        tShirtSize:""
 }
 
 const user = (state=initState, action) =>{
@@ -10,6 +20,10 @@ const user = (state=initState, action) =>{
         case GET_USER :{
             return {...state, userList: action.data}
         }
+        case ADD_USER :{
+            return {...state, ...action.data}
+        }
+        
         default :{
             return { ...state}
         }

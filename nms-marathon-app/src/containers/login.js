@@ -17,6 +17,8 @@ const LoginComponent = () => {
         if(!mobile || mobile.length !==10){
             setErrorMsg("Please enter valid mobile number")
         } else {
+            localStorage.setItem( 'mobile' , mobile )
+
             dispatch(getUser())
         }
         

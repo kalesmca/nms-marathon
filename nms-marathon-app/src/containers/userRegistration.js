@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {feMaleCategory, maleCategory, gender, tShirtSizes} from '../constants/config'
+import {addUser} from '../redux/actions/user';
+import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const initObj = {
     name: "",
@@ -20,7 +23,15 @@ const errMsgs = {
 
 const UserRegistration = () => {
     const [obj, setObj] = useState(initObj);
-    const [errMsg, setErrorMsg] = useState(errMsgs)
+    const [errMsg, setErrorMsg] = useState(errMsgs);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+       console.log(localStorage.getItem('mobile')) 
+       setObj({...obj, ...{mobile:localStorage.getItem('mobile')}})
+
+    },[])
 
     const mobileNumberValidation = () => {
         if(!obj.mobile || obj.mobile.length !==10 ){
@@ -28,8 +39,24 @@ const UserRegistration = () => {
         }
     }
 
+
+
+    const setMobileNumber = (data) => {
+        localStorage.setItem( 'mobile' , data )
+// getItem( key ): returns the value in front of key
+    }
     const saveUser = () => {
         console.log('user:', obj)
+        if(!obj.mobile){
+            setErrorMsg( {...errMsg, mobile:'Please enter valid mobile number.'})
+        } else if(!obj.name){
+            setErrorMsg( {...errMsg, mobile:'Please enter your name'})
+        }
+        if(!errMsg.name && !errMsg.mobile){
+            localStorage.setItem('mobile', obj.mobile)
+            dispatch(addUser(obj));
+        }
+
     }
     return (
         <div className="reg-flex-container">

@@ -1,69 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserByMobile } from '../redux/actions/user';
 
 const UserComponent = () => {
     const applicationState = useSelector((state) => state);
+    const dispatch = useDispatch();
     useEffect(() => {
-        console.log(applicationState)
-    })
+        if(localStorage.getItem('mobile')){
+            dispatch(getUserByMobile(localStorage.getItem('mobile')))
+        }
+        
+    }, [])
     return (
         <div className="user-container">
             <table id="user-table">
-                <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                    <th>Country</th>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Berglunds snabbköp</td>
-                    <td>Christina Berglund</td>
-                    <td>Sweden</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                </tr>
-                <tr>
-                    <td>Ernst Handel</td>
-                    <td>Roland Mendel</td>
-                    <td>Austria</td>
-                </tr>
-                <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Königlich Essen</td>
-                    <td>Philip Cramer</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                    <td>Canada</td>
-                </tr>
-                <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                    <td>Italy</td>
-                </tr>
-                <tr>
-                    <td>North/South</td>
-                    <td>Simon Crowther</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Paris spécialités</td>
-                    <td>Marie Bertrand</td>
-                    <td>France</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Chest number</th>
+                        <th>Category</th>
+                        <th>T-shirt Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        applicationState?.user?.mobile ? (
+                            <tr>
+                                <td>{applicationState?.user?.name}</td>
+                                <td>{applicationState?.user?.mobile}</td>
+                                <td>{applicationState?.user?.chestNumber}</td>
+                                <td>{applicationState?.user?.category}</td>
+                                <td>{applicationState?.user?.tShirtSize}</td>
+
+                            </tr>
+                        ):
+                        <tr><td colSpan={5}> <center>No data found</center></td></tr>
+                    }
+                   
+                </tbody>
             </table>
         </div>
     )

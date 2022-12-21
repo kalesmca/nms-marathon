@@ -5,6 +5,8 @@ import {
     getDocs,
     addDoc
 } from "firebase/firestore";
+import { batch } from 'react-redux'
+
 import { async } from "@firebase/util";
 
 const usersCollectionRef = collection(db, "users");
@@ -15,7 +17,7 @@ export const getUser = () => async (dispatch, getState) => {
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('data list:', dataList)
 
-        dispatch(updateUser(dataList))
+        dispatch(updateUserList(dataList))
     }
     catch (error) {
         console.log('error:', error);
@@ -26,9 +28,7 @@ export const getUser = () => async (dispatch, getState) => {
 export const addUser = (obj) => async (dispatch, getState) => {
     try {
         await addDoc(usersCollectionRef, obj);
-        
-
-        dispatch(updateUser(dataList))
+        dispatch(updateUser(obj))
     }
     catch (error) {
         console.log('error:', error);
@@ -36,7 +36,31 @@ export const addUser = (obj) => async (dispatch, getState) => {
 
 }
 
+export const getUserByMobile = (mobile) => async (dispatch, getState) => {
+    try {
+        const data = await getDocs(usersCollectionRef);
+        let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const dbData = dataList.find((item) => item.mobile == mobile)
+        console.log('dbData:', dbData);
+        if (dbData) {
+            batch(() => {
+                dispatch(updateUserList(dataList))
+                dispatch(updateUser(dbData))
+            })
+        }
+    } catch (err) {
+        console.log('server error')
+    }
+
+}
 export const updateUser = (data) => {
+    return {
+        type: ADD_USER,
+        data: data
+    }
+}
+
+export const updateUserList = (data) => {
     return {
         type: GET_USER,
         data: data
