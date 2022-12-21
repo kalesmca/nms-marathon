@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {getUserByMobile} from '../redux/actions/user'
 
 
 const HeaderComponent = () => {
     const applicationState = useSelector((state) => state);
+    const dispatch = useDispatch();
     const [admin, setAdmin] = useState({})
     const navLinkStyles = ({ isActive }) => {
         return {
@@ -12,7 +14,10 @@ const HeaderComponent = () => {
         };
     };
     useEffect(() => {
-    }, [applicationState])
+        if(!applicationState?.user?.userList?.length && localStorage.getItem('mobile')){
+            dispatch(getUserByMobile(localStorage.getItem('mobile')))
+        }
+    }, [])
     return (
         <div className="header-container">
             <div className="header">

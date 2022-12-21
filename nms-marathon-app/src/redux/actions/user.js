@@ -39,10 +39,16 @@ export const addUser = (obj) => async (dispatch, getState) => {
 
 export const getUserByMobile = (mobile) => async (dispatch, getState) => {
     try {
-        const admin = admin.find((item)=> item.mobile == mobile);
+        const admin = adminList.find((item)=> item.mobile == mobile);
         const data = await getDocs(usersCollectionRef);
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         const dbData = admin? admin: dataList.find((item) => item.mobile == mobile)
+        const rights = localStorage.getItem("adminRights")
+
+        if(admin && rights !== "*****"){
+            dbData = {}
+        }
+        
         console.log('dbData:', dbData);
         if (dbData) {
             batch(() => {
@@ -51,7 +57,7 @@ export const getUserByMobile = (mobile) => async (dispatch, getState) => {
             })
         }
     } catch (err) {
-        console.log('server error')
+        console.log('server error', err)
     }
 
 }

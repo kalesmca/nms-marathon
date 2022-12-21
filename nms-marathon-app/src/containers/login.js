@@ -9,32 +9,17 @@ const LoginComponent = () => {
     const dispatch = useDispatch();
     const [mobile, setMobile] = useState("");
     const [pwd, setPwd] = useState("");
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [admin, setAdmin] = useState({})
+    const [admin, setAdmin] = useState(null)
     const [isPwdErr, setPwdErr] = useState(false);
     const [errMsg, setErrorMsg] = useState("")
     const applicationState = useSelector((state) => state);
 
-    const loginUser = () => {
-
-        if(!mobile || mobile.length !==10){
-            setErrorMsg("Please enter valid mobile number")
-        } else if(isAdmin && !pwd){
-            setPwdErr(true)
-        } 
-        else if(!isAdmin || isAdmin && !isPwdErr && pwd) {
-            localStorage.setItem( 'mobile' , mobile )
-            dispatch(getUserList())
-        }
-        
-    }
     useEffect(() => {
         if (applicationState?.user?.userList?.length) {
-            if(isAdmin){
-                dispatch(updateUser(admin))
+            if(admin){
                 navigate('dashboard')
             }else {
-                const dbUser = applicationState.user.userList.find((item) => item.mobile === parseInt(mobile))
+                const dbUser = applicationState.user.userList.find((item) => item.mobile == mobile)
                 dbUser ? navigate('user') : navigate('users-registration')
             }
             
@@ -42,14 +27,30 @@ const LoginComponent = () => {
 
     }, [applicationState])
 
+    const loginUser = () => {
+
+        if(!mobile || mobile.length !==10){
+            setErrorMsg("Please enter valid mobile number")
+        } else if(admin?.mobile  && !pwd){
+            setPwdErr(true)
+        } 
+        else if(!admin || admin && !isPwdErr && pwd) {
+            if(admin){
+                dispatch(updateUser(admin)); 
+                localStorage.setItem( 'adminRights' , "*****")
+            } 
+            localStorage.setItem( 'mobile' , mobile)
+            dispatch(getUserList())
+        }
+        
+    }
+    
+
     const adminCheck = () =>{
         console.log(adminList)
-        const admin = adminList.find((item)=> item.mobile == mobile)
-        if(admin){
-            setAdmin(admin)
-            setIsAdmin(true)
-        } else{
-            setIsAdmin(false)
+        const adminUser = adminList.find((item)=> item.mobile == mobile)
+        if(adminUser){
+            setAdmin(adminUser)
         }
     }
 
@@ -64,7 +65,7 @@ const LoginComponent = () => {
             <input type="number"  className="input-box" onBlur={()=>{adminCheck()}} placeholder="Your Mobile number 10 digit.."  value={mobile} onChange={(e) => { setMobile(e.target.value); setErrorMsg("") }}/>
             <span className="err-msg">{errMsg}</span>
             {
-                isAdmin ? (<div><label >Password</label>
+                admin && admin.mobile ? (<div><label >Password</label>
                 <input  className="input-box" placeholder="Password" value={pwd} onChange={(e)=> {setPwd(e.target.value);setPwdErr(false)}} onBlur={()=> {admin.pwd != pwd ? setPwdErr(true): setPwdErr(false)}}   />
                 {isPwdErr ? (<span className="err-msg">Invalid Password</span>):""}
 
