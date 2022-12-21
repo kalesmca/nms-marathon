@@ -12,7 +12,9 @@ const initState = {
         chestNumber:"",
         gender:"",
         isPaid:"",
-        tShirtSize:""
+        tShirtSize:"",
+        isAdmin: false,
+        isSuperAdmin: false
 }
 
 const user = (state=initState, action) =>{

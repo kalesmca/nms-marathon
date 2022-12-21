@@ -6,17 +6,20 @@ export const adminList = [
         name:"Kaleeswaran",
         mobile: 8682890117,
         isSuperAdmin: true,
-        isAdmin:true
+        isAdmin:true,
+        pwd:"volleyball"
     },
     {
         name:"Arivu",
         mobile: 9994374553,
-        isAdmin:true
+        isAdmin:true,
+        pwd:"computer"
     },
     {
         name:"Shiva",
         mobile: 9965388040,
-        isAdmin:true
+        isAdmin:true,
+        pwd:"football"
     }
     
 ]

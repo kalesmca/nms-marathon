@@ -5,13 +5,14 @@ import {
     getDocs,
     addDoc
 } from "firebase/firestore";
-import { batch } from 'react-redux'
+import { batch } from 'react-redux';
+import {adminList} from '../../constants/config';
 
 import { async } from "@firebase/util";
 
 const usersCollectionRef = collection(db, "users");
 
-export const getUser = () => async (dispatch, getState) => {
+export const getUserList = () => async (dispatch, getState) => {
     try {
         const data = await getDocs(usersCollectionRef);
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -38,9 +39,10 @@ export const addUser = (obj) => async (dispatch, getState) => {
 
 export const getUserByMobile = (mobile) => async (dispatch, getState) => {
     try {
+        const admin = admin.find((item)=> item.mobile == mobile);
         const data = await getDocs(usersCollectionRef);
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        const dbData = dataList.find((item) => item.mobile == mobile)
+        const dbData = admin? admin: dataList.find((item) => item.mobile == mobile)
         console.log('dbData:', dbData);
         if (dbData) {
             batch(() => {
