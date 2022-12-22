@@ -2,17 +2,35 @@ import React,{useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {updateUser} from '../redux/API/apiService';
 import {getUserByMobile} from '../redux/actions/user';
-import {getPaidListByCategory} from '../utills/util'
+import {getUserListByFilter} from '../utills/util'
 import {CONSTANTS} from '../constants/config'
 const DashboardComponent = () => {
     const applicationState = useSelector((state)=> state);
     const dispatch = useDispatch();
+    const [userList, setUserList] = useState([])
+    const [category, setCategory] = useState("ALL")
+    const [paymentType, setPaymentType] = useState('ALL')
     useEffect(()=>{
         console.log(applicationState)
-    })
+        const filteredUsers = getUserListByFilter(applicationState.user.userList, category, paymentType)
+        setUserList(filteredUsers)
+    },[applicationState])
+
+    const changePaymentType = (e) =>{
+        setPaymentType(e.target.value);
+        const filteredUsers = getUserListByFilter(applicationState.user.userList, category, e.target.value)
+        setUserList(filteredUsers)
+    }
+    const changeCategory = (e) =>{
+        setCategory(e.target.value);
+        const filteredUsers = getUserListByFilter(applicationState.user.userList, e.target.value, paymentType)
+        setUserList(filteredUsers)
+
+    }
+
 
     const updatePaymentStatus = async(user) => {
-        user.chestNumber = user.category+'-'+ getPaidListByCategory(applicationState.user.userList, user.category).length+1
+        user.chestNumber = user.category+'-'+ getUserListByFilter(applicationState.user.userList, user.category, 'PAID').length+1
         await updateUser(user);
         dispatch(getUserByMobile(localStorage.getItem('mobile')))
     }
@@ -25,7 +43,7 @@ const DashboardComponent = () => {
                 <div className="form-containter">
                     <span className="list-container">
                         <label ><b>Category</b></label>
-                        <select className="input-box filter-box" id="gender" >
+                        <select className="input-box filter-box" id="gender" value={category} onChange={(e)=> {changeCategory(e)}}>
                             {
                                 CONSTANTS.allCategory.map((category, catIndex) =>{
                                     return(
@@ -39,7 +57,7 @@ const DashboardComponent = () => {
                     </span>
                     <span className="list-container">
                         <label ><b>Payment Type</b></label>
-                        <select className="input-box filter-box" id="gender" >
+                        <select className="input-box filter-box" id="gender" value={paymentType} onChange={(e)=>{changePaymentType(e)}}>
                         {
                                 CONSTANTS.typeOfList.map((payType, payIndex) =>{
                                     return(
@@ -50,13 +68,7 @@ const DashboardComponent = () => {
                                 
                         </select>
                     </span>
-                    <span className="list-container">
-                        <label ><b>Category</b></label>
-                        <select className="input-box filter-box" id="gender" >
-                        <option value={"item"}>item</option>
-                                
-                        </select>
-                    </span>
+                    
                 </div>
 
                 <div className="user-container">
@@ -74,7 +86,7 @@ const DashboardComponent = () => {
                 </thead>
                 <tbody>
                     {
-                        applicationState?.user?.userList ? applicationState?.user?.userList.map((user, userIndex) =>{
+                        userList?.length ? userList.map((user, userIndex) =>{
                             return(
                                 <tr key={userIndex}>
                                     <td>{userIndex+1}</td>
@@ -92,7 +104,7 @@ const DashboardComponent = () => {
                                 </tr>
                             )
                         }):
-                        <tr><td colSpan={5}> <center>No data found</center></td></tr>
+                        <tr><td colSpan={7}> <center>No data found</center></td></tr>
                     }
                    
                 </tbody>

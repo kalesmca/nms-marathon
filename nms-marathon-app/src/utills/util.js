@@ -3,23 +3,34 @@ export const adminCheck = (mobile) => {
     
 }
 
-export const getPaidListByCategory = (userList, category) =>{
+const getListByPaymentCategory = (userList, paymentCategory) =>{
     let list = [];
     userList.forEach(item => {
-         if(item.category === category && list.chestNumber!= CONSTANTS) list.push(item)
+        if(paymentCategory === 'UN-PAID'){
+            if(list.chestNumber === CONSTANTS.paymentPending) list.push(item)
+        } else {
+            list.push(item)
+        }
     });
     return list;
 }
 
-export const getUnPaidListByCategory = (userList, category) =>{
-    let list = [];
-    userList.forEach(item => {
-         if(item.category === category && list.chestNumber == CONSTANTS) list.push(item)
-    });
-    return list;
+export const getUserListByFilter = (userList, category, paymentType) =>{
+    if(paymentType === 'ALL' && category == 'ALL'){
+        return userList;
+    } else if(paymentType === 'ALL' && category != 'ALL'){
+        return getListByCategory(userList, category)
+    } else if(paymentType != 'ALL' && category === 'ALL'){
+        return getListByPaymentCategory(userList, paymentType)
+    } else {
+        let list = getListByCategory(userList, category);
+        const finalList = getListByPaymentCategory(list, paymentType)
+        return finalList;
+    }
+    
 }
 
-export const getListByCategory = (userList, category) =>{
+const getListByCategory = (userList, category) =>{
     let list = [];
     userList.forEach(item => {
          if(item.category === category) list.push(item)
