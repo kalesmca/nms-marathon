@@ -3,18 +3,8 @@ import {GET_USER, ADD_USER} from '../../constants/actions';
 
 const initState = {
         userList: [],
-        name:"",
-        dob:"",
-        city:"",
-        mobile:"",
-        id:"",
-        category:"",
-        chestNumber:"",
-        gender:"",
-        isPaid:"",
-        tShirtSize:"",
-        isAdmin: false,
-        isSuperAdmin: false
+        
+        
 }
 
 const user = (state=initState, action) =>{

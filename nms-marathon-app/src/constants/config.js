@@ -28,3 +28,10 @@ export const maleCategory = ["M-U14", "M-U17", "OPEN"]
 export const feMaleCategory = ["F-U14", "F-U17", "OPEN"]
 export const gender = ["MALE", "FEMALE"]
 export const tShirtSizes = ["SMALL","MEDIUM","LARGE","X-LARGE","XX-LARGE"]
+
+
+export const CONSTANTS = {
+    paymentPending: "PAYMENT-PENDING",
+    allCategory: ["ALL", "M-U14", "M-U17", "F-U14", "F-U17", "OPEN"],
+    typeOfList : ["ALL", "UN-PAID", "PAID"]
+} 

@@ -2,6 +2,8 @@ import React,{useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {updateUser} from '../redux/API/apiService';
 import {getUserByMobile} from '../redux/actions/user';
+import {getPaidListByCategory} from '../utills/util'
+import {CONSTANTS} from '../constants/config'
 const DashboardComponent = () => {
     const applicationState = useSelector((state)=> state);
     const dispatch = useDispatch();
@@ -10,7 +12,7 @@ const DashboardComponent = () => {
     })
 
     const updatePaymentStatus = async(user) => {
-        user.chestNumber = user.category+'0001'
+        user.chestNumber = user.category+'-'+ getPaidListByCategory(applicationState.user.userList, user.category).length+1
         await updateUser(user);
         dispatch(getUserByMobile(localStorage.getItem('mobile')))
     }
@@ -21,10 +23,40 @@ const DashboardComponent = () => {
 
                 </div>
                 <div className="form-containter">
-                    <select className="input-box" id="gender" >
-                       <option value={"item"}>item</option>
-                            
-                    </select>
+                    <span className="list-container">
+                        <label ><b>Category</b></label>
+                        <select className="input-box filter-box" id="gender" >
+                            {
+                                CONSTANTS.allCategory.map((category, catIndex) =>{
+                                    return(
+                                        <option key={catIndex} value={category}>{category}</option>
+                                    )
+                                })
+                            }
+                        
+                                
+                        </select>
+                    </span>
+                    <span className="list-container">
+                        <label ><b>Payment Type</b></label>
+                        <select className="input-box filter-box" id="gender" >
+                        {
+                                CONSTANTS.typeOfList.map((payType, payIndex) =>{
+                                    return(
+                                        <option key={payIndex} value={payType}>{payType}</option>
+                                    )
+                                })
+                            }
+                                
+                        </select>
+                    </span>
+                    <span className="list-container">
+                        <label ><b>Category</b></label>
+                        <select className="input-box filter-box" id="gender" >
+                        <option value={"item"}>item</option>
+                                
+                        </select>
+                    </span>
                 </div>
 
                 <div className="user-container">
@@ -51,7 +83,11 @@ const DashboardComponent = () => {
                                     <td>{user?.chestNumber}</td>
                                     <td>{user?.category}</td>
                                     <td>{user?.tShirtSize}</td>
-                                    <td><button onClick={()=> updatePaymentStatus(user)}>Paid</button></td>
+                                    <td>{
+                                        user.chestNumber === CONSTANTS.paymentPending ? (<button onClick={()=> updatePaymentStatus(user)}>Paid</button>) :""
+                                        }
+                                        
+                                    </td>
     
                                 </tr>
                             )

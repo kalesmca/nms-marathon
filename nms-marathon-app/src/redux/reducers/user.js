@@ -15,6 +15,7 @@ const initState = {
         tShirtSize:"",
         isAdmin: false,
         isSuperAdmin: false
+        
 }
 
 const user = (state=initState, action) =>{

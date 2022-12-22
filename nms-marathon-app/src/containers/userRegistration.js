@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {feMaleCategory, maleCategory, gender, tShirtSizes} from '../constants/config'
+import {feMaleCategory, maleCategory, gender, tShirtSizes, CONSTANTS} from '../constants/config'
 import {addUser} from '../redux/actions/user';
 import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ const initObj = {
     isPaid: false,
     city: "",
     tShirtSize: "SMALL",
-    chestNumber:"payment pending",
+    chestNumber: CONSTANTS.paymentPending,
     gender:"MALE"
 
 }
