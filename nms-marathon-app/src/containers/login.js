@@ -15,16 +15,7 @@ const LoginComponent = () => {
     const applicationState = useSelector((state) => state);
 
     useEffect(() => {
-        if (applicationState?.user?.userList?.length) {
-            if(admin){
-                navigate('dashboard')
-            }else {
-                const dbUser = applicationState.user.userList.find((item) => item.mobile == mobile)
-                dbUser ? navigate('user') : navigate('users-registration')
-            }
-            
-        }
-
+       
     }, [applicationState])
 
     const loginUser = () => {
@@ -38,9 +29,15 @@ const LoginComponent = () => {
             if(admin){
                 dispatch(updateUser(admin)); 
                 localStorage.setItem( 'adminRights' , "*****")
-            } 
+                navigate('dashboard')
+            } else {
+                const dbUser = applicationState.user.userList.find((item) => item.mobile == mobile)
+                dbUser ? navigate('user') : navigate('users-registration')
+            }
             localStorage.setItem( 'mobile' , mobile)
-            dispatch(getUserList())
+            
+            
+            
         }
         
     }

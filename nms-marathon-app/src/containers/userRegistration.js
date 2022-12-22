@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {feMaleCategory, maleCategory, gender, tShirtSizes} from '../constants/config'
 import {addUser} from '../redux/actions/user';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const initObj = {
@@ -24,11 +24,12 @@ const errMsgs = {
 const UserRegistration = () => {
     const [obj, setObj] = useState(initObj);
     const [errMsg, setErrorMsg] = useState(errMsgs);
+    const applicationState = useSelector((state)=>state);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(()=>{
-       console.log(localStorage.getItem('mobile')) 
+       console.log(localStorage.getItem('mobile'), applicationState) 
        setObj({...obj, ...{mobile:localStorage.getItem('mobile')}})
 
     },[])
@@ -36,17 +37,17 @@ const UserRegistration = () => {
     const mobileNumberValidation = () => {
         if(!obj.mobile || obj.mobile.length !==10 ){
             setErrorMsg( {...errMsg, mobile:'Please enter valid mobile number.'})
+        } else{
+            applicationState?.user?.userList?.map((user)=>{
+                if(user.mobile == obj.mobile){
+                    setErrorMsg( {...errMsg, mobile:'Mobile number exist.'})
+
+                }
+            })
         }
     }
 
-
-
-    const setMobileNumber = (data) => {
-        localStorage.setItem( 'mobile' , data )
-// getItem( key ): returns the value in front of key
-    }
     const saveUser = () => {
-        console.log('user:', obj)
         if(!obj.mobile){
             setErrorMsg( {...errMsg, mobile:'Please enter valid mobile number.'})
         } else if(!obj.name){
@@ -55,6 +56,7 @@ const UserRegistration = () => {
         if(!errMsg.name && !errMsg.mobile){
             localStorage.setItem('mobile', obj.mobile)
             dispatch(addUser(obj));
+            navigate('/user')
         }
 
     }
@@ -68,7 +70,7 @@ const UserRegistration = () => {
                      placeholder="Your name.." value={obj.name} onChange={(e) => { setObj({...obj, name: e.target.value});setErrorMsg({...errMsg, name:''}) } } />
                      {errMsg.name ? (<div className="err-msg">{errMsg.name}</div>) : ""}
                     <label ><b>Mobile</b></label>
-                    <input className="input-box" type="number" onBlur={()=> mobileNumberValidation()} placeholder="Your Mobile number 10 digit.." value={obj.mobile} onChange={(e) => {setObj({...obj, mobile: e.target.value}); setErrorMsg({...errMsg, mobile:''})}}  />
+                    <input className="input-box" autoFocus type="number" onBlur={()=> mobileNumberValidation()} placeholder="Your Mobile number 10 digit.." value={obj.mobile} onChange={(e) => {setObj({...obj, mobile: e.target.value}); setErrorMsg({...errMsg, mobile:''})}}  />
                     {errMsg.mobile ? (<div className="err-msg">{errMsg.mobile}</div>) : ""}
                     
                     <label ><b>City</b></label>

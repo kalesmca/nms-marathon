@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {getUserByMobile} from '../redux/actions/user'
+import {getUserByMobile, getUserList} from '../redux/actions/user'
 
 
 const HeaderComponent = () => {
@@ -14,8 +14,8 @@ const HeaderComponent = () => {
         };
     };
     useEffect(() => {
-        if(!applicationState?.user?.userList?.length && localStorage.getItem('mobile')){
-            dispatch(getUserByMobile(localStorage.getItem('mobile')))
+        if(!applicationState?.user?.userList?.length){
+            localStorage.getItem('mobile') ? dispatch(getUserByMobile(localStorage.getItem('mobile'))) : dispatch(getUserList())
         }
     }, [])
     return (
