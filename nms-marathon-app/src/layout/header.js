@@ -34,7 +34,9 @@ const HeaderComponent = () => {
                         <NavLink style={navLinkStyles} to="/users-update">
                             User-Action
                         </NavLink>
-                        <a href="#" className="right">Link</a>
+                        <NavLink style={navLinkStyles} to="/">
+                            Log-out
+                        </NavLink>
                     </div>
                 ) : ""
             }

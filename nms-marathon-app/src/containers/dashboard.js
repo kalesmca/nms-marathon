@@ -72,6 +72,7 @@ const DashboardComponent = () => {
                 </div>
 
                 <div className="user-container">
+                    TOTAL COUNT = {userList.length}
             <table id="user-table">
                 <thead>
                     <tr>

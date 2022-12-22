@@ -15,8 +15,8 @@ const LoginComponent = () => {
     const applicationState = useSelector((state) => state);
 
     useEffect(() => {
-       
-    }, [applicationState])
+        localStorage.clear();   
+    }, [])
 
     const loginUser = () => {
 
