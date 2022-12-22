@@ -7,9 +7,9 @@ const getListByPaymentCategory = (userList, paymentCategory) =>{
     let list = [];
     userList.forEach(item => {
         if(paymentCategory === 'UN-PAID'){
-            if(list.chestNumber === CONSTANTS.paymentPending) list.push(item)
+            if(item.chestNumber === CONSTANTS.paymentPending) list.push(item)
         } else {
-            list.push(item)
+            if(item.chestNumber !== CONSTANTS.paymentPending) list.push(item)
         }
     });
     return list;
