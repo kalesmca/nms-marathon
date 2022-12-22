@@ -7,7 +7,7 @@ import UserComponent from '../containers/userComponent';
 import HeaderComponent from "./header";
 import ApproverComponent from '../containers/approverComponent';
 import UserRegistration from "../containers/userRegistration";
-
+import TShirtComponent from '../containers/tShirtComponent';
 const LayoutContainer = () => {
     return (
         <div>
@@ -19,6 +19,7 @@ const LayoutContainer = () => {
                 <Route path="dashboard" element={<DashboardComponent />} />
                 <Route path="users-update" element={<ApproverComponent />} />
                 <Route path="users-registration" element={<UserRegistration />} />
+                <Route path="t-shirts" element={<TShirtComponent />} />
 
 
 

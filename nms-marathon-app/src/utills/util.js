@@ -38,3 +38,19 @@ const getListByCategory = (userList, category) =>{
     return list;
 }
 
+export const getTShirtSummary = (userList) =>{
+    let list = [];
+    CONSTANTS.allCategory.map((category) => {
+        let sizeObj ={SMALL:0,MEDIUM:0,LARGE:0, XL:0, XXL:0, category: category}
+        let categoryUserList = getListByCategory(userList, category);
+        if(categoryUserList.length){
+            categoryUserList.map((user)=>{
+                sizeObj[user.tShirtSize] = sizeObj[user.tShirtSize]+1
+            })
+            list.push(sizeObj)
+        }
+       
+    })
+    
+    return list;
+}

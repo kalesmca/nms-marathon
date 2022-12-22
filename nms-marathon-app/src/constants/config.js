@@ -27,7 +27,7 @@ export const adminList = [
 export const maleCategory = ["M-U14", "M-U17", "OPEN"]
 export const feMaleCategory = ["F-U14", "F-U17", "OPEN"]
 export const gender = ["MALE", "FEMALE"]
-export const tShirtSizes = ["SMALL","MEDIUM","LARGE","X-LARGE","XX-LARGE"]
+export const tShirtSizes = ["SMALL","MEDIUM","LARGE","XL","XXL"]
 
 
 export const CONSTANTS = {
