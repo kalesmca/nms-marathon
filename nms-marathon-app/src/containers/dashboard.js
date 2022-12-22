@@ -35,7 +35,7 @@ const DashboardComponent = () => {
         dispatch(getUserByMobile(localStorage.getItem('mobile')))
     }
     return(
-        <div className="reg-flex-container">
+        <div className="reg-flex-container dashboard-flex ">
             <div className="reg-container dashboard-cont">
                 <div className="header">
 
@@ -71,7 +71,10 @@ const DashboardComponent = () => {
                     
                 </div>
 
-                <div className="user-container">
+                
+
+            </div>
+            <div className="user-container">
                     TOTAL COUNT = {userList.length}
             <table id="user-table">
                 <thead>
@@ -111,8 +114,6 @@ const DashboardComponent = () => {
                 </tbody>
             </table>
         </div>
-
-            </div>
         </div>
     )
 }

@@ -57,6 +57,9 @@ body {
     }
 
 }
+.dashboard-flex{
+    flex-direction: column !important;
+}
 
 .reg-flex-container{
     width: 100%;
@@ -65,6 +68,7 @@ body {
     margin-top: 2%;
     .dashboard-cont{
         width: 95% !important;
+        margin-left: 2%;
     }
     .reg-container {
         background-color: #f2f2f2;
