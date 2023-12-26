@@ -8,18 +8,22 @@ import HeaderComponent from "./header";
 import ApproverComponent from '../containers/approverComponent';
 import UserRegistration from "../containers/userRegistration";
 import TShirtComponent from '../containers/tShirtComponent';
+import NotificationComponent from '../containers/notification';
 const LayoutContainer = () => {
     return (
         <div>
             <HeaderComponent />
 
             <Routes>
-                <Route path="/" element={<LoginComponent />} />
+                <Route path="/" element={<NotificationComponent />} />
+
+                {/* <Route path="/" element={<LoginComponent />} />
+                
                 <Route path="user" element={<UserComponent />} />
                 <Route path="dashboard" element={<DashboardComponent />} />
                 <Route path="users-update" element={<ApproverComponent />} />
                 <Route path="users-registration" element={<UserRegistration />} />
-                <Route path="t-shirts" element={<TShirtComponent />} />
+                <Route path="t-shirts" element={<TShirtComponent />} /> */}
 
 
 
