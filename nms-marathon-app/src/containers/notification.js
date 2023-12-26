@@ -21,7 +21,7 @@ const NotificationComponent = () => {
         {/* <h2 className="header">Login / SignUp</h2> */}
         <div className="form-containter">
             
-            <div className="notification-txt"><h1>Coming Soon...</h1></div>
+            <div className="notification-txt"><h1>Registration Coming Soon...</h1></div>
         </div>
 
         
