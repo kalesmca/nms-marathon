@@ -1,6 +1,6 @@
 .header-container{
     background-color: var(--primary-color);
-    height: 100px;
+    height: 165px;
     width: 100%;
 
     .header{
@@ -22,6 +22,15 @@
             }
         }
     }
+}
+.theme{
+    margin-left: 20px;
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+    margin-top: 1;
+    display: flex;
+    justify-content: center;
 }
 .body-container{
     margin:20px;
