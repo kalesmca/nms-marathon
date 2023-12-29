@@ -251,7 +251,7 @@ function PlayerRegistration() {
         <Form.Label className='player-category-selection'> {playerObj.playerCategory ? playerObj.playerCategory : "Select your Date of Birth"} </Form.Label>
       </Form.Group>
 
-      <Row className="mb-3">
+      {/* <Row className="mb-3">
         <Col sm={{ span: 10, offset: 1 }}>
           {
             playerObj.events.map((event, eIndex) => {
@@ -262,7 +262,7 @@ function PlayerRegistration() {
             })
           }
         </Col>
-      </Row>
+      </Row> */}
       <Alert variant={"warning"}>
      
           <div>Entrance fee RS-200/player</div>
@@ -286,7 +286,7 @@ function PlayerRegistration() {
           }
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
+        {/* <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Contact Mobile</Form.Label>
           <Form.Control type="number" placeholder="Mobile Number" value={playerObj.mobile}
             onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }} onBlur={(e)=> {getValidation("mobile")}}
@@ -294,7 +294,7 @@ function PlayerRegistration() {
           {
             errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
           }
-        </Form.Group>
+        </Form.Group> */}
 
         
       </Row>
