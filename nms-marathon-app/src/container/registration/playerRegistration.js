@@ -13,6 +13,7 @@ import {PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom' ;
 import Image from 'react-bootstrap/Image';
 import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
+import GooglePayButton from '@google-pay/button-react';
 
 function PlayerRegistration() {
   const playerState = useSelector((state)=>state.players)
@@ -165,7 +166,7 @@ function PlayerRegistration() {
   }
 
   return (
-    <div>
+    <div className='reg-form'>
       <Form >
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
@@ -303,6 +304,9 @@ function PlayerRegistration() {
       <Button variant="primary" onClick={() => { submit() }}>
         Submit
       </Button>
+      {/* <GooglePayButton>
+
+      </GooglePayButton> */}
     </Form>
     </div>
     
