@@ -290,7 +290,7 @@ function PlayerRegistration() {
       
     </Form>
     <div>
-    <GooglePayButton
+    {/* <GooglePayButton
   environment="TEST"
   paymentRequest={{
     apiVersion: 2,
@@ -326,7 +326,7 @@ function PlayerRegistration() {
   onLoadPaymentData={paymentRequest => {
     console.log('load payment data', paymentRequest);
   }}
-/>
+/> */}
     </div>
     </div>
     
