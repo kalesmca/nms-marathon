@@ -40,3 +40,19 @@
     margin:20px;
     margin-top:180px;
 }
+.logout-container{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 5%;
+    cursor: pointer;
+    .logout{
+        text-decoration: underline;
+        color: blue;
+        --mouse-over-color: whitesmoke;
+        padding-left: 5px;
+        // display: flex;
+        // padding-right: 5%;
+        // flex-direction: row-reverse;
+        font-size: 16px;
+    }
+}

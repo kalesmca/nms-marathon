@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { setAuthStatus } from '../../redux/actions/players';
 import { global } from "../../config/locale";
-
+import logoutIcon from "../../assets/power-off-solid.svg"
+import signout from '../../assets/signout.svg'
 const HeaderComponent = () => {
     const playerState = useSelector((state) => state?.players)
     const dispatch = useDispatch()
@@ -37,7 +38,7 @@ const HeaderComponent = () => {
         <div>
             <div className="header">{global.label.clubName}</div>
             <p className="theme">உலகிற்கே உணவு கொடுக்கும் உன்னதப் பணி செய்பவனே விவசாயி.</p>
-
+            {/* <img src={logoutIcon} alt="SVG Image"></img> */}
             {
                 playerState?.authStatus === "ADMIN_ACCESS" || playerState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                     // true? (
@@ -72,10 +73,18 @@ const HeaderComponent = () => {
                 ) : ""
             }
             {
-                logOutFlag || playerState.authStatus != AUTH_STATUS.PENDING ? (<div>
-                    <Button variant="primary" onClick={() => { logout() }}>
+                logOutFlag || playerState.authStatus != AUTH_STATUS.PENDING ? (<div onClick={() => { logout() }} className="logout-container">
+                    
+                    <span>
+                    <a className="logout" >Log-out</a>
+                    </span>
+                    <span>
+                         <img src={logoutIcon} alt="SVG Image"></img>
+                    </span>
+                    
+                    {/* <Button variant="primary" onClick={() => { logout() }}>
                         Logout
-                    </Button>
+                    </Button> */}
 
                 </div>) : ""
             }
