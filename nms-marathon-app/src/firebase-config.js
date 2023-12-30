@@ -10,13 +10,13 @@ import {getAuth, GoogleAuthProvider} from 'firebase/auth';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCW1xPCeUwId8zxKDNkTNtO_nqgCscq8LU",
-  authDomain: "nms-athletics.firebaseapp.com",
-  projectId: "nms-athletics",
-  storageBucket: "nms-athletics.appspot.com",
-  messagingSenderId: "1071168315211",
-  appId: "1:1071168315211:web:446b3e3477d234faa452ce",
-  measurementId: "G-ZPPWHLS62W"
+  apiKey: "AIzaSyDG7RUqxZT4w1d2VqSZ8eUAmKy-FETiE9o",
+  authDomain: "nms-marathon.firebaseapp.com",
+  projectId: "nms-marathon",
+  storageBucket: "nms-marathon.appspot.com",
+  messagingSenderId: "358803937260",
+  appId: "1:358803937260:web:2f24183c50703281d952c9",
+  measurementId: "G-LDMNJLK8KN"
 };
 
 // Initialize Firebase
