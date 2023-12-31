@@ -175,7 +175,7 @@ function PlayerRegistration() {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Club/School Name</Form.Label>
+          <Form.Label>Club/School Name/ City</Form.Label>
           <Form.Control type="text" placeholder="Optional" value={playerObj.clubName}
             onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }} 
           />
@@ -218,16 +218,7 @@ function PlayerRegistration() {
 
       </Row>
 
-      <Alert variant={"primary"}>
      
-          <div>After Born <span>01/01/2014 </span>Under 10 Boys and Girls</div>
-          <div>01/01/2016 After Born U_8</div>
-          <div>01/01/2014 After Born U_10</div>
-
-          <div>01/01/2012 After Born U_12</div>
-          <div>01/01/2010 After Born U_14</div>
-          <div>01/01/2007 After Born U_17</div>
-        </Alert>
 
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -261,12 +252,12 @@ function PlayerRegistration() {
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>UPI Mobile Number</Form.Label>
-          <Form.Control type="number" placeholder="Google-Pay Number" value={playerObj.upi} onBlur={(e)=> {getValidation("upi")}}
+          <Form.Label>Your UPI Mobile Number</Form.Label>
+          <Form.Control type="number" placeholder="Your Google-Pay Number" value={playerObj.upi} onBlur={(e)=> {getValidation("upi")}}
             onChange={(e) => { setPlayerObj({ ...playerObj, upi: e.target.value }) }}
           />
           {
-            errObj.upi.touched && errObj.upi.err && <div className='err'> Valid GPay Number</div>
+            errObj.upi.touched && errObj.upi.err && <div className='err'> Valid your GPay Number</div>
           }
         </Form.Group>
 
