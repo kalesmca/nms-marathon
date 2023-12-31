@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./registration.scss";
-import { U_10_TIME,U_14_TIME, U_19_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
+import { U_10_TIME,U_14_TIME, U_19_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS, tShirtSizeList } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
@@ -147,7 +147,9 @@ function PlayerRegistration() {
     setErrObj({...errObj, ...tempErrObj})
     
   }
-
+useEffect(()=>{
+  console.log(playerObj)
+})
   return (
     <div className='reg-form'>
       <Form >
@@ -214,6 +216,19 @@ function PlayerRegistration() {
             onClick={() => {dateChage(playerObj.dob, "FEMALE") }}
             id={`inline-${'FeMale'}-2`}
           />
+        </Form.Group>
+        <Form.Group as={Col} controlId="tshirt">
+        <Form.Label>T-shirt Size : </Form.Label>
+        <Form.Select aria-label="Default select example" size="sm" value={playerObj.tShirtSize} onChange={(e)=>{
+          setPlayerObj({...playerObj, tShirtSize:e.target.value})
+        }}>
+          {
+            tShirtSizeList.map((size, sIndex) =>{
+              return(<option index={sIndex} value={size}>{size}</option>)
+            })
+          }
+      
+    </Form.Select>
         </Form.Group>
 
       </Row>

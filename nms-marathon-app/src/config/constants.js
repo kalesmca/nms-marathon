@@ -71,7 +71,7 @@ export const U_17 = "U_17";
 export const U_19 = "U_19";
 export const PAYMENT_STATUS = ["PAYMENT_VERIFIED", "PAYMENT_NOT_VERIFIED", "NOT_PAID", "NMS"]
 export const PLAYER_STATUS = ["ACTIVE", "IN_ACTIVE"]
-
+export const tShirtSizeList= ["28","30","32","34","36","38","40","42"]
 export const initPlayerData = {
     name:"",
     adharNumber:"111111111111",
@@ -86,7 +86,8 @@ export const initPlayerData = {
     paymentStatus: PAYMENT_STATUS[1],
     status: PLAYER_STATUS[0],
     updatedByList: [],
-    chestNumber: ""
+    chestNumber: "",
+    tShirtSize:tShirtSizeList[0]
 }
 
 export const initError = {
@@ -96,3 +97,4 @@ export const initError = {
     upi:{touched:false,err: false}
     // mobile:{touched:false,err: false},
 }
+

@@ -46,7 +46,7 @@ const PlayerDashboard = () =>{
                             <th>Name</th>
                             <th>Category</th>
                             <th>Chest No</th>
-                            {/* <th>Events</th> */}
+                            <th>T-Shirt</th>
                             <th>Pay Status</th>
                         </tr>
                     </thead>
@@ -60,9 +60,7 @@ const PlayerDashboard = () =>{
                                             <td>{player.name}</td>
                                             <td>{player.playerCategory}</td>
                                             <td>{player.chestNumber}</td>
-                                            {/* <td>{player.selectedEvents.map((event, eIndex)=>{
-                                                return(<div key={eIndex}>{event.eventName}</div>)
-                                            })}</td> */}
+                                           <td>{player.tShirtSize}</td>
                                             <td>{player.paymentStatus}</td>
                                         </tr>
                                     )
