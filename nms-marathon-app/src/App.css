@@ -4,7 +4,7 @@
 
 body {
   background-image: url("./assets/images/nms_2.jpg");
-  background-repeat: repeat;
+  background-repeat: round;
   background-attachment: fixed;
 }
 
