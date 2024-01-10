@@ -45,8 +45,8 @@ const ViewPlayerComponent = (props) => {
                         <Col>{props?.player?.name}</Col>
                     </Row>
                     <Row>
-                        <Col>Aadhar Number</Col>
-                        <Col>{props?.player?.adharNumber}</Col>
+                        <Col>Category</Col>
+                        <Col>{props?.player?.playerCategory}</Col>
                     </Row>
                     <Row>
                         <Col>Club/School</Col>
@@ -56,22 +56,16 @@ const ViewPlayerComponent = (props) => {
                         <Col>Date of Birth</Col>
                         <Col>{props?.player?.dob}</Col>
                     </Row>
+                    
                     <Row>
-                        <Col>Payment Events</Col>
-                        <Col><span>{props?.player?.selectedEvents[0]?.eventName},{" "}{props?.player?.selectedEvents[1]?.eventName}</span></Col>
-                    </Row>
-                    <Row>
-                        <Col>Payment Status</Col>
+                        <Col>Payment</Col>
                         <Col>{props?.player?.paymentStatus}</Col>
                     </Row>
                     <Row>
-                        <Col>Player GPAY number </Col>
+                        <Col>UPI </Col>
                         <Col>{props?.player?.upi}</Col>
                     </Row>
-                    <Row>
-                        <Col>Contact</Col>
-                        <Col>{props?.player?.mobile}</Col>
-                    </Row>
+                    
                     <Row>
                         <Col>Created BY</Col>
                         <Col>{props?.player?.registerMobile}</Col>

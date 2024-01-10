@@ -275,15 +275,7 @@ function EditPlayerComponent() {
           }
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Contact Mobile</Form.Label>
-          <Form.Control type="number" placeholder="Mobile Number" value={playerObj.mobile}
-            onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }} onBlur={(e)=> {getValidation("mobile")}}
-          />
-          {
-            errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
-          }
-        </Form.Group>
+        
 
         
       </Row>

@@ -48,7 +48,7 @@ const PlayerListComponent = () => {
     }
 
     const viewPlayer = (player) => {
-        setPopupObj({ componentName: "EditPlayerComponent", playerData: player, title: player.name })
+        setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
         setMsgPopupFlag(true)
     }
 
@@ -167,7 +167,7 @@ const PlayerListComponent = () => {
                                         <th>Chest No</th>
                                         <th>Events</th>
                                         <th>Pay Status</th>
-                                        <th>Created_ON</th>
+                                        {/* <th>Created_ON</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -188,7 +188,7 @@ const PlayerListComponent = () => {
                                                         
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
-                                                        <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td>
+                                                        {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
                                                     </tr>
                                                 )
                                             }

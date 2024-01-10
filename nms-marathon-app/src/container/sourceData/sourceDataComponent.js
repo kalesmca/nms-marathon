@@ -37,9 +37,9 @@ const SourceDataComponent = () =>{
     return(
         <div>
             SourceDataComponent
-            <div>
+            {/* <div>
                 <button onClick={()=>{update()}}>update with data</button>
-            </div>
+            </div> */}
             <div>
                 {JSON.stringify(playersState.playerList)}
             </div>
