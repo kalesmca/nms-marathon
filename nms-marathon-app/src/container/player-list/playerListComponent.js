@@ -165,9 +165,9 @@ const PlayerListComponent = () => {
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Chest No</th>
-                                        <th>Events</th>
+                                        {/* <th>Events</th> */}
                                         <th>Pay Status</th>
-                                        {/* <th>Created_ON</th> */}
+                                        <th>Created_ON</th>
                                     </tr>
                                 </thead>
                                 <tbody>
