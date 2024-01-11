@@ -19,6 +19,11 @@ export const getPlayerList = () => async (dispatch, getState) => {
         const data = await getDocs(playersCollectionRef);
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('data list:', dataList)
+        
+
+        dataList.sort(function(a,b){
+            return new Date(b.createdOn) - new Date(a.createdOn);
+            });
 
         const localAuth = JSON.parse(localStorage.getItem("auth"));
         const regPlayerList = dataList.filter((data)=> data.registerMobile === localAuth.mobile)
@@ -40,6 +45,7 @@ export const addPlayer = (obj) => async (dispatch, getState) => {
         console.log('error:', error);
     }
 }
+
 
 
 export const updatePlayerList = (data, regPlayerList) => {
