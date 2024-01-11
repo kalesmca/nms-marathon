@@ -10,6 +10,17 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 // import { JsonToExcel } from "react-json-to-excel";
+import { db } from "../../firebase-config";
+import {DB} from '../../config/constants';
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+  } from "firebase/firestore";
+  import { async } from "@firebase/util";
 
 const initEvent = { eventName: "ALL", eventId: "ALL" };
 const PlayerListComponent = () => {
@@ -71,6 +82,16 @@ const PlayerListComponent = () => {
     const editPlayer = (player) =>{
         setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
         setMsgPopupFlag(true)
+    }
+
+    const deletePlayer = (player) =>{
+        const userDoc = doc(db, DB.players, player.id);
+        deleteDoc(userDoc);
+        
+        setTimeout(()=>{
+            dispatch(getPlayerList());
+        },1000)
+
     }
     return (
         <div>
@@ -168,6 +189,7 @@ const PlayerListComponent = () => {
                                         {/* <th>Events</th> */}
                                         <th>Pay Status</th>
                                         <th>Created_ON</th>
+                                        {/* <th>Action</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -188,6 +210,7 @@ const PlayerListComponent = () => {
                                                         
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
+                                                        {/* <td onClick={()=>deletePlayer(player)}>Delete</td> */}
                                                         {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
                                                     </tr>
                                                 )
