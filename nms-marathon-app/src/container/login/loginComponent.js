@@ -15,7 +15,7 @@ import Alert from 'react-bootstrap/Alert';
 const LoginComponent = () => {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("")
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState({});
   const dispatch = useDispatch();
   const playerState = useSelector((state) => state.players)
   const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
@@ -25,8 +25,9 @@ const LoginComponent = () => {
 
   const submit = () => {
 
-    if (isAdmin) {
-      if (password === "volleyball") {
+    if (Object.keys(isAdmin).length) {
+      if(isAdmin.auth === AUTH_STATUS.SUPER_ADMIN_ACCESS ? password === "volley.ball": password === "volleyball"){
+      
         loginConfirmModal()
       } else {
         const obj = {
@@ -39,7 +40,7 @@ const LoginComponent = () => {
         setMsgPopupFlag(true);
         setPassword("")
         setMobile("")
-        setIsAdmin(false)
+        setIsAdmin({})
       }
     } else {
       loginConfirmModal()
@@ -100,7 +101,7 @@ const LoginComponent = () => {
                 
                 </Form.Group>
                 {
-                  isAdmin ? (<Form.Group as={Col} controlId="formGridPassword">
+                  Object.keys(isAdmin).length ? (<Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Admin Password" value={password} 
                       onChange={(e) => { setPassword(e.target.value) }} 

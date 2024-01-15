@@ -30,6 +30,7 @@ const PlayerListComponent = () => {
     const [events, setEvents] = useState([])
     const [searchKey, setSearchKey] = useState("")
     const [paymentStatus, setPaymentStatus] = useState("ALL")
+    const authData = JSON.parse(localStorage.getItem("auth"));
 
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
@@ -197,7 +198,7 @@ const PlayerListComponent = () => {
                                         playerList?.length ? playerList.map((player, pIndex) => {
                                             if (getQueryValidation(player)) {
                                                 return (
-                                                    <tr key={pIndex} onClick={() => { viewPlayer(player) }}>
+                                                    <tr key={pIndex} onClick={() => { authData?.access==="SUPER_ADMIN_ACCESS" && viewPlayer(player) }}>
                                                         <td>{pIndex + 1}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>

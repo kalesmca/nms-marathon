@@ -17,13 +17,15 @@ export const formatAppDate = (date) => {
 
 export const checkIsAdmin = (data) =>{
     let flag= false;
+    let obj = {}
 
     adminList.map((admin)=>{
         if(admin.mobile == data){
             flag=true;
+            obj= admin;
         }
     })
-    return flag;
+    return obj;
 }
 
 
