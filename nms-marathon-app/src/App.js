@@ -12,6 +12,7 @@ import { PopupContext} from './config/context';
 import LoginLayout from './container/login/loginLayout';
 import { Provider } from "react-redux";
 import store from './redux/store';
+import TshirtComponent from './container/tshirt/tshirtComponent';
 function App() {
   const [msgPopupFlag, setMsgPopupFlag] = useState(false);
   const [navigationPath, setNavigationPath] = useState("");
@@ -45,6 +46,7 @@ function App() {
             <Route path="registration" element={<PlayerRegistration />} />
             <Route path="dashboard" element={<PlayerDashboard />} />
             <Route path="source" element={<SourceDataComponent />} />
+            <Route path="tshirt" element={<TshirtComponent />} />
             {/* <Route path="*" element={<LayoutContainer />} /> */}
           </Route>
         </Routes>

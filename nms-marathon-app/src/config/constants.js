@@ -47,6 +47,19 @@ export const EVENTS = {
     }]
 }
 
+// "28","30","32","34","36","38","40","42"
+export const TSHIRT_COUNT_LIST = {
+    28:0,
+    30:0,
+    32:0,
+    34:0,
+    36:0,
+    38:0,
+    40:0,
+    42:0
+
+}
+
 export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]
 export const U_17_EVENTS = ["100M, 400M, 1500M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW", "JAWLIN_THROW"]
 export const U_19_EVENTS = ["100M, 200M, 1500M", "SHORT_PUT", "LONG_JUMP"]
