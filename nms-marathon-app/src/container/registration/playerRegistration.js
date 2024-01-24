@@ -217,7 +217,7 @@ useEffect(()=>{
             id={`inline-${'FeMale'}-2`}
           />
         </Form.Group>
-        <Form.Group as={Col} controlId="tshirt">
+        {/* <Form.Group as={Col} controlId="tshirt">
         <Form.Label>T-shirt Size : </Form.Label>
         <Form.Select aria-label="Default select example" size="sm" value={playerObj.tShirtSize} onChange={(e)=>{
           setPlayerObj({...playerObj, tShirtSize:e.target.value})
@@ -229,7 +229,7 @@ useEffect(()=>{
           }
       
     </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
 
       </Row>
 

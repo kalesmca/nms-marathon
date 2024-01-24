@@ -100,7 +100,7 @@ export const initPlayerData = {
     status: PLAYER_STATUS[0],
     updatedByList: [],
     chestNumber: "",
-    tShirtSize:tShirtSizeList[0]
+    tShirtSize:"NO"
 }
 
 export const initError = {

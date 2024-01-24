@@ -124,14 +124,12 @@ const LoginComponent = () => {
       </Form>
 
      
-      {/* <Alert variant={"warning"}>
-      <a href="https://nms-admin-final.web.app/" target="_blank">Player Chest Number click here</a>
+      <Alert variant={"danger"}>
 
-          <div> Entry closed . Please contact our Head Coach</div>
-          <div>Selva : 9965560087</div>
+          <div> இனிமேல் பதிவு செய்யும் நபர்களுக்கு T.Shirt வழங்கப்படமாட்டாது.  </div>
           
     
-   </Alert> */}
+   </Alert>
       
 
     </div>
