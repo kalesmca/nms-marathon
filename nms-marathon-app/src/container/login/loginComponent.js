@@ -43,11 +43,26 @@ const LoginComponent = () => {
         setIsAdmin({})
       }
     } else {
-      loginConfirmModal()
+
+      // loginConfirmModal()
+      setEntryClosedState();
     }
 
 
 
+  }
+  const setEntryClosedState = () =>{
+    const obj = {
+      title: "Entry Closed",
+      content: "Please contact our coach: MAX: 9965560087 ",
+      contentSpinner: true,
+      btn1: "Close"
+    }
+    setPopupObj(obj)
+    const timer = setTimeout(() => {
+      setMsgPopupFlag(true);
+    }, 1000);
+    return () => clearTimeout(timer);
   }
 
   const loginConfirmModal = () => {
