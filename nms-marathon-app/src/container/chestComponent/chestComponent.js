@@ -23,7 +23,7 @@ import {
   import { async } from "@firebase/util";
 
 const initEvent = { eventName: "ALL", eventId: "ALL" };
-const PlayerListComponent = () => {
+const ChestNumberComponent = () => {
     const playersState = useSelector((state) => state.players)
     const [playerList, setPlayerList] = useState(playersState.playerList);
     const [playerCategory, setPlayerCategory] = useState("ALL")
@@ -61,36 +61,40 @@ const PlayerListComponent = () => {
       
       
     useEffect(() => {
-        setPlayerList(playersState.playerList);
-        // const result = Object.groupBy(playersState.playerList, ({ playerCategory }) => playerCategory);
-        // let outer = []
-        // console.log('group::', result)
-        // Object.keys(result).map((key)=>{
-        //     let sortedArr = []
-        // let sortedObj = groupByKey(result[key], 'clubName')
-        // console.log('sorted obj:', sortedObj)
-        // Object.keys(sortedObj).map((key)=>{
-        //     sortedArr = [...sortedArr, ...sortedObj[key]]
+        // setPlayerList(playersState.playerList);
+        const paidList = playersState.playerList.filter((player)=>{
+            return player.paymentStatus != "PAYMENT_NOT_VERIFIED" && player.paymentStatus !="NOT_PAID"
 
-        // })
-        // outer = [...outer, ...sortedArr]
-        // })
+        })
+        const result = Object.groupBy(paidList, ({ playerCategory }) => playerCategory);
+        let outer = []
+        console.log('group::', result)
+        Object.keys(result).map((key)=>{
+            let sortedArr = []
+        let sortedObj = groupByKey(result[key], 'clubName')
+        console.log('sorted obj:', sortedObj)
+        Object.keys(sortedObj).map((key)=>{
+            sortedArr = [...sortedArr, ...sortedObj[key]]
+
+        })
+        outer = [...outer, ...sortedArr]
+        })
         
-        // let girlsList = [];
-        // let boysList =[];
-        // outer.map((data)=>{
-        //     if(data.playerCategory === "U_19_G" || data.playerCategory === "U_10_G"){
-        //         girlsList = [...girlsList, ...[data]] 
-        //     } else {
-        //         boysList = [...boysList, ...[data]]
-        //     }
-        // })
-        // boysList.sort( compare );
-        // girlsList.sort(compare)
-        // let finalRes = [...boysList, ...girlsList]
-        // console.log('outer',outer);
-        // console.log('final:', finalRes)
-        // setPlayerList(finalRes)
+        let girlsList = [];
+        let boysList =[];
+        outer.map((data)=>{
+            if(data.playerCategory === "U_19_G" || data.playerCategory === "U_10_G"){
+                girlsList = [...girlsList, ...[data]] 
+            } else {
+                boysList = [...boysList, ...[data]]
+            }
+        })
+        boysList.sort( compare );
+        girlsList.sort(compare)
+        let finalRes = [...boysList, ...girlsList]
+        console.log('outer',outer);
+        console.log('final:', finalRes)
+        setPlayerList(finalRes)
     }, [playersState])
     
     // useEffect(() => {
@@ -304,4 +308,4 @@ const PlayerListComponent = () => {
     )
 }
 
-export default PlayerListComponent;
+export default ChestNumberComponent;

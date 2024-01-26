@@ -17,7 +17,10 @@ const TshirtComponent = () =>{
     const getTshirtCountList = () =>{
         console.log('player state:', playerList);
         let obj = JSON.parse(JSON.stringify(TSHIRT_COUNT_LIST)) 
-        playerList.map((player) =>{
+        let tShirtPlayerList = playerList.filter((player)=>{
+            return player.paymentStatus != "PAYMENT_NOT_VERIFIED"&& player.paymentStatus !="NOT_PAID"
+        })
+        tShirtPlayerList.map((player) =>{
             if(category !== "ALL"){
                 if(player.playerCategory === category){
                     if(player.tShirtSize && player.tShirtSize !== "NO"){
