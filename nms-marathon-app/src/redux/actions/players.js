@@ -21,11 +21,18 @@ export const getPlayerList = () => async (dispatch, getState) => {
         console.log('data list:', dataList)
         
         dataList.map((data)=>{
-            if(data.upi == "9965388040" || data.createdBy == "9965388040" || data.upi == "8682890117" || data.createdBy == "8682890117" ){
+            if(data.upi == "9965388040" || data.upi=="9789494778" || data.createdBy == "9965388040" || data.upi == "8682890117" || data.createdBy == "8682890117" ){
                 data.paymentStatus = "SHIVA"
             }else if(data.upi == "9790656890" || data.createdBy == "9790656890"){
                 data.paymentStatus = "RAVI"
+            }else if(data.upi == "8838281956" || data.createdBy == "8838281956"){
+                data.paymentStatus = "KOSHI"
             }
+        else if(data.upi == "9994424464" || data.createdBy == "9994424464"){
+            data.paymentStatus = "SHIVA_BALA"
+        }
+            
+            
         })
         dataList.sort(function(a,b){
             return new Date(b.createdOn) - new Date(a.createdOn);

@@ -11,6 +11,7 @@ import { PopupContext } from '../../config/context';
 import Card from 'react-bootstrap/Card';
 import { checkIsAdmin } from "../../config/utils";
 import Alert from 'react-bootstrap/Alert';
+import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
 
 const LoginComponent = () => {
   const [mobile, setMobile] = useState("");
@@ -137,6 +138,17 @@ const LoginComponent = () => {
         </Row>
 
       </Form>
+      <Alert variant={"warning"}>
+     
+          <div>Entrance fee RS-200/player</div>
+          {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
+          <div>
+            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
+            {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
+
+          </div>
+         
+        </Alert>
 
      
       <Alert variant={"danger"}>
