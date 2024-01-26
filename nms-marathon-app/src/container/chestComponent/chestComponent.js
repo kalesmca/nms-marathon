@@ -9,9 +9,11 @@ import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-// import { JsonToExcel } from "react-json-to-excel";
+import { JsonToExcel } from "react-json-to-excel";
 import { db } from "../../firebase-config";
 import {DB} from '../../config/constants';
+import { updateUser } from "../../redux/API/apiService";
+
 import {
     collection,
     getDocs,
@@ -61,57 +63,64 @@ const ChestNumberComponent = () => {
       
       
     useEffect(() => {
-        // setPlayerList(playersState.playerList);
-        const paidList = playersState.playerList.filter((player)=>{
-            return player.paymentStatus != "PAYMENT_NOT_VERIFIED" && player.paymentStatus !="NOT_PAID"
+        setPlayerList(playersState.playerList);
+        // const paidList = playersState.playerList.filter((player)=>{
+        //     return player.paymentStatus != "PAYMENT_NOT_VERIFIED" && player.paymentStatus !="NOT_PAID"
 
-        })
-        const result = Object.groupBy(paidList, ({ playerCategory }) => playerCategory);
-        let outer = []
-        console.log('group::', result)
-        Object.keys(result).map((key)=>{
-            let sortedArr = []
-        let sortedObj = groupByKey(result[key], 'clubName')
-        console.log('sorted obj:', sortedObj)
-        Object.keys(sortedObj).map((key)=>{
-            sortedArr = [...sortedArr, ...sortedObj[key]]
+        // })
+        // const result = Object.groupBy(paidList, ({ playerCategory }) => playerCategory);
+        // let outer = []
+        // console.log('group::', result)
+        // Object.keys(result).map((key)=>{
+        //     let sortedArr = []
+        // let sortedObj = groupByKey(result[key], 'clubName')
+        // console.log('sorted obj:', sortedObj)
+        // Object.keys(sortedObj).map((key)=>{
+        //     sortedArr = [...sortedArr, ...sortedObj[key]]
 
-        })
-        outer = [...outer, ...sortedArr]
-        })
+        // })
+        // outer = [...outer, ...sortedArr]
+        // })
         
-        let girlsList = [];
-        let boysList =[];
-        outer.map((data)=>{
-            if(data.playerCategory === "U_19_G" || data.playerCategory === "U_10_G"){
-                girlsList = [...girlsList, ...[data]] 
-            } else {
-                boysList = [...boysList, ...[data]]
-            }
-        })
-        boysList.sort( compare );
-        girlsList.sort(compare)
-        let finalRes = [...boysList, ...girlsList]
-        console.log('outer',outer);
-        console.log('final:', finalRes)
-        let chestIndex = 100
-        let flag = true
-        finalRes.map((player, pIndex)=>{
-            if(player.playerCategory === 'U_19_B' && flag === true){
-                chestIndex = 100;
-                flag = false
-            }
-            chestIndex = chestIndex+1
-            while(flag ? excludeList().includes(chestIndex): excluedList2().includes(chestIndex)){
-                chestIndex = chestIndex+1;  
-            }
-            // if(excludeList().includes(pIndex+1)){
-            //     chestIndex = chestIndex+1;
-            // }
-            player.chestNumber = chestIndex;
-        })
-        setPlayerList(finalRes)
-    }, [playersState])
+        // let girlsList = [];
+        // let boysList =[];
+        // outer.map((data)=>{
+        //     if(data.playerCategory === "U_19_G" || data.playerCategory === "U_10_G"){
+        //         girlsList = [...girlsList, ...[data]] 
+        //     } else {
+        //         boysList = [...boysList, ...[data]]
+        //     }
+        // })
+        // boysList.sort( compare );
+        // girlsList.sort(compare)
+        // let finalRes = [...boysList, ...girlsList]
+        // console.log('outer',outer);
+        // console.log('final:', finalRes)
+        // let chestIndex = 100
+        // let flag = true
+        // finalRes.map((player, pIndex)=>{
+        //     if(player.playerCategory === 'U_19_B' && flag === true){
+        //         chestIndex = 100;
+        //         flag = false
+        //     }
+        //     chestIndex = chestIndex+1
+        //     while(flag ? excludeList().includes(chestIndex): excluedList2().includes(chestIndex)){
+        //         chestIndex = chestIndex+1;  
+        //     }
+            
+        //     player.chestNumber = chestIndex;
+        // })
+        //  finalRes.forEach((player) =>{
+            
+        //         setTimeout(()=>{
+        //             updateUser(player);
+        //         },100)
+        //         console.log('selected player', player);
+
+            
+        // })
+        // setPlayerList(finalRes)
+    }, [])
 
    const excludeList = () =>{
     return [101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,137,144,147,153,154,155,156,162,163,198,200,201,202,203,204,205,206,207,315,322,323,324,330,449,550,551,609,624,675,676,677,678,679,691,696,744,759,760,761,762,763]
@@ -196,13 +205,13 @@ const ChestNumberComponent = () => {
                 playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                     // true ? (
                     <div>
-                        {/* <div> 
+                        <div> 
                         <JsonToExcel
                                 title="Download as Excel"
                                 data={playerList}
                                 fileName="sample-file"
                             />
-                        </div> */}
+                        </div>
                         <Form >
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridEmail">

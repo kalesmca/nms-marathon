@@ -29,7 +29,7 @@ export const  updateUser = async(newObj) =>{
 }
 
 export const  updateEvent = async(newObj) =>{
-  const userDoc = doc(db, DB.EVENTS, newObj.id);
+  const userDoc = doc(db, DB.players, newObj.id);
   await updateDoc(userDoc, newObj); 
 
    

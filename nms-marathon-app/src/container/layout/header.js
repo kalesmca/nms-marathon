@@ -56,7 +56,7 @@ const HeaderComponent = () => {
                                    
                                 <Dropdown.Item key={"1d"} value={"Dashboard"} onClick={(e) => { setSelectedNav("Dashboard") }}><Link to="/authed/dashboard">Dashboard</Link></Dropdown.Item>
                                 <Dropdown.Item  key={"2d"} value={"Player List"} onClick={(e) => { setSelectedNav("Player List") }}><Link to="/authed/player-list">Player List</Link></Dropdown.Item>
-                                <Dropdown.Item  key={"3d"} value={"Registration"} onClick={(e) => { setSelectedNav("Registration") }}><Link to="/authed/registration">Registration</Link></Dropdown.Item>
+                                {playerState?.authStatus === "SUPER_ADMIN_ACCESS" && (<Dropdown.Item  key={"3d"} value={"Registration"} onClick={(e) => { setSelectedNav("Registration") }}><Link to="/authed/registration">Registration</Link></Dropdown.Item>)}
                                 <Dropdown.Item  key={"4d"} value={"T-shirt"} onClick={(e) => { setSelectedNav("T-shirt") }}><Link to="/authed/tshirt">T-shirt</Link></Dropdown.Item>
                                 <Dropdown.Item  key={"5d"} value={"Chest-Number"} onClick={(e) => { setSelectedNav("Chest-Number") }}><Link to="/authed/chest-number">Chest-Number</Link></Dropdown.Item>
 
