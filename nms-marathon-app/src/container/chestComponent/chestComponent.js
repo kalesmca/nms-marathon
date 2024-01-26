@@ -94,8 +94,38 @@ const ChestNumberComponent = () => {
         let finalRes = [...boysList, ...girlsList]
         console.log('outer',outer);
         console.log('final:', finalRes)
+        let chestIndex = 100
+        let flag = true
+        finalRes.map((player, pIndex)=>{
+            if(player.playerCategory === 'U_19_B' && flag === true){
+                chestIndex = 100;
+                flag = false
+            }
+            chestIndex = chestIndex+1
+            while(flag ? excludeList().includes(chestIndex): excluedList2().includes(chestIndex)){
+                chestIndex = chestIndex+1;  
+            }
+            // if(excludeList().includes(pIndex+1)){
+            //     chestIndex = chestIndex+1;
+            // }
+            player.chestNumber = chestIndex;
+        })
         setPlayerList(finalRes)
     }, [playersState])
+
+   const excludeList = () =>{
+    return [101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,137,144,147,153,154,155,156,162,163,198,200,201,202,203,204,205,206,207,315,322,323,324,330,449,550,551,609,624,675,676,677,678,679,691,696,744,759,760,761,762,763]
+   }
+
+   const excluedList2 = ()=>{
+    var arr = [];
+    for(let i=401;i<=500;i++){
+        arr.push(i)
+    }
+    let arr2= [104,105,106,107,108,109,110,111,112,113,114,115,116,117,126,134,140,141,142,143,144,145,146,151,162,165,184,188,189,190,191,192,193,194,195,196,234,253,254,255,256,257,258,294,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,321,325,333,339,350,351,352,353,354,355,356,357,358,400,501,502,503,504,505,506,507,508,509,514,518,520,522,535,538,539,540,541,587,636,639,642,643,644,645,646,647,648,649,650,651,652,662,664,676,705,722,742,746,760,761,762,763,764,765,774,782,783,785,794,799,800,803,805,806,807]
+    let conArr = [...arr, ...arr2];
+    return conArr;
+   }
     
     // useEffect(() => {
     //     setEvents(EVENTS[playerCategory])
@@ -274,7 +304,7 @@ const ChestNumberComponent = () => {
                                                         <td>{pIndex + 1}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>{
+                                                        <td>{player.chestNumber}</td>{
                                                             player?.selectedEvents?.length ? 
                                                             (<td>{player?.selectedEvents.map((event, eIndex) => {
                                                                 return (<div key={eIndex}>{event.eventName}</div>)
