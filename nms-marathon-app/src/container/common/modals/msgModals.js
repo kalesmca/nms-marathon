@@ -31,7 +31,8 @@ const MessageModal = (props) => {
   }, [])
 
   const loginAuthentication = () => {
-    let navPath = "/authed/registration"
+    // let navPath = "/authed/registration" //Entry closed
+    let navPath = ""
     let localAuth = JSON.parse(localStorage.getItem("auth"));
     let filteredList = adminList.filter((admin)=> admin.mobile == localAuth.mobile) 
     // if (localAuth.mobile == "8682890117") {

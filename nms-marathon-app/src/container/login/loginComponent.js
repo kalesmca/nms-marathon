@@ -45,8 +45,8 @@ const LoginComponent = () => {
       }
     } else {
 
-      // loginConfirmModal()
-      setEntryClosedState();
+      loginConfirmModal()
+      // setEntryClosedState();
     }
 
 
@@ -153,7 +153,7 @@ const LoginComponent = () => {
      
       <Alert variant={"danger"}>
 
-          <div> இனிமேல் பதிவு செய்யும் நபர்களுக்கு T.Shirt வழங்கப்படமாட்டாது.  </div>
+          <div> Entry Closed. Please contact our coach Selva : 9965560087  </div>
           
     
    </Alert>
