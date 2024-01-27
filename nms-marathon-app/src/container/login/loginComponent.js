@@ -55,7 +55,7 @@ const LoginComponent = () => {
   const setEntryClosedState = () =>{
     const obj = {
       title: "Entry Closed",
-      content: "Please contact our coach: MAX: 9965560087 ",
+      content: "Please contact our coach: Selva: 9965560087 ",
       contentSpinner: true,
       btn1: "Close"
     }

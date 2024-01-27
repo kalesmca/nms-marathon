@@ -253,7 +253,6 @@ const PlayerListComponent = () => {
                                         <th>Club</th>
                                         <th>Pay Status</th>
                                         <th>Created_ON</th>
-                                        <th>sortlist</th>
                                         {/* <th>Action</th> */}
                                     </tr>
                                 </thead>
@@ -267,10 +266,10 @@ const PlayerListComponent = () => {
                                                     // <tr key={pIndex} >
 
                                                     <tr key={pIndex} onClick={() => { authData?.access==="SUPER_ADMIN_ACCESS" && viewPlayer(player) }}>
-                                                        <td>{pIndex + 1}</td>
+                                                        <td>{queryIndex}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>{
+                                                        <td>{player.chestNumber}</td>{
                                                             player?.selectedEvents?.length ? 
                                                             (<td>{player?.selectedEvents.map((event, eIndex) => {
                                                                 return (<div key={eIndex}>{event.eventName}</div>)
@@ -280,7 +279,6 @@ const PlayerListComponent = () => {
                                                         
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
-                                                        <td>{queryIndex}</td>
                                                         {/* <td onClick={()=>deletePlayer(player)}>Delete</td> */}
                                                         {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
                                                     </tr>

@@ -75,14 +75,15 @@ const PlayerDashboard = () =>{
                 </Table>
             </div>
             <div>
-            <Button variant="primary" onClick={() => { navigation() }}>
+                
+            {/* <Button variant="primary" onClick={() => { navigation() }}>
         Add More Player
-      </Button>
+      </Button> */}
             </div>
             <div>
             <Alert variant={"warning"}>
      
-     <div>Payment Status will Update within 3 Days</div>
+     <div>Entry Closed. For any query Please Contact our coach Selva : 9965560087</div>
      
 
 </Alert>
