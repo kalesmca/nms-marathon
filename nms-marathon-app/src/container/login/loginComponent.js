@@ -85,7 +85,7 @@ const LoginComponent = () => {
 
   return (
     <div className="login-container">
-      <Form >
+      {/* <Form >
         <Row className="mb-3">
 
           <Card style={{ width: '18rem' }}>
@@ -120,17 +120,17 @@ const LoginComponent = () => {
           </Card>
         </Row>
 
-      </Form>
+      </Form> */}
 
      
-      {/* <Alert variant={"warning"}>
-      <a href="https://nms-admin-final.web.app/" target="_blank">Player Chest Number click here</a>
+      <Alert variant={"warning"}>
+      {/* <a href="https://nms-admin-final.web.app/" target="_blank">Player Chest Number click here</a> */}
 
-          <div> Entry closed . Please contact our Head Coach</div>
-          <div>Selva : 9965560087</div>
+          <div> Registration will Start Soon</div>
+          <div>For Immediate registration Please Contact Admin(Arivu): 9994374553</div>
           
     
-   </Alert> */}
+   </Alert>
       
 
     </div>
