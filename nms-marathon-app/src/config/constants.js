@@ -15,15 +15,15 @@ export const AUTH_STATUS = {
 
 export const EVENTS = {
     U_10_B:[{
-        eventName: "4KM",
-        eventId:"U_10_B_4KM",
+        eventName: "3KM",
+        eventId:"U_10_B_3KM",
         selection: false,
         disable:false
     }
     ],
     U_10_G:[{
-        eventName: "4KM",
-        eventId:"U_10_G_4KM",
+        eventName: "3KM",
+        eventId:"U_10_G_3KM",
         selection: false,
         disable:false
     }],
@@ -32,19 +32,31 @@ export const EVENTS = {
         eventId:"U_14_B_7KM",
         selection: false,
         disable:false
-    }],
-    U_19_G:[{
+    }], U_14_G:[{
         eventName: "7KM",
-        eventId:"U_19_G_7KM",
+        eventId:"U_14_G_7KM",
         selection: false,
         disable:false
     }],
-    U_19_B:[{
+     U_19_B:[{
+        eventName: "8KM",
+        eventId:"U_19_B_8KM",
+        selection: false,
+        disable:false
+    }],
+    OPEN_B:[{
         eventName: "7KM",
-        eventId:"U_19_B_7KM",
+        eventId:"OPEN_CATEGORY_BOYS",
+        selection: false,
+        disable:false
+    }],
+    OPEN_G:[{
+        eventName: "7KM",
+        eventId:"OPEN_CATEGORY_GIRLS",
         selection: false,
         disable:false
     }]
+   
 }
 
 export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]
@@ -57,10 +69,10 @@ export const U_12_TIME = 1325376000000;  //01/01/2012
 export const U_17_TIME = 1167696000000;  //01/01/2007  
 
 
-//For Marathon 2024
-export const U_10_TIME = 1388534400000;  //01/01/2014  
-export const U_14_TIME = 1262304000000;  //01/01/2010  
-export const U_19_TIME = 1104537600000;  //01/01/2005  
+//For Marathon 2025
+export const U_10_TIME = 1451586600000;  //01/01/2016  
+export const U_14_TIME = 1325356200000;  //01/01/2012  
+export const U_19_TIME = 1167589800000;  //01/01/2007  
 
 
 export const playerCategories = ["U_12", "U_14", "U_17", "U_19"]

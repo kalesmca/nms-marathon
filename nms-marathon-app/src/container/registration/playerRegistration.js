@@ -32,6 +32,15 @@ function PlayerRegistration() {
   },[])
 
   const dateChage = (dateValue, genderValue) => {
+    if(!dateValue){
+      const obj = {
+          title : "Warning",
+          content: "Please Select your Date of Birth First",
+          btn1:"Reset"
+      }
+      setPopupObj(obj);
+      setMsgPopupFlag(true);
+    }
     var d1 = new Date(dateValue);
     const time = d1.getTime();
    
@@ -44,26 +53,33 @@ function PlayerRegistration() {
     
     }else if (time > U_14_TIME && time < U_10_TIME) {
         
-      const playerCategory = genderValue === "MALE" ? "U_14_B" : "U_19_G"
+      const playerCategory = genderValue === "MALE" ? "U_14_B" : "U_14_G"
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     }else if (time > U_19_TIME && time < U_14_TIME) {
         
-      const playerCategory = genderValue === "MALE" ? "U_19_B" : "U_19_G"
+      // const playerCategory = genderValue === "MALE" ? "U_19_B" : "U_19_G"
+            const playerCategory = genderValue === "U_19_B"; // 2025 Marathon we don't have U_19_G category
+
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     } else if(time< U_19_TIME) {
-        const obj = {
-          title : "Age Restriction",
-          content: "U-19 '01/01/2005' after born players only allowed please change date. ",
-          btn1:"Reset"
-      }
-      setPopupObj(obj);
-      setMsgPopupFlag(true);
+      const playerCategory = genderValue === "MALE" ? "OPEN_B" : "OPEN_G"
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+      // We have open category So disabled this popup for 2025 Marathon
+      //   const obj = {
+      //     title : "Age Restriction",
+      //     content: "U-19 '01/01/2007' after born players only allowed please change date. ",
+      //     btn1:"Reset"
+      // }
+      // setPopupObj(obj);
+      // setMsgPopupFlag(true);
         
       }
    
