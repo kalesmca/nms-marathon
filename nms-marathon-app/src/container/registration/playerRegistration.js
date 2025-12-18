@@ -59,9 +59,10 @@ function PlayerRegistration() {
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     }else if (time > U_19_TIME && time < U_14_TIME) {
+     
         
-      // const playerCategory = genderValue === "MALE" ? "U_19_B" : "U_19_G"
-            const playerCategory = genderValue === "U_19_B"; // 2025 Marathon we don't have U_19_G category
+      const playerCategory = genderValue === "MALE" ? "U_19_B" : "OPEN_G"
+             // 2025 Marathon we don't have U_19_G category
 
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
