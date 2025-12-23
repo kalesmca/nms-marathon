@@ -1,0 +1,78 @@
+.login-body-container {
+    .tabs-container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Hide radio buttons */
+input[type="radio"] {
+  display: none;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+}
+
+.tabs label {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+.tabs label:hover {
+  background: #eaeaea;
+}
+
+/* Active tab */
+#tab1:checked ~ .tabs label[for="tab1"],
+#tab2:checked ~ .tabs label[for="tab2"],
+#tab3:checked ~ .tabs label[for="tab3"],
+#tab4:checked ~ .tabs label[for="tab4"] {
+  background: white;
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+}
+
+/* Content */
+.content {
+  position: relative;
+  height: 400px;
+}
+
+/* Images */
+.image {
+  display: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover effect (optional) */
+.image:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+  transition: 0.3s;
+}
+
+/* Show selected image */
+#tab1:checked ~ .content .tab1,
+#tab2:checked ~ .content .tab2,
+#tab3:checked ~ .content .tab3,
+#tab4:checked ~ .content .tab4 {
+  display: block;
+}
+}
