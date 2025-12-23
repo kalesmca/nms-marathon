@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom' ;
 import Image from 'react-bootstrap/Image';
-import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
+import qrImage from '../../assets/paraman.jpeg'
 import GooglePayButton from '@google-pay/button-react';
 
 function PlayerRegistration() {
@@ -275,7 +275,7 @@ useEffect(()=>{
           <div>Entrance fee RS-200/player</div>
           {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
           <div>
-            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
+            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=kalesmcaapptivo-2@okhdfcbank&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
             {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
 
           </div>
