@@ -12,6 +12,7 @@ import { PopupContext} from './config/context';
 import LoginLayout from './container/login/loginLayout';
 import { Provider } from "react-redux";
 import store from './redux/store';
+import LoginBodyComponent from './container/login/loginBodyComponent';
 function App() {
   const [msgPopupFlag, setMsgPopupFlag] = useState(false);
   const [navigationPath, setNavigationPath] = useState("");
@@ -35,8 +36,10 @@ function App() {
         </Routes> */}
         <Routes>
           <Route element={<LoginLayout />}>
-            <Route path="/" element={<LoginComponent />} />
-            <Route path="/login" element={<LoginComponent />} />
+            <Route path="/" element={<LoginBodyComponent />} />
+            <Route path="/login" element={<LoginBodyComponent />} />
+
+            {/* <Route path="/login" element={<LoginComponent />} /> */}
             <Route path="*" element={<NotFoundComponent />} />
           </Route>
 
