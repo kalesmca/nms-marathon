@@ -8,6 +8,7 @@ import { AUTH_STATUS, adminList } from '../../../config/constants';
 import { setAuthStatus } from '../../../redux/actions/players';
 import ViewPlayerComponent from '../view-player/viewPlayer';
 import EditPlayerComponent from '../../player-list/editPlayer';
+import './msgModals.scss';
 
 const MessageModal = (props) => {
 
@@ -24,7 +25,7 @@ const MessageModal = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFlag(false); 
+      setFlag(false);
     }, 2000);
     return () => clearTimeout(timer);
 
@@ -33,10 +34,10 @@ const MessageModal = (props) => {
   const loginAuthentication = () => {
     let navPath = "/authed/registration"
     let localAuth = JSON.parse(localStorage.getItem("auth"));
-    let filteredList = adminList.filter((admin)=> admin.mobile == localAuth.mobile) 
+    let filteredList = adminList.filter((admin) => admin.mobile == localAuth.mobile)
     // if (localAuth.mobile == "8682890117") {
-      if(filteredList?.length){
-        
+    if (filteredList?.length) {
+
       localAuth.access = filteredList[0].auth;
       navPath = "/authed/player-list"
     } else if (playerState.regPlayerList?.length) {
@@ -56,16 +57,16 @@ const MessageModal = (props) => {
 
   const onClose = () => {
     if (navigationPath) {
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate(navigationPath);
-      },1000)
-      
+      }, 1000)
+
       setMsgPopupFlag(false);
     } else {
       setMsgPopupFlag(false)
     }
   }
-  const Component = popupObj.componentName ? components[popupObj.componentName] : "" 
+  const Component = popupObj.componentName ? components[popupObj.componentName] : ""
 
   return (
     <>
@@ -84,7 +85,7 @@ const MessageModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           {
-            popupObj?.componentName ? <Component player={popupObj.props}/> : popupObj?.content ? popupObj.content : "Default MESSAGE"
+            popupObj?.componentName ? <Component player={popupObj.props} /> : popupObj?.content ? popupObj.content : "Default MESSAGE"
           }
           {/* {popupObj?.content ? popupObj.content : "Default MESSAGE"} */}
 

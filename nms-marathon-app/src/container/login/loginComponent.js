@@ -88,7 +88,7 @@ const LoginComponent = () => {
       <Form >
         <Row className="mb-3">
 
-          <Card style={{ width: '18rem' }}>
+          <Card>
             <Card.Body>
               <Card.Title>Login</Card.Title>
               <Card.Text>

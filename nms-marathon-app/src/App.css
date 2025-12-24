@@ -3,10 +3,12 @@
 }
 
 body {
-  /* background-image: url("./assets/images/nms_2.jpg");
-  background-repeat: round;
-  background-attachment: fixed; */
-  
+  background-image: url("./assets/images/medal.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .App-logo {
