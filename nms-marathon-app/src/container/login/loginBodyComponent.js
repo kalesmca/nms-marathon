@@ -1,17 +1,23 @@
-import React from "react";
-import "./loginBody.scss";
-import marathon2025 from "../../assets/images/marathon2025.jpeg";
-import LoginComponent from "./loginComponent";
-import Card from "react-bootstrap/Card";
-import openCat from "../../assets/images/open.jpeg";
-import u19 from "../../assets/images/u_19.jpeg";
-import u10 from "../../assets/images/U_10.jpeg";
-import u14 from "../../assets/images/U_14.jpeg";
-import { OPEN_MAP_URL, U_10_MAP_URL, U_14_BOYS_MAP_URL, U_14_GIRLS_MAP_URL, U_19_MAP_URL } from "../../config/constants";
+import React from 'react';
+import './loginBody.scss';
+import marathon2025 from '../../assets/images/marathon2025.jpeg';
+import LoginComponent from './loginComponent';
+import Card from 'react-bootstrap/Card';
+import openCat from '../../assets/images/open.jpeg';
+import u19 from '../../assets/images/u_19.jpeg';
+import u10 from '../../assets/images/U_10.jpeg';
+import u14 from '../../assets/images/U_14.jpeg';
+import {
+  OPEN_MAP_URL,
+  U_10_MAP_URL,
+  U_14_BOYS_MAP_URL,
+  U_14_GIRLS_MAP_URL,
+  U_19_MAP_URL,
+} from '../../config/constants';
 
 const LoginBodyComponent = () => {
   const mapNavigationClick = (url) => {
-    window.open(url, "_blank"); // new tab
+    window.open(url, '_blank'); // new tab
   };
   return (
     <div className="login-body-container">
@@ -47,16 +53,36 @@ const LoginBodyComponent = () => {
         </div>
 
         <div className="content">
-          <div className="image tab1" onClick={() => { mapNavigationClick(OPEN_MAP_URL) }}>
+          <div
+            className="image tab1"
+            onClick={() => {
+              mapNavigationClick(OPEN_MAP_URL);
+            }}
+          >
             <img src={openCat} alt="Open Category" />
           </div>
-          <div className="image tab2" onClick={() => { mapNavigationClick(U_19_MAP_URL) }}>
+          <div
+            className="image tab2"
+            onClick={() => {
+              mapNavigationClick(U_19_MAP_URL);
+            }}
+          >
             <img src={u19} alt="Under 19" />
           </div>
-          <div className="image tab3" onClick={() => { mapNavigationClick(U_14_BOYS_MAP_URL) }}>
+          <div
+            className="image tab3"
+            onClick={() => {
+              mapNavigationClick(U_14_BOYS_MAP_URL);
+            }}
+          >
             <img src={u14} alt="Under 14" />
           </div>
-          <div className="image tab4" onClick={() => { mapNavigationClick(U_10_MAP_URL) }}>
+          <div
+            className="image tab4"
+            onClick={() => {
+              mapNavigationClick(U_10_MAP_URL);
+            }}
+          >
             <img src={u10} alt="Under 10" />
           </div>
         </div>
