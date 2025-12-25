@@ -7,6 +7,7 @@ import openCat from '../../assets/images/open.jpeg';
 import u19 from '../../assets/images/u_19.jpeg';
 import u10 from '../../assets/images/U_10.jpeg';
 import u14 from '../../assets/images/U_14.jpeg';
+import marthon_event_img_url from "../../assets/images/marathon_events.png"
 import {
   OPEN_MAP_URL,
   U_10_MAP_URL,
@@ -40,12 +41,14 @@ const LoginBodyComponent = () => {
             </div> */}
 
       <div className="tabs-container">
-        <input type="radio" name="tab" id="tab1" defaultChecked />
+        <input type="radio" name="tab" id="tab0" defaultChecked />
+        <input type="radio" name="tab" id="tab1" />
         <input type="radio" name="tab" id="tab2" />
         <input type="radio" name="tab" id="tab3" />
         <input type="radio" name="tab" id="tab4" />
 
         <div className="tabs">
+          <label htmlFor="tab0">Events</label>
           <label htmlFor="tab1">Open_Category</label>
           <label htmlFor="tab2">Under 19</label>
           <label htmlFor="tab3">Under 14</label>
@@ -53,6 +56,14 @@ const LoginBodyComponent = () => {
         </div>
 
         <div className="content">
+          <div
+            className="image tab0"
+            // onClick={() => {
+            //   mapNavigationClick(OPEN_MAP_URL);
+            // }}
+          >
+            <img src={marthon_event_img_url} alt="Events" />
+          </div>
           <div
             className="image tab1"
             onClick={() => {
