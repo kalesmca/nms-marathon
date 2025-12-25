@@ -199,6 +199,18 @@ function PlayerRegistration() {
   useEffect(() => {
     console.log(playerObj);
   });
+  const changeTShirtSize = (e) =>{
+    let tempErrObj = errObj;
+    if(e.target.value != "Please Select"){
+      setPlayerObj({ ...playerObj, tShirtSize: e.target.value });
+      tempErrObj["tShirtSize"].err = false;
+    }else {
+      tempErrObj["tShirtSize"].err = true;
+    }
+    setErrObj({ ...errObj, ...tempErrObj });
+        
+
+  }
   return (
     <div className="reg-form">
       <Form>
@@ -300,7 +312,7 @@ function PlayerRegistration() {
               aria-label="Default select example"
               value={playerObj.tShirtSize}
               onChange={(e) => {
-                setPlayerObj({ ...playerObj, tShirtSize: e.target.value });
+                changeTShirtSize(e)
               }}
             >
               {tShirtSizeList.map((size, sIndex) => {
@@ -312,6 +324,9 @@ function PlayerRegistration() {
               })}
             </Form.Select>
           </Form.Group>
+          {errObj.tShirtSize.touched && errObj.tShirtSize.err && (
+              <div className="err"> Please select your T-Shirt-size</div>
+            )}
         </Row>
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
