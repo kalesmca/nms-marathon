@@ -140,6 +140,19 @@ function PlayerRegistration() {
       setErrObj({ ...errObj, ...tempErrObj });
     } else {
       console.log(playerObj);
+      // if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      //     const upiId = "kalees.sundari@ybl";
+      //     const name = "SUNDARESWARI";
+      //     const note = "NMS Marathon";
+
+      //     const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+      //     window.location.href = upiUrl;
+      //   }else {
+      //           // alert("UPI payment works only on mobile devices");
+
+      //           console.log("web mode")
+      //         }
 
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
@@ -204,6 +217,7 @@ function PlayerRegistration() {
     if(e.target.value != "Please Select"){
       setPlayerObj({ ...playerObj, tShirtSize: e.target.value });
       tempErrObj["tShirtSize"].err = false;
+      tempErrObj["tShirtSize"].touched = true;
     }else {
       tempErrObj["tShirtSize"].err = true;
     }
