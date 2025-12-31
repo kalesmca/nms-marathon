@@ -50,7 +50,7 @@ const PlayerDashboard = () => {
               <th>Category</th>
               <th>Chest No</th>
               <th>T-Shirt</th>
-              <th>Pay Status</th>
+              {/* <th>Pay Status</th> */}
             </tr>
           </thead>
           <tbody>
@@ -63,11 +63,11 @@ const PlayerDashboard = () => {
                     <td data-label="Category">{player.playerCategory}</td>
                     <td data-label="Chest No">{player.chestNumber || '-'}</td>
                     <td data-label="T-Shirt">{player.tShirtSize}</td>
-                    <td data-label="Status">
+                    {/* <td data-label="Status">
                       <span className={getStatusClass(player.paymentStatus)}>
                         {player.paymentStatus || 'Pending'}
                       </span>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })
