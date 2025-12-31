@@ -18,12 +18,13 @@ import { async } from '@firebase/util';
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
   const playersState = useSelector((state) => state.players);
+  const allList = structuredClone(playersState.playerList);
   const [playerList, setPlayerList] = useState(playersState.playerList);
   const [playerCategory, setPlayerCategory] = useState('ALL');
   const [events, setEvents] = useState([]);
   const [searchKey, setSearchKey] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('ALL');
-
+  const [filteredPlayerList, setFilteredList] = useState(playersState.playerList)
   const [selectedEvent, setSelectedEvent] = useState(initEvent);
   const {
     msgPopupFlag,
@@ -39,7 +40,13 @@ const PlayerListComponent = () => {
   });
   useEffect(() => {
     // dispatch(getPlayerList());
-  }, []);
+    const timer = setTimeout(() => {
+      getFilteredList()
+    }, 500); // wait 500ms after last keystroke
+
+    return () => clearTimeout(timer);
+    
+  }, [searchKey, paymentStatus, playerCategory]);
   useEffect(() => {
     setPlayerList(playersState.playerList);
   }, [playersState]);
@@ -62,6 +69,29 @@ const PlayerListComponent = () => {
     setMsgPopupFlag(true);
   };
 
+  // This filter method for Marathon
+  const getFilteredList = () => {
+    let keyFilteredList = structuredClone(allList);
+    // if (searchKey) {
+    keyFilteredList = allList.filter((player) => {
+      return (
+        (!searchKey ||
+          player.name.toLowerCase().includes(searchKey.toLowerCase()) ||
+          String(player.upi).includes(searchKey.toLowerCase()) ||
+          String(player.createdBy).includes(searchKey.toLowerCase())) &&
+        (playerCategory === 'ALL' || player.playerCategory === playerCategory)
+        && (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
+      );
+    });
+    // }
+    // let categoryFilter = keyFilteredList.filter((player)=>{
+    //   return (playerCategory === "ALL" || player.playerCategory === playerCategory )
+    // })
+    setFilteredList(keyFilteredList);
+  };
+
+
+  // this method for Athletics
   const getQueryValidation = (player) => {
     let searchKeyFlag = true;
     searchKeyFlag = !searchKey
@@ -154,7 +184,7 @@ const PlayerListComponent = () => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            {events?.length ? (
+            {/* {events?.length ? (
               <Dropdown className="d-inline mx-2" value={selectedEvent.eventName}>
                 <Dropdown.Toggle id="dropdown-autoclose-true">
                   {selectedEvent.eventName}
@@ -188,7 +218,7 @@ const PlayerListComponent = () => {
               </Dropdown>
             ) : (
               ''
-            )}
+            )} */}
 
             <Dropdown className="d-inline mx-2" value={paymentStatus}>
               <Dropdown.Toggle id="dropdown-autoclose-true">{paymentStatus}</Dropdown.Toggle>
@@ -235,10 +265,9 @@ const PlayerListComponent = () => {
                 </tr>
               </thead>
               <tbody>
-                {playerList?.length ? (
-                  playerList.map((player, pIndex) => {
-                    if (getQueryValidation(player)) {
-                      return (
+                {filteredPlayerList?.length ? (
+                  filteredPlayerList.map((player, pIndex) => {
+                    return (
                         <tr
                           key={pIndex}
                           onClick={() => {
@@ -266,7 +295,7 @@ const PlayerListComponent = () => {
                         </tr>
                       );
                     }
-                  })
+                  )
                 ) : (
                   <tr>
                     <td colSpan={6}> No Data Found</td>
