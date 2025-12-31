@@ -5,7 +5,7 @@ export const adminList = [
   { mobile: 9944419808, auth: 'ADMIN_ACCESS' },
 ];
 export const DB = {
-  players: 'testPlayer',
+  players: 'marathon2026',
 };
 
 export const AUTH_STATUS = {

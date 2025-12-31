@@ -96,9 +96,9 @@ const HeaderComponent = () => {
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
               <Link to="/authed/source">Source</Link>
             </div>
-            <div className="link">
+            {/* <div className="link">
               <Link onClick={()=>{openUpiApp()}}>PAY</Link>
-            </div>
+            </div> */}
           </nav>
         </div>
       ) : (
