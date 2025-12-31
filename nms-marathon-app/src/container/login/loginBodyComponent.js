@@ -16,6 +16,7 @@ import {
   U_19_MAP_URL,
   OPEN_GIRLS_MAP_URL
 } from '../../config/constants';
+import Alert from 'react-bootstrap/Alert';
 
 const LoginBodyComponent = () => {
   const mapNavigationClick = (url) => {
@@ -25,6 +26,18 @@ const LoginBodyComponent = () => {
     <div className="login-body-container">
       <div>
         <LoginComponent />
+      </div>
+      <div>
+        <Alert variant={'warning'} className="payment-dashboard-info">
+                  
+                  <div className="payment-amount">
+                    <span >Registration Fee: </span>
+                    <span className="currency">₹</span>
+                    <span className="price">200</span>
+                    <span className="per-player">/per player</span>
+                  </div>
+                 
+                </Alert>
       </div>
       {/* <div>
                 <div className="map-img-header"> </div>
