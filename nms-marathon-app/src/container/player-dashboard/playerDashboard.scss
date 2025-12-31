@@ -1,6 +1,13 @@
 // Modern Dashboard Styles
 
 .dashboard-container {
+  .payment-dashboard-info{
+    p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  }
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
@@ -134,61 +141,61 @@
 }
 
 // Mobile responsive - card view
-@media (max-width: 600px) {
-  .dashboard-container {
-    padding: 15px;
+// @media (max-width: 600px) {
+//   .dashboard-container {
+//     padding: 15px;
 
-    .table-container {
-      background: transparent;
-      box-shadow: none;
-      border: none;
-    }
+//     .table-container {
+//       background: transparent;
+//       box-shadow: none;
+//       border: none;
+//     }
 
-    // Hide table header on mobile
-    .table thead {
-      display: none;
-    }
+//     // Hide table header on mobile
+//     .table thead {
+//       display: none;
+//     }
 
-    .table tbody {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+//     .table tbody {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 15px;
 
-      tr {
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(135deg, rgb(255 255 255 / 15%) 0%, rgb(254 255 250 / 95%) 100%);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        padding: 0;
-        overflow: hidden;
-      }
+//       tr {
+//         display: flex;
+//         flex-direction: column;
+//         background: linear-gradient(135deg, rgb(255 255 255 / 15%) 0%, rgb(254 255 250 / 95%) 100%);
+//         backdrop-filter: blur(20px);
+//         border: 1px solid rgba(0, 0, 0, 0.1);
+//         border-radius: 0;
+//         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+//         padding: 0;
+//         overflow: hidden;
+//       }
 
-      td {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+//       td {
+//         display: flex;
+//         justify-content: space-between;
+//         padding: 12px 16px;
+//         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
-        &:before {
-          content: attr(data-label);
-          font-weight: 600;
-          color: #1abc9c;
-          text-transform: uppercase;
-          font-size: 0.8rem;
-        }
+//         &:before {
+//           content: attr(data-label);
+//           font-weight: 600;
+//           color: #1abc9c;
+//           text-transform: uppercase;
+//           font-size: 0.8rem;
+//         }
 
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-    }
+//         &:last-child {
+//           border-bottom: none;
+//         }
+//       }
+//     }
 
-    .btn-add-player {
-      width: 100%;
-      padding: 16px;
-    }
-  }
-}
+//     .btn-add-player {
+//       width: 100%;
+//       padding: 16px;
+//     }
+//   }
+// }

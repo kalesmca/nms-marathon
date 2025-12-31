@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { PopupContext } from '../../config/context';
 import Alert from 'react-bootstrap/Alert';
 import './playerDashboard.scss';
+import qrImage from '../../assets/paraman.jpeg';
 
 const PlayerDashboard = () => {
   const playersState = useSelector((state) => state.players);
@@ -41,6 +42,21 @@ const PlayerDashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <div >
+        <Alert variant={'warning'} className="payment-dashboard-info">
+                  
+                  <div className="payment-amount">
+                    <span >Registration Fee: </span>
+                    <span className="currency">₹</span>
+                    <span className="price">200</span>
+                    <span className="per-player">per player</span>
+                  </div>
+                  <div className="qr-section">
+                    <p className="scan-text">Scan QR Code to Pay via UPI</p>
+                    <img src={qrImage} style={{ width: '200px' }} alt="Scan QR to pay ₹200" />
+                  </div>
+                </Alert>
+      </div>
       <div className="table-container">
         <Table responsive="sm">
           <thead>
@@ -50,7 +66,7 @@ const PlayerDashboard = () => {
               <th>Category</th>
               <th>Chest No</th>
               <th>T-Shirt</th>
-              <th>Pay Status</th>
+              {/* <th>Pay Status</th> */}
             </tr>
           </thead>
           <tbody>
@@ -63,11 +79,11 @@ const PlayerDashboard = () => {
                     <td data-label="Category">{player.playerCategory}</td>
                     <td data-label="Chest No">{player.chestNumber || '-'}</td>
                     <td data-label="T-Shirt">{player.tShirtSize}</td>
-                    <td data-label="Status">
+                    {/* <td data-label="Status">
                       <span className={getStatusClass(player.paymentStatus)}>
                         {player.paymentStatus || 'Pending'}
                       </span>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })
@@ -93,7 +109,7 @@ const PlayerDashboard = () => {
       </div>
       <div>
         <Alert variant={'warning'}>
-          <div>Payment Status will Update within 3 Days</div>
+          <div>Contact : Arivu : 9994374553/ Kalimuthu: 9944419808/ Kaleeswaran : 8682890117</div>
         </Alert>
       </div>
     </div>
