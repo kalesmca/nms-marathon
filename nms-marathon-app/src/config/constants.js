@@ -5,7 +5,7 @@ export const adminList = [
   { mobile: 9944419808, auth: 'ADMIN_ACCESS' },
 ];
 export const DB = {
-  players: 'testPlayer',
+  players: 'marathon2026',
 };
 
 export const AUTH_STATUS = {
@@ -114,7 +114,7 @@ export const U_17 = 'U_17';
 export const U_19 = 'U_19';
 export const PAYMENT_STATUS = ['PAYMENT_VERIFIED', 'PAYMENT_NOT_VERIFIED', 'NOT_PAID', 'NMS'];
 export const PLAYER_STATUS = ['ACTIVE', 'IN_ACTIVE'];
-export const tShirtSizeList = ['28', '30', '32', '34', '36', '38', '40', '42'];
+export const tShirtSizeList = ['Please Select','28', '30', '32', '34', '36', '38', '40', '42'];
 export const initPlayerData = {
   name: '',
   adharNumber: '111111111111',
@@ -138,5 +138,6 @@ export const initError = {
   adharNumber: { touched: true, err: false },
   dob: { touched: false, err: false },
   upi: { touched: false, err: false },
+  tShirtSize:{ touched: false, err: false }
   // mobile:{touched:false,err: false},
 };

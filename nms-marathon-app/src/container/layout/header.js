@@ -32,6 +32,43 @@ const HeaderComponent = () => {
     dispatch(setAuthStatus(AUTH_STATUS.PENDING));
     navigate('');
   };
+  // const onPay = () =>{
+  //   if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+  //     // window.location.href = "upi://pay?pa=merchant@upi&pn=MyStore&am=250&cu=INR";
+  //     console.log("mobile mode")
+  //     const upiId = "kalees.sundari@ybl";   // replace with your UPI ID
+  //     const name = "Sundareswari";
+  //     const amount = 250;             // quoted amount
+  //     const note = "Order Payment";
+
+  //     const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(
+  //       name
+  //     )}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+  //     window.location.href = upiUrl;
+  //   } else {
+  //     // alert("UPI payment works only on mobile devices");
+  //     console.log("web mode")
+  //   }
+  // }
+
+  const openUpiApp = () => {
+  if (!/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    alert("UPI payment works only on mobile");
+    return;
+  }
+
+  const upiId = "nmssports@sbi";
+  const name = "NMS SPORTS ACADEMY AND WELFARE TRUST";
+  const note = "marathon fee test";
+
+  // IMPORTANT: Do NOT prefill amount for personal UPI
+  const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(
+    name
+  )}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+  window.location.href = upiUrl;
+};
   return (
     <div>
       <div className="header">{global.label.clubName}</div>
@@ -59,6 +96,9 @@ const HeaderComponent = () => {
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
               <Link to="/authed/source">Source</Link>
             </div>
+            {/* <div className="link">
+              <Link onClick={()=>{openUpiApp()}}>PAY</Link>
+            </div> */}
           </nav>
         </div>
       ) : (

@@ -132,7 +132,7 @@ const PlayerListComponent = () => {
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
       playersState?.authStatus === 'SUPER_ADMIN_ACCESS' ? (
         // true ? (
-        <div>
+        <div style={{marginTop:"225px"}}>
           {/* <div> 
                         <JsonToExcel
                                 title="Download as Excel"

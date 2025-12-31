@@ -52,6 +52,8 @@
   }
 
   // Active tab - teal accent
+    #tab0:checked ~ .tabs label[for='tab0'],
+
   #tab1:checked ~ .tabs label[for='tab1'],
   #tab2:checked ~ .tabs label[for='tab2'],
   #tab3:checked ~ .tabs label[for='tab3'],
@@ -80,7 +82,7 @@
   .image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    // object-fit: cover;
   }
 
   // Hover effect
@@ -94,6 +96,7 @@
   }
 
   // Show selected image
+  #tab0:checked ~ .content .tab0,
   #tab1:checked ~ .content .tab1,
   #tab2:checked ~ .content .tab2,
   #tab3:checked ~ .content .tab3,
