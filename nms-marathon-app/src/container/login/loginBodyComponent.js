@@ -3,17 +3,18 @@ import './loginBody.scss';
 import marathon2025 from '../../assets/images/marathon2025.jpeg';
 import LoginComponent from './loginComponent';
 import Card from 'react-bootstrap/Card';
-import openCat from '../../assets/images/open.jpeg';
-import u19 from '../../assets/images/u_19.jpeg';
+import openGirls from '../../assets/images/open_girls.jpeg';
+import openBoys from '../../assets/images/open_boys.jpeg';
+import u19 from '../../assets/images/U_14.jpeg';
 import u10 from '../../assets/images/U_10.jpeg';
 import u14 from '../../assets/images/U_14.jpeg';
 import marthon_event_img_url from "../../assets/images/marathon_events.png"
 import {
-  OPEN_MAP_URL,
+  OPEN_BOYS_MAP_URL,
   U_10_MAP_URL,
-  U_14_BOYS_MAP_URL,
-  U_14_GIRLS_MAP_URL,
+  U_14_MAP_URL,
   U_19_MAP_URL,
+  OPEN_GIRLS_MAP_URL
 } from '../../config/constants';
 
 const LoginBodyComponent = () => {
@@ -46,13 +47,15 @@ const LoginBodyComponent = () => {
         <input type="radio" name="tab" id="tab2" />
         <input type="radio" name="tab" id="tab3" />
         <input type="radio" name="tab" id="tab4" />
+        <input type="radio" name="tab" id="tab5" />
 
         <div className="tabs">
           <label htmlFor="tab0">Events</label>
-          <label htmlFor="tab1">Open_Category</label>
-          <label htmlFor="tab2">Under 19</label>
-          <label htmlFor="tab3">Under 14</label>
-          <label htmlFor="tab4">Under 10</label>
+          <label htmlFor="tab1">Open Boys Route-Map</label>
+          <label htmlFor="tab2">Open Girls Route-Map</label>
+          <label htmlFor="tab3">U_14 Boys/Girls Route-Map</label>
+          <label htmlFor="tab4">U_10 Boys/Girls Route-Map</label>
+           <label htmlFor="tab5">Under 19 Route-Map</label>
         </div>
 
         <div className="content">
@@ -67,23 +70,23 @@ const LoginBodyComponent = () => {
           <div
             className="image tab1"
             onClick={() => {
-              mapNavigationClick(OPEN_MAP_URL);
+              mapNavigationClick(OPEN_BOYS_MAP_URL);
             }}
           >
-            <img src={openCat} alt="Open Category" />
+            <img src={openBoys} alt="Open Boys" />
           </div>
           <div
             className="image tab2"
             onClick={() => {
-              mapNavigationClick(U_19_MAP_URL);
+              mapNavigationClick(OPEN_GIRLS_MAP_URL);
             }}
           >
-            <img src={u19} alt="Under 19" />
+            <img src={openGirls} alt="Open Girls" />
           </div>
           <div
             className="image tab3"
             onClick={() => {
-              mapNavigationClick(U_14_BOYS_MAP_URL);
+              mapNavigationClick(U_14_MAP_URL);
             }}
           >
             <img src={u14} alt="Under 14" />
@@ -95,6 +98,14 @@ const LoginBodyComponent = () => {
             }}
           >
             <img src={u10} alt="Under 10" />
+          </div>
+          <div
+            className="image tab5"
+            onClick={() => {
+              mapNavigationClick(U_19_MAP_URL);
+            }}
+          >
+            <img src={u19} alt="Under 19" />
           </div>
         </div>
       </div>
