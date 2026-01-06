@@ -1,8 +1,6 @@
 import React from 'react';
 import './loginBody.scss';
-import marathon2025 from '../../assets/images/marathon2025.jpeg';
 import LoginComponent from './loginComponent';
-import Card from 'react-bootstrap/Card';
 import openGirls from '../../assets/images/open_girls.jpeg';
 import openBoys from '../../assets/images/open_boys.jpeg';
 import u19 from '../../assets/images/U_14.jpeg';
