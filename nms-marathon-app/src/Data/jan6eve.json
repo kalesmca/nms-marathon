@@ -1,0 +1,1470 @@
+[
+  {
+    "events": [
+      {
+        "disable": false,
+        "eventId": "U_19_B_8KM",
+        "selection": false,
+        "eventName": "8KM"
+      }
+    ],
+    "registerMobile": "8428879627",
+    "mobile": "",
+    "playerCategory": "U_19_B",
+    "name": "L. Sundaralingam ",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "dob": "2007-08-09",
+    "clubName": "Koviloor ",
+    "gender": "MALE",
+    "id": "0stZS47lvPIEoz5HLUdO",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-06",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "selectedEvents": [],
+    "tShirtSize": "42",
+    "chestNumber": "",
+    "upi": "8428879624",
+    "createdOn": "2026-01-06",
+    "createdBy": "8428879627"
+  },
+  {
+    "clubName": "Krishnan kovill Street pasuboman nagar srivilliputttur ",
+    "status": "ACTIVE",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "dob": "2008-05-14",
+    "mobile": "",
+    "createdOn": "2026-01-06",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "events": [
+      {
+        "eventName": "8KM",
+        "selection": false,
+        "eventId": "U_19_B_8KM",
+        "disable": false
+      }
+    ],
+    "createdBy": "9442150920",
+    "gender": "MALE",
+    "chestNumber": "",
+    "playerCategory": "U_19_B",
+    "name": "N.prakash",
+    "updatedByList": [],
+    "tShirtSize": "32",
+    "registerMobile": "9442150920",
+    "upi": "9442150920",
+    "id": "BmgVTZAFyKtwYBAAJjj8"
+  },
+  {
+    "clubName": "JC School Sivakasi",
+    "name": "R.M.Srenivas",
+    "tShirtSize": "34",
+    "dob": "2015-10-25",
+    "registerMobile": "9976020822",
+    "createdBy": "9976020822",
+    "status": "ACTIVE",
+    "events": [
+      {
+        "eventId": "U_14_B_7KM",
+        "selection": false,
+        "eventName": "7KM",
+        "disable": false
+      }
+    ],
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-06",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "chestNumber": "",
+    "createdOn": "2026-01-06",
+    "selectedEvents": [],
+    "mobile": "",
+    "upi": "9976020822",
+    "gender": "MALE",
+    "id": "RyvRiPiP9b1JWaNZnGMh",
+    "playerCategory": "U_14_B",
+    "paymentStatus": "PAYMENT_VERIFIED"
+  },
+  {
+    "dob": "",
+    "createdBy": "8428879627",
+    "tShirtSize": "Please Select",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "updatedByList": [],
+    "events": [],
+    "gender": "MALE",
+    "adharNumber": "111111111111",
+    "upi": "",
+    "chestNumber": "",
+    "clubName": "",
+    "status": "ACTIVE",
+    "registerMobile": "8428879627",
+    "playerCategory": "",
+    "createdOn": "2026-01-06",
+    "mobile": "",
+    "selectedEvents": [],
+    "name": "",
+    "id": "Tj2l6rkA4JZZmrJKdr7I"
+  },
+  {
+    "dob": "2008-03-18",
+    "events": [
+      {
+        "eventId": "U_19_B_8KM",
+        "selection": false,
+        "eventName": "8KM",
+        "disable": false
+      }
+    ],
+    "upi": "8668049334",
+    "playerCategory": "U_19_B",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "clubName": "Sokkanathan Puttur",
+    "createdOn": "2026-01-06",
+    "adharNumber": "111111111111",
+    "name": "T.maheswaran",
+    "selectedEvents": [],
+    "mobile": "",
+    "chestNumber": "",
+    "status": "ACTIVE",
+    "createdBy": "8668049334",
+    "gender": "MALE",
+    "registerMobile": "8668049334",
+    "updatedByList": [],
+    "tShirtSize": "38",
+    "id": "lAkQIlXzKmhQX5gQnXcY"
+  },
+  {
+    "playerCategory": "OPEN_G",
+    "selectedEvents": [],
+    "id": "m1dyVwY1v7eziOKlN8K7",
+    "adharNumber": "111111111111",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "mobile": "",
+    "chestNumber": "",
+    "registerMobile": "7845084601",
+    "tShirtSize": "34",
+    "upi": "7845084601",
+    "name": "M.kalaiselvi",
+    "gender": "FEMALE",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-06",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "createdBy": "7845084601",
+    "clubName": "Chockanathanbuthur ",
+    "status": "ACTIVE",
+    "events": [
+      {
+        "eventId": "OPEN_CATEGORY_GIRLS",
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM"
+      }
+    ],
+    "createdOn": "2026-01-06",
+    "dob": "1996-01-13"
+  },
+  {
+    "playerCategory": "U_10_B",
+    "chestNumber": "",
+    "clubName": "T. N.P. M. Marimuthu Nadar Managing Board Nursery & Primary School, Thalavaipuram",
+    "tShirtSize": "30",
+    "events": [
+      {
+        "selection": false,
+        "eventName": "3KM",
+        "disable": false,
+        "eventId": "U_10_B_3KM"
+      }
+    ],
+    "createdBy": "9791606577",
+    "name": "R. Bala mugundan",
+    "dob": "2016-03-06",
+    "mobile": "",
+    "selectedEvents": [],
+    "createdOn": "2026-01-05",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "gender": "MALE",
+    "updatedByList": [],
+    "adharNumber": "111111111111",
+    "registerMobile": "9791606577",
+    "status": "ACTIVE",
+    "upi": "9791606577",
+    "id": "3UefwbLsKtDdLVOZC9Sj"
+  },
+  {
+    "dob": "2012-08-17",
+    "tShirtSize": "32",
+    "createdBy": "8682890117",
+    "upi": "8682890117",
+    "selectedEvents": [],
+    "createdOn": "2026-01-05",
+    "events": [
+      {
+        "disable": false,
+        "eventName": "7KM",
+        "eventId": "U_14_B_7KM",
+        "selection": false
+      }
+    ],
+    "chestNumber": "",
+    "playerCategory": "U_14_B",
+    "gender": "MALE",
+    "status": "ACTIVE",
+    "registerMobile": "8682890117",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "updatedByList": [],
+    "adharNumber": "111111111111",
+    "clubName": "SSHN",
+    "name": "Ponmunees",
+    "mobile": "",
+    "id": "4q4y4oACtPWhtKuzS0qw"
+  },
+  {
+    "name": "M.keerthana",
+    "selectedEvents": [],
+    "upi": "7845084601",
+    "mobile": "",
+    "tShirtSize": "32",
+    "playerCategory": "U_10_G",
+    "dob": "2016-07-22",
+    "registerMobile": "7845084601",
+    "createdOn": "2026-01-05",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "clubName": "R.c.shool.chokkanathanbuthur",
+    "status": "ACTIVE",
+    "chestNumber": "",
+    "id": "9LXiTXQRm1AjmjhBo03D",
+    "createdBy": "7845084601",
+    "gender": "FEMALE",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-06"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "events": [
+      {
+        "disable": false,
+        "eventId": "U_10_G_3KM",
+        "eventName": "3KM",
+        "selection": false
+      }
+    ]
+  },
+  {
+    "gender": "FEMALE",
+    "registerMobile": "9003361889",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "name": "M. MOKSIHA",
+    "upi": "9003361889",
+    "dob": "2020-12-07",
+    "status": "ACTIVE",
+    "mobile": "",
+    "selectedEvents": [],
+    "chestNumber": "",
+    "clubName": "Wisdom wealth international school mukavoor",
+    "createdOn": "2026-01-05",
+    "playerCategory": "U_10_G",
+    "createdBy": "9003361889",
+    "events": [
+      {
+        "disable": false,
+        "eventId": "U_10_G_3KM",
+        "selection": false,
+        "eventName": "3KM"
+      }
+    ],
+    "id": "NUZCZzhlOMBMf2PRUdWx",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-06",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "tShirtSize": "28",
+    "adharNumber": "111111111111"
+  },
+  {
+    "dob": "2012-02-02",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "selectedEvents": [],
+    "chestNumber": "",
+    "createdOn": "2026-01-05",
+    "clubName": "Muhavoor ",
+    "upi": "8682890117",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-06",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "playerCategory": "U_14_B",
+    "tShirtSize": "34",
+    "gender": "MALE",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "id": "WM9lCVF6biyJWez7aZHb",
+    "mobile": "",
+    "name": "Vishwa",
+    "events": [
+      {
+        "eventName": "7KM",
+        "eventId": "U_14_B_7KM",
+        "disable": false,
+        "selection": false
+      }
+    ],
+    "registerMobile": "8682890117",
+    "createdBy": "8682890117"
+  },
+  {
+    "gender": "MALE",
+    "dob": "2017-12-13",
+    "status": "ACTIVE",
+    "updatedByList": [],
+    "clubName": "Sivakasi lions matric hr sec school",
+    "playerCategory": "U_10_B",
+    "mobile": "",
+    "events": [
+      {
+        "selection": false,
+        "eventId": "U_10_B_3KM",
+        "eventName": "3KM",
+        "disable": false
+      }
+    ],
+    "registerMobile": "9003361889",
+    "createdBy": "9003361889",
+    "createdOn": "2026-01-05",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "upi": "9003361889",
+    "chestNumber": "",
+    "tShirtSize": "30",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "name": "M Risiganesh ",
+    "id": "dRGGOuukev2ynjXRPDDH"
+  },
+  {
+    "id": "p266gjFVp3tnwkPloAaQ",
+    "createdOn": "2026-01-05",
+    "gender": "MALE",
+    "createdBy": "7598573163",
+    "tShirtSize": "34",
+    "events": [
+      {
+        "eventId": "U_10_B_3KM",
+        "selection": false,
+        "eventName": "3KM",
+        "disable": false
+      }
+    ],
+    "name": "Ramanah V P",
+    "clubName": "Hindu Nadar Primary School, Krishnapuram",
+    "mobile": "",
+    "status": "ACTIVE",
+    "playerCategory": "U_10_B",
+    "registerMobile": "7598573163",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-05",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "dob": "2017-07-27",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "upi": "7598573163",
+    "chestNumber": ""
+  },
+  {
+    "clubName": "Hindu Nadar Primary School, Krishnapuram",
+    "adharNumber": "111111111111",
+    "playerCategory": "U_10_B",
+    "mobile": "",
+    "gender": "MALE",
+    "id": "qDq4G96M1vLRtjxMm8dy",
+    "selectedEvents": [],
+    "dob": "2017-02-07",
+    "chestNumber": "",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "events": [
+      {
+        "eventName": "3KM",
+        "selection": false,
+        "disable": false,
+        "eventId": "U_10_B_3KM"
+      }
+    ],
+    "createdBy": "7010515842",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-05"
+      }
+    ],
+    "name": "Kavin V P",
+    "createdOn": "2026-01-05",
+    "upi": "7598573163",
+    "status": "ACTIVE",
+    "tShirtSize": "32",
+    "registerMobile": "7010515842"
+  },
+  {
+    "selectedEvents": [],
+    "createdOn": "2026-01-04",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "events": [
+      {
+        "disable": false,
+        "eventId": "U_10_B_3KM",
+        "selection": false,
+        "eventName": "3KM"
+      }
+    ],
+    "upi": "8680863405",
+    "gender": "MALE",
+    "mobile": "",
+    "dob": "2017-09-17",
+    "registerMobile": "8870356406",
+    "tShirtSize": "30",
+    "createdBy": "8870356406",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "chestNumber": "",
+    "playerCategory": "U_10_B",
+    "id": "3nkhWL5YOkKSo6SrNPcl",
+    "name": "M.Hemandharshan",
+    "clubName": "Sri.N.M.Metha join matric Hr.sec.School",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-04",
+        "updatedBy": "9944419808"
+      }
+    ]
+  },
+  {
+    "upi": "9865711104",
+    "mobile": "",
+    "tShirtSize": "38",
+    "gender": "MALE",
+    "updatedByList": [],
+    "selectedEvents": [],
+    "events": [
+      {
+        "selection": false,
+        "eventName": "8KM",
+        "disable": false,
+        "eventId": "U_19_B_8KM"
+      }
+    ],
+    "createdBy": "9865711104",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "status": "ACTIVE",
+    "adharNumber": "111111111111",
+    "dob": "2009-02-08",
+    "playerCategory": "U_19_B",
+    "registerMobile": "9865711104",
+    "createdOn": "2026-01-04",
+    "clubName": "",
+    "name": "K Hritik",
+    "chestNumber": "",
+    "id": "M0rVHYri6DHNVR4pBEf0"
+  },
+  {
+    "playerCategory": "U_14_G",
+    "clubName": "Melavaragunaramapuram",
+    "chestNumber": "",
+    "tShirtSize": "32",
+    "events": [
+      {
+        "disable": false,
+        "selection": false,
+        "eventName": "7KM",
+        "eventId": "U_14_G_7KM"
+      }
+    ],
+    "createdBy": "9585414111",
+    "name": "HEMATHARSINI S",
+    "dob": "2014-06-02",
+    "mobile": "",
+    "selectedEvents": [],
+    "id": "WmrSTEsjXiEu8J7vZ3ox",
+    "createdOn": "2026-01-04",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "gender": "FEMALE",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-04"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "registerMobile": "9585414111",
+    "upi": "9842702602",
+    "status": "ACTIVE"
+  },
+  {
+    "tShirtSize": "34",
+    "name": "SRIVIDHYA S",
+    "clubName": "Melavaragunaramapuram",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "playerCategory": "OPEN_G",
+    "dob": "2011-10-10",
+    "upi": "9842702602",
+    "createdOn": "2026-01-04",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "registerMobile": "9585414111",
+    "selectedEvents": [],
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-04"
+      }
+    ],
+    "events": [
+      {
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM",
+        "eventId": "OPEN_CATEGORY_GIRLS"
+      }
+    ],
+    "id": "WwS0yC5qCb5jp2bRhZOR",
+    "createdBy": "9585414111",
+    "chestNumber": "",
+    "gender": "FEMALE",
+    "mobile": ""
+  },
+  {
+    "dob": "2014-03-01",
+    "status": "ACTIVE",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-04",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "upi": "9952609284",
+    "clubName": "P.A.C.M, School, Rajapalayam ",
+    "name": "Siva",
+    "tShirtSize": "30",
+    "selectedEvents": [],
+    "chestNumber": "",
+    "mobile": "",
+    "playerCategory": "U_14_B",
+    "registerMobile": "9952609284",
+    "createdBy": "9952609284",
+    "createdOn": "2026-01-04",
+    "id": "cOEr13F4E92QTnnZ0C0Z",
+    "events": [
+      {
+        "eventName": "7KM",
+        "selection": false,
+        "disable": false,
+        "eventId": "U_14_B_7KM"
+      }
+    ],
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "gender": "MALE"
+  },
+  {
+    "mobile": "",
+    "dob": "2016-07-17",
+    "clubName": "T.A.K.M, School, Rajapalayam ",
+    "createdOn": "2026-01-04",
+    "registerMobile": "9952609284",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "tShirtSize": "28",
+    "events": [
+      {
+        "eventName": "3KM",
+        "eventId": "U_10_B_3KM",
+        "disable": false,
+        "selection": false
+      }
+    ],
+    "gender": "MALE",
+    "name": "Muthukrishna",
+    "createdBy": "9952609284",
+    "id": "cw1jqd7NdDHvyn6mJtqK",
+    "chestNumber": "",
+    "upi": "9952609284",
+    "selectedEvents": [],
+    "status": "ACTIVE",
+    "adharNumber": "111111111111",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-04"
+      }
+    ],
+    "playerCategory": "U_10_B"
+  },
+  {
+    "paymentStatus": "NOT_PAID",
+    "mobile": "",
+    "gender": "MALE",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-04",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "createdOn": "2026-01-04",
+    "selectedEvents": [],
+    "dob": "",
+    "chestNumber": "",
+    "tShirtSize": "Please Select",
+    "createdBy": "8870356406",
+    "playerCategory": "",
+    "clubName": "",
+    "events": [],
+    "upi": "8680863405",
+    "name": "",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "id": "eJbDTFWsonvLKlms4OHj",
+    "registerMobile": "8870356406"
+  },
+  {
+    "updatedByList": [],
+    "events": [
+      {
+        "disable": false,
+        "selection": false,
+        "eventName": "8KM",
+        "eventId": "U_19_B_8KM"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "mobile": "",
+    "dob": "2009-03-11",
+    "clubName": "Viveka matric higher secondary school sivagiri 627757",
+    "name": "PRAKATHEESH ",
+    "registerMobile": "8754836866",
+    "playerCategory": "U_19_B",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "chestNumber": "",
+    "createdOn": "2026-01-04",
+    "upi": "8754836866",
+    "status": "ACTIVE",
+    "gender": "MALE",
+    "createdBy": "8754836866",
+    "selectedEvents": [],
+    "tShirtSize": "38",
+    "id": "jlsKWn4S4W65hKKkkBMu"
+  },
+  {
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "mobile": "",
+    "clubName": "Government Higher secondary school ",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-04"
+      }
+    ],
+    "chestNumber": "",
+    "id": "8nzAJqfoXraCkqL940sE",
+    "events": [
+      {
+        "disable": false,
+        "eventName": "7KM",
+        "selection": false,
+        "eventId": "U_14_B_7KM"
+      }
+    ],
+    "createdOn": "2026-01-03",
+    "gender": "MALE",
+    "status": "ACTIVE",
+    "tShirtSize": "36",
+    "upi": "9843688924",
+    "adharNumber": "111111111111",
+    "playerCategory": "U_14_B",
+    "dob": "2014-12-12",
+    "registerMobile": "9843688924",
+    "name": "Mugilesh V",
+    "createdBy": "9843688924",
+    "selectedEvents": []
+  },
+  {
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-04"
+      }
+    ],
+    "upi": "9843688924",
+    "tShirtSize": "38",
+    "dob": "2012-07-15",
+    "gender": "MALE",
+    "registerMobile": "9843688924",
+    "playerCategory": "U_14_B",
+    "mobile": "",
+    "events": [
+      {
+        "eventName": "7KM",
+        "disable": false,
+        "eventId": "U_14_B_7KM",
+        "selection": false
+      }
+    ],
+    "clubName": "Government Higher secondary school ",
+    "status": "ACTIVE",
+    "id": "dxlDkdt22MgYw8bQBvf5",
+    "createdOn": "2026-01-03",
+    "createdBy": "9843688924",
+    "selectedEvents": [],
+    "chestNumber": "",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "name": "Varunesh V",
+    "adharNumber": "111111111111"
+  },
+  {
+    "name": "Vinith kumar",
+    "selectedEvents": [],
+    "playerCategory": "U_19_B",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "updatedByList": [],
+    "clubName": "Amaran sport club ",
+    "dob": "2011-05-28",
+    "createdBy": "7708454051",
+    "mobile": "",
+    "events": [
+      {
+        "eventName": "8KM",
+        "selection": false,
+        "eventId": "U_19_B_8KM",
+        "disable": false
+      }
+    ],
+    "upi": "7708454051",
+    "registerMobile": "7708454051",
+    "tShirtSize": "36",
+    "createdOn": "2026-01-03",
+    "chestNumber": "",
+    "gender": "MALE",
+    "adharNumber": "111111111111",
+    "status": "ACTIVE",
+    "id": "rlpdkhXn1ZDnJIV2IkpE"
+  },
+  {
+    "selectedEvents": [],
+    "gender": "MALE",
+    "clubName": "Seithur sevuga pandiya Higher secondary school ",
+    "upi": "6385479701",
+    "events": [
+      {
+        "eventId": "U_14_B_7KM",
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM"
+      }
+    ],
+    "adharNumber": "111111111111",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "chestNumber": "",
+    "playerCategory": "U_14_B",
+    "tShirtSize": "28",
+    "createdOn": "2026-01-02",
+    "createdBy": "6385479701",
+    "mobile": "",
+    "status": "ACTIVE",
+    "updatedByList": [],
+    "registerMobile": "6385479701",
+    "name": "R.Dharshith",
+    "dob": "2015-04-16",
+    "id": "YcPCYuYrXqz3HfWJFBHS"
+  },
+  {
+    "upi": "8015531070",
+    "status": "ACTIVE",
+    "id": "bdxkXfUa9SiuDc8ahzpB",
+    "name": "Kabilan",
+    "tShirtSize": "36",
+    "chestNumber": "",
+    "selectedEvents": [],
+    "clubName": "South Street hindu nadar higher secondary school",
+    "events": [
+      {
+        "eventId": "U_19_B_8KM",
+        "eventName": "8KM",
+        "disable": false,
+        "selection": false
+      }
+    ],
+    "adharNumber": "111111111111",
+    "playerCategory": "U_19_B",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-03"
+      }
+    ],
+    "createdBy": "8098829346",
+    "createdOn": "2026-01-02",
+    "dob": "2010-01-17",
+    "registerMobile": "8098829346",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "mobile": "",
+    "gender": "MALE"
+  },
+  {
+    "registerMobile": "9750777414",
+    "chestNumber": "",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "events": [
+      {
+        "disable": false,
+        "eventName": "8KM",
+        "selection": false,
+        "eventId": "U_19_B_8KM"
+      }
+    ],
+    "gender": "MALE",
+    "name": "Akash",
+    "mobile": "",
+    "createdOn": "2026-01-02",
+    "updatedByList": [],
+    "tShirtSize": "36",
+    "playerCategory": "U_19_B",
+    "status": "ACTIVE",
+    "upi": "9750777414",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "clubName": "Amaran sport club",
+    "createdBy": "9750777414",
+    "dob": "2010-05-28",
+    "id": "ymssvrd93T5RDo49yVCu"
+  },
+  {
+    "upi": "9944216375",
+    "mobile": "",
+    "registerMobile": "9944216375",
+    "createdOn": "2026-01-01",
+    "tShirtSize": "36",
+    "gender": "MALE",
+    "dob": "2012-06-22",
+    "selectedEvents": [],
+    "playerCategory": "U_14_B",
+    "events": [
+      {
+        "eventId": "U_14_B_7KM",
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM"
+      }
+    ],
+    "clubName": "Sshn higher secondary school ",
+    "updatedByList": [],
+    "createdBy": "9944216375",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "adharNumber": "111111111111",
+    "name": "Muthuramkumar",
+    "chestNumber": "",
+    "status": "ACTIVE",
+    "id": "0IxbeQehil9qyvr2Um76"
+  },
+  {
+    "events": [
+      {
+        "eventName": "7KM",
+        "disable": false,
+        "eventId": "U_14_B_7KM",
+        "selection": false
+      }
+    ],
+    "gender": "MALE",
+    "tShirtSize": "30",
+    "chestNumber": "",
+    "upi": "9384322987",
+    "name": "சிவகார்த்திகேயன் ",
+    "selectedEvents": [],
+    "clubName": "முருகன் ஆரம்ப பாடசாலை புனல்வேலி",
+    "playerCategory": "U_14_B",
+    "createdOn": "2026-01-01",
+    "id": "ST7ejdjc0SdskdcM3etg",
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-01"
+      }
+    ],
+    "status": "ACTIVE",
+    "mobile": "",
+    "adharNumber": "111111111111",
+    "dob": "2014-09-11",
+    "createdBy": "9384322987",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "registerMobile": "9384322987"
+  },
+  {
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-01",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "dob": "2016-07-27",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "chestNumber": "",
+    "gender": "FEMALE",
+    "mobile": "",
+    "clubName": "முருகன் ஆரம்ப பாடசாலை ",
+    "events": [
+      {
+        "selection": false,
+        "eventId": "U_10_G_3KM",
+        "disable": false,
+        "eventName": "3KM"
+      }
+    ],
+    "tShirtSize": "30",
+    "playerCategory": "U_10_G",
+    "createdBy": "9384322987",
+    "registerMobile": "9384322987",
+    "name": "ஆனந்தஜோதி",
+    "id": "dHS1URSNEJLQLjTGDWR3",
+    "upi": "9384322987",
+    "selectedEvents": [],
+    "createdOn": "2026-01-01",
+    "status": "ACTIVE",
+    "adharNumber": "111111111111"
+  },
+  {
+    "status": "ACTIVE",
+    "upi": "9952101339",
+    "playerCategory": "U_14_G",
+    "tShirtSize": "30",
+    "clubName": "S.S.H.N.HR.SEC.SCHOOL",
+    "name": "Thusitha S",
+    "adharNumber": "111111111111",
+    "gender": "FEMALE",
+    "dob": "2015-06-01",
+    "chestNumber": "",
+    "createdBy": "9952101339",
+    "createdOn": "2025-12-31",
+    "events": [
+      {
+        "eventId": "U_14_G_7KM",
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM"
+      }
+    ],
+    "updatedByList": [],
+    "registerMobile": "9952101339",
+    "mobile": "",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "selectedEvents": [],
+    "id": "0c9YPEdyJZPnY8pgSAHL"
+  },
+  {
+    "clubName": "Kurinji football club",
+    "chestNumber": "",
+    "createdOn": "2025-12-31",
+    "mobile": "",
+    "selectedEvents": [],
+    "upi": "8491057215",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "events": [
+      {
+        "eventName": "7KM",
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "selection": false,
+        "disable": false
+      }
+    ],
+    "createdBy": "8491057215",
+    "updatedByList": [],
+    "playerCategory": "OPEN_B",
+    "adharNumber": "111111111111",
+    "registerMobile": "8491057215",
+    "dob": "1996-05-06",
+    "tShirtSize": "36",
+    "status": "ACTIVE",
+    "gender": "MALE",
+    "name": "MARIDURAI M ",
+    "id": "1Zpazd8d6yQkPJ5QWVTK"
+  },
+  {
+    "name": "Kaleeswaran Mariappan",
+    "id": "2Aq50NAzOlqBLfeOesy3"
+  },
+  {
+    "selectedEvents": [],
+    "chestNumber": "",
+    "gender": "MALE",
+    "name": "Ariharasudhan",
+    "clubName": "Sshn high secondary school ",
+    "adharNumber": "111111111111",
+    "dob": "2013-07-13",
+    "status": "ACTIVE",
+    "createdBy": "9944216375",
+    "registerMobile": "9944216375",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "mobile": "",
+    "createdOn": "2025-12-31",
+    "upi": "9944216375",
+    "playerCategory": "U_14_B",
+    "tShirtSize": "34",
+    "events": [
+      {
+        "selection": false,
+        "disable": false,
+        "eventId": "U_14_B_7KM",
+        "eventName": "7KM"
+      }
+    ],
+    "updatedByList": [],
+    "id": "2qLsUN1LwclubcqHRLjA"
+  },
+  {
+    "upi": "9952101339",
+    "gender": "FEMALE",
+    "status": "ACTIVE",
+    "registerMobile": "9952101339",
+    "createdBy": "9952101339",
+    "adharNumber": "111111111111",
+    "chestNumber": "",
+    "dob": "1988-06-07",
+    "playerCategory": "OPEN_G",
+    "name": "Murugalakshmi P ",
+    "mobile": "",
+    "createdOn": "2025-12-31",
+    "clubName": "Muhavoor ",
+    "selectedEvents": [],
+    "tShirtSize": "36",
+    "id": "B0tFpvrBwFvXjI5dIeI2",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "events": [
+      {
+        "disable": false,
+        "eventName": "7KM",
+        "selection": false,
+        "eventId": "OPEN_CATEGORY_GIRLS"
+      }
+    ],
+    "updatedByList": [
+      {
+        "updatedBy": "8682890117",
+        "upatedOn": "2025-12-31"
+      }
+    ]
+  },
+  {
+    "chestNumber": "",
+    "upi": "9344740038",
+    "tShirtSize": "32",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "name": "KANISHKA ",
+    "playerCategory": "U_14_G",
+    "createdBy": "9344740038",
+    "clubName": "VADAKKUPATTI , KOVILPATTI ",
+    "createdOn": "2025-12-31",
+    "registerMobile": "9344740038",
+    "adharNumber": "111111111111",
+    "selectedEvents": [],
+    "gender": "FEMALE",
+    "dob": "2014-05-24",
+    "events": [
+      {
+        "selection": false,
+        "disable": false,
+        "eventName": "7KM",
+        "eventId": "U_14_G_7KM"
+      }
+    ],
+    "status": "ACTIVE",
+    "mobile": "",
+    "updatedByList": [],
+    "id": "FfBs6vCa8JPFLZv46wdN"
+  },
+  {
+    "status": "ACTIVE",
+    "upi": "8760745827",
+    "tShirtSize": "36",
+    "playerCategory": "OPEN_B",
+    "clubName": "Nellai Runner ",
+    "name": "Esakki Durai.M",
+    "gender": "MALE",
+    "adharNumber": "111111111111",
+    "dob": "1999-08-16",
+    "chestNumber": "",
+    "createdBy": "8760745827",
+    "createdOn": "2025-12-31",
+    "events": [
+      {
+        "eventName": "7KM",
+        "selection": false,
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "disable": false
+      }
+    ],
+    "updatedByList": [],
+    "mobile": "",
+    "selectedEvents": [],
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "registerMobile": "8760745827",
+    "id": "LijznhMtJrfXPmBY3iSQ"
+  },
+  {
+    "name": "Simon Karthick ",
+    "createdOn": "2025-12-31",
+    "chestNumber": "",
+    "playerCategory": "OPEN_B",
+    "updatedByList": [],
+    "selectedEvents": [],
+    "status": "ACTIVE",
+    "events": [
+      {
+        "eventName": "7KM",
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "selection": false,
+        "disable": false
+      }
+    ],
+    "upi": "8870297024",
+    "dob": "1996-05-12",
+    "registerMobile": "8870297024",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "clubName": "Bailwan Runners ",
+    "gender": "MALE",
+    "tShirtSize": "38",
+    "adharNumber": "111111111111",
+    "createdBy": "8870297024",
+    "mobile": "",
+    "id": "PQt3HOFbUtxr2Kyqbwc3"
+  },
+  {
+    "upi": "9500718487",
+    "gender": "MALE",
+    "status": "ACTIVE",
+    "registerMobile": "9944691136",
+    "createdBy": "9944691136",
+    "adharNumber": "111111111111",
+    "chestNumber": "",
+    "dob": "2007-04-06",
+    "playerCategory": "U_19_B",
+    "name": "ARUNRAJ R",
+    "mobile": "",
+    "clubName": "Voc college of engineering thoothukudi ",
+    "createdOn": "2025-12-31",
+    "tShirtSize": "36",
+    "selectedEvents": [],
+    "id": "St2fDVdohBhFgvKT6A5P",
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "events": [
+      {
+        "selection": false,
+        "disable": false,
+        "eventId": "U_19_B_8KM",
+        "eventName": "8KM"
+      }
+    ],
+    "updatedByList": [
+      {
+        "updatedBy": "9944419808",
+        "upatedOn": "2026-01-01"
+      }
+    ]
+  },
+  {
+    "clubName": "Nms",
+    "name": "Sahana",
+    "dob": "2017-11-20",
+    "tShirtSize": "28",
+    "registerMobile": "8682890117",
+    "status": "ACTIVE",
+    "createdBy": "8682890117",
+    "events": [
+      {
+        "eventId": "U_10_G_3KM",
+        "eventName": "3KM",
+        "disable": false,
+        "selection": false
+      }
+    ],
+    "updatedByList": [
+      {
+        "upatedOn": "2025-12-31",
+        "updatedBy": "8682890117"
+      }
+    ],
+    "chestNumber": "",
+    "adharNumber": "111111111111",
+    "createdOn": "2025-12-31",
+    "selectedEvents": [],
+    "upi": "8682890117",
+    "gender": "FEMALE",
+    "mobile": "",
+    "id": "TYaEUUaLzsejcQ9qK9cL",
+    "playerCategory": "U_10_G",
+    "paymentStatus": "NMS"
+  },
+  {
+    "registerMobile": "7373696374",
+    "clubName": "",
+    "status": "ACTIVE",
+    "events": [
+      {
+        "disable": false,
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "eventName": "7KM",
+        "selection": false
+      }
+    ],
+    "updatedByList": [],
+    "playerCategory": "OPEN_B",
+    "name": "Karuppaiah T ",
+    "tShirtSize": "40",
+    "upi": "7373696374",
+    "dob": "1990-05-17",
+    "chestNumber": "",
+    "createdOn": "2025-12-31",
+    "gender": "MALE",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "createdBy": "7373696374",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "mobile": "",
+    "id": "UJUz5yUD8SoeibEDDJTX"
+  },
+  {
+    "clubName": "Srivilliputtur ",
+    "adharNumber": "111111111111",
+    "name": "K.M.Amala Anto Jonna",
+    "gender": "MALE",
+    "upi": "9600672408",
+    "updatedByList": [],
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "selectedEvents": [],
+    "createdBy": "9600672408",
+    "chestNumber": "",
+    "events": [
+      {
+        "eventId": "U_10_B_3KM",
+        "selection": false,
+        "disable": false,
+        "eventName": "3KM"
+      }
+    ],
+    "playerCategory": "U_10_B",
+    "createdOn": "2025-12-31",
+    "status": "ACTIVE",
+    "registerMobile": "9600672408",
+    "dob": "2016-02-14",
+    "mobile": "",
+    "tShirtSize": "34",
+    "id": "XBqyJAasFTWvMObVMEjt"
+  },
+  {
+    "clubName": "SSHN",
+    "name": "Abimithradevi A",
+    "paymentStatus": "NMS",
+    "mobile": "",
+    "tShirtSize": "28",
+    "upi": "9994374553",
+    "playerCategory": "U_10_G",
+    "adharNumber": "111111111111",
+    "id": "XWG6FdId3XjBOc42lN9x",
+    "events": [
+      {
+        "disable": false,
+        "selection": false,
+        "eventId": "U_10_G_3KM",
+        "eventName": "3KM"
+      }
+    ],
+    "dob": "2021-08-10",
+    "selectedEvents": [],
+    "chestNumber": "",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-01",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "gender": "FEMALE",
+    "status": "ACTIVE",
+    "createdOn": "2025-12-31",
+    "createdBy": "9994374553",
+    "registerMobile": "9994374553"
+  },
+  {
+    "status": "ACTIVE",
+    "createdOn": "2025-12-31",
+    "events": [
+      {
+        "eventName": "3KM",
+        "eventId": "U_10_B_3KM",
+        "disable": false,
+        "selection": false
+      }
+    ],
+    "gender": "MALE",
+    "paymentStatus": "NMS",
+    "createdBy": "8682890117",
+    "tShirtSize": "28",
+    "playerCategory": "U_10_B",
+    "selectedEvents": [],
+    "adharNumber": "111111111111",
+    "mobile": "",
+    "dob": "2020-11-05",
+    "chestNumber": "",
+    "clubName": "NMS",
+    "name": "அர்ஜுன் ராம்",
+    "updatedByList": [
+      {
+        "updatedBy": "8682890117",
+        "upatedOn": "2025-12-31"
+      }
+    ],
+    "id": "hcXk5BY69gZ4emvKzN1a",
+    "upi": "8682890117",
+    "registerMobile": "8682890117"
+  },
+  {
+    "name": "JEBINA I ",
+    "selectedEvents": [],
+    "gender": "FEMALE",
+    "clubName": "T.N.D.A.Primary school pandaravilai ",
+    "upi": "9500718487",
+    "createdOn": "2025-12-31",
+    "playerCategory": "U_10_G",
+    "chestNumber": "",
+    "events": [
+      {
+        "disable": false,
+        "eventId": "U_10_G_3KM",
+        "selection": false,
+        "eventName": "3KM"
+      }
+    ],
+    "paymentStatus": "PAYMENT_VERIFIED",
+    "status": "ACTIVE",
+    "updatedByList": [
+      {
+        "upatedOn": "2026-01-01",
+        "updatedBy": "9944419808"
+      }
+    ],
+    "mobile": "",
+    "createdBy": "9944691136",
+    "id": "lgkLBH1ec3EEFd3lLgGG",
+    "registerMobile": "9944691136",
+    "adharNumber": "111111111111",
+    "tShirtSize": "28",
+    "dob": "2016-09-06"
+  },
+  {
+    "playerCategory": "OPEN_B",
+    "tShirtSize": "36",
+    "name": "Krishnakumar",
+    "events": [
+      {
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "selection": false,
+        "eventName": "7KM",
+        "disable": false
+      }
+    ],
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "mobile": "",
+    "createdBy": "9585814341",
+    "adharNumber": "111111111111",
+    "chestNumber": "",
+    "gender": "MALE",
+    "dob": "1990-11-10",
+    "updatedByList": [],
+    "createdOn": "2025-12-31",
+    "selectedEvents": [],
+    "upi": "9585814341",
+    "clubName": "Tenkasi",
+    "status": "ACTIVE",
+    "registerMobile": "9585814341",
+    "id": "px69UBbwFA7wXXqn0a5A"
+  },
+  {
+    "createdOn": "2025-12-31",
+    "paymentStatus": "PAYMENT_NOT_VERIFIED",
+    "dob": "1996-05-12",
+    "playerCategory": "OPEN_B",
+    "clubName": "Bailwan Runners",
+    "adharNumber": "111111111111",
+    "registerMobile": "8870297024",
+    "tShirtSize": "38",
+    "createdBy": "8870297024",
+    "selectedEvents": [],
+    "name": "Simon Karthick ",
+    "updatedByList": [],
+    "upi": "8870297024",
+    "events": [
+      {
+        "selection": false,
+        "eventName": "7KM",
+        "eventId": "OPEN_CATEGORY_BOYS",
+        "disable": false
+      }
+    ],
+    "status": "ACTIVE",
+    "chestNumber": "",
+    "mobile": "",
+    "gender": "MALE",
+    "id": "qRws6LSDKd4A87z1UIia"
+  },
+  {
+    "id": "y7wqvzTvFn98M9yErlBi",
+    "adharNumber": "111111111111",
+    "playerCategory": "U_10_G",
+    "updatedByList": [
+      {
+        "updatedBy": "9994374553",
+        "upatedOn": "2025-12-31"
+      },
+      {
+        "updatedBy": "9994374553",
+        "upatedOn": "2026-01-01"
+      }
+    ],
+    "tShirtSize": "28",
+    "name": "Arunadevi.A",
+    "events": [
+      {
+        "selection": false,
+        "eventName": "3KM",
+        "disable": false,
+        "eventId": "U_10_G_3KM"
+      }
+    ],
+    "dob": "2019-05-09",
+    "registerMobile": "9994374553",
+    "paymentStatus": "NMS",
+    "createdOn": "2025-12-31",
+    "createdBy": "9994374553",
+    "upi": "9994374553",
+    "clubName": "SSHN",
+    "chestNumber": "",
+    "status": "ACTIVE",
+    "gender": "FEMALE",
+    "mobile": "",
+    "selectedEvents": []
+  }
+]

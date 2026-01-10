@@ -109,7 +109,7 @@ const PlayerDashboard = () => {
       </div>
       <div>
         <Alert variant={'warning'}>
-          <div>Contact : Arivu : 9994374553/ Kalimuthu: 9944419808/ Kaleeswaran : 8682890117</div>
+          <div>Contact : ArivuRaja : 9994374553/ Kalimuthu: 9944419808/ Kaleeswaran : 8682890117</div>
         </Alert>
       </div>
     </div>
