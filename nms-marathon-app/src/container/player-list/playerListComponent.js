@@ -76,7 +76,7 @@ const PlayerListComponent = () => {
     keyFilteredList = allList.filter((player) => {
       return (
         (!searchKey ||
-          player.name.toLowerCase().includes(searchKey.toLowerCase()) ||
+          player.name.toLowerCase().includes(searchKey.toLowerCase() || player.name.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
