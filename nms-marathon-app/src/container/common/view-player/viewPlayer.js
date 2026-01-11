@@ -15,6 +15,7 @@ const ViewPlayerComponent = (props) => {
   const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
   const playersState = useSelector((state) => state.players);
+
   const updatePlayer = (status) => {
     let player = JSON.parse(JSON.stringify(props.player));
     player.paymentStatus = status;
@@ -34,6 +35,22 @@ const ViewPlayerComponent = (props) => {
     return () => clearTimeout(timer);
   };
   console.log(props, playersState);
+
+  const updateTShirtStatus =() =>{
+    let player = JSON.parse(JSON.stringify(props.player));
+    player.tShirt = {
+      status : "PROVIDED",
+      providedBy: JSON.parse(localStorage.getItem("auth")),
+      providedOn: new Date().toString()
+    }
+    updateUser(player);
+    const timer = setTimeout(() => {
+      dispatch(getPlayerList());
+    }, 1000);
+    return () => clearTimeout(timer);
+    
+  }
+  // const providedBy = props.player?.tShirt?.providedBy
 
   return (
     <div>
@@ -75,17 +92,21 @@ const ViewPlayerComponent = (props) => {
 
             <Row>
               <Col>
-                <Button
-                  variant="primary"
-                  disabled={flag}
-                  onClick={() => {
-                    setFlag(true);
-                    updatePlayer(PAYMENT_STATUS[0]);
-                  }}
-                >
-                  {' '}
-                  PAID{' '}
-                </Button>
+                {props.player.paymentStatus !== 'PAYMENT_VERIFIED' ? (
+                  <Button
+                    variant="primary"
+                    disabled={flag}
+                    onClick={() => {
+                      setFlag(true);
+                      updatePlayer(PAYMENT_STATUS[0]);
+                    }}
+                  >
+                    {' '}
+                    PAID{' '}
+                  </Button>
+                ) : (
+                  ''
+                )}
               </Col>
               <Col>
                 <Button
@@ -118,6 +139,29 @@ const ViewPlayerComponent = (props) => {
           ) : (
             ''
           )}
+          {playersState?.authStatus === 'SUPER_ADMIN_ACCESS' && props.player.paymentStatus === "PAYMENT_VERIFIED" && (
+            <div style={{ marginTop: '10px' }}>
+              <Row>
+                <Col>
+                  {props.player?.tShirt?.status == 'PROVIDED' ? (
+                    <Alert key={'danger'} variant={'danger'}>
+                      T-shirt already provided by : {props.player?.tShirt?.providedBy?.mobile}{' '}
+                      <br></br>
+                      Time: {props.player?.tShirt?.providedOn}
+                    </Alert>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        updateTShirtStatus();
+                      }}
+                    >
+                      Provide T-shirt
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </div>
+          )}
         </Container>
       </Alert>
     </div>
@@ -125,3 +169,4 @@ const ViewPlayerComponent = (props) => {
 };
 
 export default ViewPlayerComponent;
+
