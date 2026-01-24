@@ -130,7 +130,7 @@ const PlayerListComponent = () => {
   return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
-      playersState?.authStatus === 'SUPER_ADMIN_ACCESS' ? (
+      playersState?.authStatus === 'SUPER_ADMIN_ACCESS' || playersState?.authStatus === 'NMS_MEMBER' ? (
         // true ? (
         <div style={{marginTop:"225px"}}>
           {/* <div> 

@@ -3,6 +3,8 @@ export const adminList = [
   { mobile: 8682890117, auth: 'SUPER_ADMIN_ACCESS' },
   { mobile: 9994374553, auth: 'ADMIN_ACCESS' },
   { mobile: 9944419808, auth: 'ADMIN_ACCESS' },
+  { mobile: 9790656890, auth: 'NMS_MEMBER' },
+  { mobile: 9944274804, auth: 'NMS_MEMBER' }
 ];
 export const DB = {
   players: 'marathon2026',
@@ -14,6 +16,7 @@ export const AUTH_STATUS = {
   REGISTERED: 'REGISTERED',
   ADMIN_ACCESS: 'ADMIN_ACCESS',
   SUPER_ADMIN_ACCESS: 'SUPER_ADMIN_ACCESS',
+  NMS_MEMBER:"NMS_MEMBER"
 };
 
 export const EVENTS = {

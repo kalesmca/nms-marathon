@@ -75,7 +75,7 @@ const HeaderComponent = () => {
       <p className="theme">உலகிற்கே உணவு கொடுக்கும் உன்னதப் பணி செய்பவனே விவசாயி.</p>
       {/* <img src={logoutIcon} alt="SVG Image"></img> */}
       {playerState?.authStatus === 'ADMIN_ACCESS' ||
-      playerState?.authStatus === 'SUPER_ADMIN_ACCESS' ? (
+      playerState?.authStatus === 'SUPER_ADMIN_ACCESS' || playerState?.authStatus === 'NMS_MEMBER' ? (
         // true? (
 
         <div className="nav-links">
