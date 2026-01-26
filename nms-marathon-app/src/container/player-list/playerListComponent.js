@@ -253,8 +253,8 @@ const PlayerListComponent = () => {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Dropdown className="d-inline mx-2" value={paymentStatus}>
-              <Dropdown.Toggle id="dropdown-autoclose-true">{paymentStatus}</Dropdown.Toggle>
+            <Dropdown className="d-inline mx-2" value={tShirtSize}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{tShirtSize}</Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {tShirtSizeList.map((size, kIndex) => {
