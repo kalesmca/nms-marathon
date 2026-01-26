@@ -75,7 +75,7 @@ const HeaderComponent = () => {
       <p className="theme">உலகிற்கே உணவு கொடுக்கும் உன்னதப் பணி செய்பவனே விவசாயி.</p>
       {/* <img src={logoutIcon} alt="SVG Image"></img> */}
       {playerState?.authStatus === 'ADMIN_ACCESS' ||
-      playerState?.authStatus === 'SUPER_ADMIN_ACCESS' ? (
+      playerState?.authStatus === 'SUPER_ADMIN_ACCESS' || playerState?.authStatus === 'NMS_MEMBER' ? (
         // true? (
 
         <div className="nav-links">
@@ -86,7 +86,7 @@ const HeaderComponent = () => {
             </div>
             <div className="link">
               {/* <i className="fas fa-address-card" onClick={() => { navigation("/member-list") }}></i> */}
-              <Link to="/authed/player-list">Player List</Link>
+              <Link to="/authed/player-list">Player List ({playerState?.playerList.length})</Link>
             </div>
             <div className="link">
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
