@@ -7,7 +7,9 @@ import Button from 'react-bootstrap/Button';
 import { PopupContext } from '../../config/context';
 import Alert from 'react-bootstrap/Alert';
 import './playerDashboard.scss';
-import qrImage from '../../assets/paraman.jpeg';
+// import qrImage from '../../assets/paraman.jpeg';
+import qrImage from '../../assets/paraman_unAmount.jpeg';
+
 
 const PlayerDashboard = () => {
   const playersState = useSelector((state) => state.players);
