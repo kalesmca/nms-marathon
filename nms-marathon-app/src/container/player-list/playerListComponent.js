@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from '../../config/context';
-import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
+import { EVENTS, PAYMENT_STATUS, tShirtSizeList } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -24,6 +24,8 @@ const PlayerListComponent = () => {
   const [events, setEvents] = useState([]);
   const [searchKey, setSearchKey] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('ALL');
+    const [tShirtSize, setTShirtSize] = useState('ALL');
+
   const [filteredPlayerList, setFilteredList] = useState(playersState.playerList)
   const [selectedEvent, setSelectedEvent] = useState(initEvent);
   const {
@@ -46,7 +48,7 @@ const PlayerListComponent = () => {
 
     return () => clearTimeout(timer);
     
-  }, [searchKey, paymentStatus, playerCategory]);
+  }, [searchKey, paymentStatus, playerCategory, tShirtSize]);
   useEffect(() => {
     setPlayerList(playersState.playerList);
   }, [playersState]);
@@ -81,6 +83,7 @@ const PlayerListComponent = () => {
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
         && (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
+         && (tShirtSize === 'ALL' || player.tShirtSize === tShirtSize)
       );
     });
     // }
@@ -243,6 +246,39 @@ const PlayerListComponent = () => {
                   value={'ALL'}
                   onClick={(e) => {
                     setPaymentStatus('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown className="d-inline mx-2" value={paymentStatus}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{paymentStatus}</Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {tShirtSizeList.map((size, kIndex) => {
+                  if(kIndex>0){
+                    return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={size}
+                      onClick={(e) => {
+                        setTShirtSize(size);
+                      }}
+                    >
+                      {size}
+                    </Dropdown.Item>
+                  );
+                  }
+                  
+                })}
+
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    setTShirtSize('ALL');
                   }}
                 >
                   ALL
