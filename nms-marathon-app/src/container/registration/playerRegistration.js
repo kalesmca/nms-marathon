@@ -21,7 +21,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
-import qrImage from '../../assets/paraman.jpeg';
+// import qrImage from '../../assets/paraman.jpeg';
+import qrImage from '../../assets/paraman_unAmount.jpeg';
+
+
 import GooglePayButton from '@google-pay/button-react';
 
 function PlayerRegistration() {
