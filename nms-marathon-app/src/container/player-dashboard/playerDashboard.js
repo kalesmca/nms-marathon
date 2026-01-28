@@ -8,6 +8,7 @@ import { PopupContext } from '../../config/context';
 import Alert from 'react-bootstrap/Alert';
 import './playerDashboard.scss';
 import qrImage from '../../assets/paraman.jpeg';
+import {AUTH_STATUS} from '../../config/constants';
 // import qrImage from '../../assets/paraman_unAmount.jpeg';
 
 
@@ -102,7 +103,7 @@ const PlayerDashboard = () => {
         </Table>
       </div>
       <div>{
-        (playersState && playersState?.authStatus && playersState?.authStatus === "SUPER_ADMIN_ACCESS" || playersState?.authStatus === "ADMIN_ACCESS") && (
+        (playersState && playersState?.authStatus && playersState?.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS || playersState?.authStatus === AUTH_STATUS.ADMIN_ACCESS || playersState?.authStatus === AUTH_STATUS.NMS_MEMBER) && (
           <Button
           className="btn-add-player"
           onClick={() => {
