@@ -28,10 +28,12 @@ const PlayerDashboard = () => {
     }
   }, []);
   useEffect(() => {
+    console.log(playersState?.authStatus)
     setPlayerList(playersState.regPlayerList);
   }, [playersState]);
 
   const navigation = () => {
+    console.log(playersState)
     setNavigationPath('registration');
     setPopupObj({ title: 'SUCCESS', content: 'Add more player' });
     setMsgPopupFlag(true);
@@ -99,8 +101,9 @@ const PlayerDashboard = () => {
           </tbody>
         </Table>
       </div>
-      <div>
-        <Button
+      <div>{
+        (playersState && playersState?.authStatus && playersState?.authStatus === "SUPER_ADMIN_ACCESS" || playersState?.authStatus === "ADMIN_ACCESS") && (
+          <Button
           className="btn-add-player"
           onClick={() => {
             navigation();
@@ -108,6 +111,9 @@ const PlayerDashboard = () => {
         >
           Add More Player
         </Button>
+        )
+        }
+        
       </div>
       <div>
         <Alert variant={'warning'}>

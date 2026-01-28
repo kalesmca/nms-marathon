@@ -26,13 +26,11 @@ const LoginBodyComponent = () => {
         <LoginComponent />
       </div>
       <div>
-        <Alert variant={'warning'} className="payment-dashboard-info">
+        <Alert variant={'danger'} className="payment-dashboard-info">
                   
                   <div className="payment-amount">
-                    <span >Registration Fee: </span>
-                    <span className="currency">₹</span>
-                    <span className="price">200</span>
-                    <span className="per-player">/per player</span>
+                    <span >Registration Closed. <br></br>Please Contact: <b>Shiva : 9965388040 </b></span>
+                    
                   </div>
                  
                 </Alert>
