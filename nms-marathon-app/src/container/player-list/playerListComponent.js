@@ -13,6 +13,7 @@ import Row from 'react-bootstrap/Row';
 import { db } from '../../firebase-config';
 import { DB } from '../../config/constants';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+
 import { async, CONSTANTS } from '@firebase/util';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -26,7 +27,8 @@ import { saveAs } from "file-saver";
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
   const playersState = useSelector((state) => state.players);
-  const allList = structuredClone(playersState.playerList);
+  let allList = structuredClone(playersState.playerList);
+  // const allList = structuredClone(playersState.playerList);
   const [playerList, setPlayerList] = useState(playersState.playerList);
   const [playerCategory, setPlayerCategory] = useState('ALL');
   const [events, setEvents] = useState([]);
@@ -79,15 +81,21 @@ const PlayerListComponent = () => {
     setMsgPopupFlag(true);
   };
 
+  const updateUser = async (newObj) => {
+  const userDoc = doc(db, DB.players, newObj.id);
+  await updateDoc(userDoc, newObj);
+};
+
   // This filter method for Marathon
   const getFilteredList = () => {
+    console.log("after chest", allList);
     let keyFilteredList = structuredClone(allList);
     // if (searchKey) {
     keyFilteredList = allList.filter((player) => {
       return (
         (!searchKey ||
           player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
-          player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
+          // player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
@@ -99,6 +107,7 @@ const PlayerListComponent = () => {
     // let categoryFilter = keyFilteredList.filter((player)=>{
     //   return (playerCategory === "ALL" || player.playerCategory === playerCategory )
     // })
+    keyFilteredList.sort((a, b) => a.chestNumber - b.chestNumber);
     setFilteredList(keyFilteredList);
   };
 
@@ -202,6 +211,69 @@ const PlayerListComponent = () => {
 
   saveAs(blob, "members.xlsx");
 };
+let chestNumber = 1;
+
+const assignChestNumber = (groupedData, gender) =>
+  Object.keys(groupedData).sort().flatMap(club =>
+    groupedData[club].map(player => ({
+      ...player,
+      gender,
+      club,
+      chestNumber: chestNumber++
+    }))
+  );
+const groupByClub = (list) =>
+  list.reduce((acc, item) => {
+    acc[item.clubName] = acc[item.clubName] || [];
+    acc[item.clubName].push(item);
+    return acc;
+  }, {});
+const generateChestNumber = () =>{
+  let boysList = allList.filter((item)=>{
+    return (item.gender === "MALE" && (item.paymentStatus === PAYMENT_STATUS[0] || item.paymentStatus === PAYMENT_STATUS[1] || item.paymentStatus === PAYMENT_STATUS[3]))
+  })
+  let girlsList = allList.filter((item)=>{
+    return (item.gender === "FEMALE" && (item.paymentStatus === PAYMENT_STATUS[0] || item.paymentStatus === PAYMENT_STATUS[1] || item.paymentStatus === PAYMENT_STATUS[3]))
+  })
+
+  const boysByClub = groupByClub(boysList);
+  const girlsByClub = groupByClub(girlsList);
+  const finalList = [
+  ...assignChestNumber(boysByClub, "Boy"),
+  ...assignChestNumber(girlsByClub, "Girl")
+];
+console.log(finalList);
+
+// setAllList([...finalList]);
+
+finalList.map((item)=>{
+  setTimeout(()=>{
+    updateUser(item);
+  },200)
+})
+
+
+
+}
+
+
+// const updateEntry = (status) => {
+    
+//     let updateInfoObj = {
+//       updatedBy: localAuth?.mobile,
+//       upatedOn: formatAppDate(new Date()),
+//     };
+//     if (currentPlayer.updatedByList) {
+//       currentPlayer.updatedByList.push(updateInfoObj);
+//     } else {
+//       currentPlayer.updatedByList = [{ updateInfoObj }];
+//     }
+//     updateUser(currentPlayer);
+//     const timer = setTimeout(() => {
+//       dispatch(getPlayerList());
+//     }, 500);
+//     return () => clearTimeout(timer);
+//   };
  return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
@@ -358,6 +430,7 @@ const PlayerListComponent = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
+          <div><button onClick={()=>{generateChestNumber()}}>generateChest</button></div>
           <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
            <div ref={pdfRef}>
             <Table responsive="sm">
@@ -388,7 +461,7 @@ const PlayerListComponent = () => {
                           <td>{player.name}</td>
                           <td>{player.clubName}</td>
                           <td>{player.playerCategory}</td>
-                          <td>Not-yet</td>
+                          <td>{player.chestNumber}</td>
                           {player?.selectedEvents?.length ? (
                             <td>
                               {player?.selectedEvents.map((event, eIndex) => {
