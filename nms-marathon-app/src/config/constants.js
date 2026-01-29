@@ -4,7 +4,11 @@ export const adminList = [
   { mobile: 9994374553, auth: 'ADMIN_ACCESS' },
   { mobile: 9944419808, auth: 'ADMIN_ACCESS' },
   { mobile: 9790656890, auth: 'NMS_MEMBER' },
-  { mobile: 9944274804, auth: 'NMS_MEMBER' }
+  { mobile: 9944274804, auth: 'NMS_MEMBER' },
+  { mobile: 6379765207, auth: 'NMS_MEMBER' },
+  { mobile: 9585332562, auth: 'NMS_MEMBER' },
+  { mobile: 8428272694, auth: 'NMS_MEMBER' }
+
 ];
 export const DB = {
   players: 'marathon2026',
