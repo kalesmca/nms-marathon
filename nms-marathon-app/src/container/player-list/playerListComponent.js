@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from '../../config/context';
-import { EVENTS, PAYMENT_STATUS, tShirtSizeList } from '../../config/constants';
+import { EVENTS, PAYMENT_STATUS, tShirtSizeList, AUTH_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,7 @@ import Row from 'react-bootstrap/Row';
 import { db } from '../../firebase-config';
 import { DB } from '../../config/constants';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { async } from '@firebase/util';
+import { async, CONSTANTS } from '@firebase/util';
 
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
@@ -78,7 +78,8 @@ const PlayerListComponent = () => {
     keyFilteredList = allList.filter((player) => {
       return (
         (!searchKey ||
-          player.name.toLowerCase().includes(searchKey.toLowerCase() || player.name.includes(searchKey)) ||
+          player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
+          player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
@@ -292,6 +293,7 @@ const PlayerListComponent = () => {
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>ClubName</th>
                   <th>Category</th>
                   <th>Chest No</th>
                   {/* <th>Events</th> */}
@@ -312,6 +314,7 @@ const PlayerListComponent = () => {
                         >
                           <td>{pIndex + 1}</td>
                           <td>{player.name}</td>
+                          <td>{player.clubName}</td>
                           <td>{player.playerCategory}</td>
                           <td>Not-yet</td>
                           {player?.selectedEvents?.length ? (
@@ -326,8 +329,11 @@ const PlayerListComponent = () => {
 
                           <td>{player.paymentStatus}</td>
                           <td>{player.createdOn}</td>
-                          {/* <td onClick={()=>deletePlayer(player)}>Delete</td> */}
-                          {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
+                          {/* {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td onClick={()=>deletePlayer(player)}>Delete</td>)}
+                          {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td><button onClick={(e)=>{
+                            e.stopPropagation()
+                            editPlayer(player)
+                            }}>Edit</button></td>)} */}
                         </tr>
                       );
                     }
