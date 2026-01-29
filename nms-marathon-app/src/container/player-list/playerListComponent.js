@@ -19,6 +19,9 @@ import "jspdf-autotable";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
 
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
@@ -175,6 +178,30 @@ const PlayerListComponent = () => {
       pdf.save("ui-report.pdf");
     });
   }
+
+
+  const downloadExcel = () => {
+  // Convert JSON to worksheet
+  const worksheet = XLSX.utils.json_to_sheet(filteredPlayerList);
+
+  // Create workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Members");
+
+  // Generate Excel file
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+  });
+
+  // Save file
+  const blob = new Blob(
+    [excelBuffer],
+    { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+  );
+
+  saveAs(blob, "members.xlsx");
+};
  return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
@@ -331,7 +358,7 @@ const PlayerListComponent = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div><button onClick={() =>{generatePDF()}}>Download</button></div>
+          <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
            <div ref={pdfRef}>
             <Table responsive="sm">
               <thead>
