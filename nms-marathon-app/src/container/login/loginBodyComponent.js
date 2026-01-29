@@ -29,7 +29,7 @@ const LoginBodyComponent = () => {
         <Alert variant={'danger'} className="payment-dashboard-info">
                   
                   <div className="payment-amount">
-                    <span >Registration Closed. <br></br>Please Contact: <b>Shiva : 9965388040 </b></span>
+                    <span >Registration Closed. <br></br>Please Contact: <b>Shiva : 9965388040 / Paraman : 9944274804 / Ravi : 9790656890</b></span>
                     
                   </div>
                  

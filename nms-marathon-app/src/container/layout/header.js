@@ -88,10 +88,10 @@ const HeaderComponent = () => {
               {/* <i className="fas fa-address-card" onClick={() => { navigation("/member-list") }}></i> */}
               <Link to="/authed/player-list">Player List ({playerState?.playerList.length})</Link>
             </div>
-            <div className="link">
-              {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
+            {playerState?.authStatus === 'ADMIN_ACCESS' ||
+              playerState?.authStatus === 'SUPER_ADMIN_ACCESS'  && (<div className="link">
               <Link to="/authed/registration">Registration</Link>
-            </div>
+            </div>)}
             <div className="link">
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
               <Link to="/authed/source">Source</Link>
