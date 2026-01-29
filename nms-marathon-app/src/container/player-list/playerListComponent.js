@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from '../../config/context';
-import { EVENTS, PAYMENT_STATUS, tShirtSizeList } from '../../config/constants';
+import { EVENTS, PAYMENT_STATUS, tShirtSizeList, AUTH_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,15 @@ import Row from 'react-bootstrap/Row';
 import { db } from '../../firebase-config';
 import { DB } from '../../config/constants';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { async } from '@firebase/util';
+import { async, CONSTANTS } from '@firebase/util';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
+
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
 
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
@@ -78,7 +86,8 @@ const PlayerListComponent = () => {
     keyFilteredList = allList.filter((player) => {
       return (
         (!searchKey ||
-          player.name.toLowerCase().includes(searchKey.toLowerCase() || player.name.includes(searchKey)) ||
+          player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
+          player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
@@ -130,7 +139,70 @@ const PlayerListComponent = () => {
       dispatch(getPlayerList());
     }, 1000);
   };
-  return (
+  // const generatePDF = () =>{
+  //   const doc = new jsPDF();
+  //   doc.text("selectEvent", 14, 15);
+
+  //   const tableColumn = ["SNO", "Name", "ClubName"]
+  //   const tableRows =[];
+    
+
+  //   filteredPlayerList.forEach((item, index) =>{
+  //     tableRows.push([
+  //       index+1, item.name, item.clubName
+  //     ])
+  //   })
+
+  //   doc.autoTable({
+  //     head: [tableColumn],
+  //     body: tableRows,
+  //     startY: 20
+  //   });
+
+    
+  //       doc.save("report.pdf");
+
+  // }
+
+  const pdfRef = useRef();
+
+  const generatePDF = () => {
+    html2canvas(pdfRef.current).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("ui-report.pdf");
+    });
+  }
+
+
+  const downloadExcel = () => {
+  // Convert JSON to worksheet
+  const worksheet = XLSX.utils.json_to_sheet(filteredPlayerList);
+
+  // Create workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Members");
+
+  // Generate Excel file
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+  });
+
+  // Save file
+  const blob = new Blob(
+    [excelBuffer],
+    { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+  );
+
+  saveAs(blob, "members.xlsx");
+};
+ return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
       playersState?.authStatus === 'SUPER_ADMIN_ACCESS' || playersState?.authStatus === 'NMS_MEMBER' ? (
@@ -286,12 +358,14 @@ const PlayerListComponent = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div>
+          <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
+           <div ref={pdfRef}>
             <Table responsive="sm">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>ClubName</th>
                   <th>Category</th>
                   <th>Chest No</th>
                   {/* <th>Events</th> */}
@@ -312,6 +386,7 @@ const PlayerListComponent = () => {
                         >
                           <td>{pIndex + 1}</td>
                           <td>{player.name}</td>
+                          <td>{player.clubName}</td>
                           <td>{player.playerCategory}</td>
                           <td>Not-yet</td>
                           {player?.selectedEvents?.length ? (
@@ -326,8 +401,11 @@ const PlayerListComponent = () => {
 
                           <td>{player.paymentStatus}</td>
                           <td>{player.createdOn}</td>
-                          {/* <td onClick={()=>deletePlayer(player)}>Delete</td> */}
-                          {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
+                          {/* {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td onClick={()=>deletePlayer(player)}>Delete</td>)}
+                          {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td><button onClick={(e)=>{
+                            e.stopPropagation()
+                            editPlayer(player)
+                            }}>Edit</button></td>)} */}
                         </tr>
                       );
                     }

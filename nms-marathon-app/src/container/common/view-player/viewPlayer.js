@@ -9,12 +9,15 @@ import { formatAppDate } from '../../../config/utils';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {AUTH_STATUS} from '../../../config/constants';
+import Form from 'react-bootstrap/Form';
 
 const ViewPlayerComponent = (props) => {
   const localAuth = JSON.parse(localStorage.getItem('auth'));
   const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
   const playersState = useSelector((state) => state.players);
+  const [currentPlayer, setCurrentPlayer] = useState(JSON.parse(JSON.stringify(props.player)))
 
   const updatePlayer = (status) => {
     let player = JSON.parse(JSON.stringify(props.player));
@@ -31,10 +34,27 @@ const ViewPlayerComponent = (props) => {
     updateUser(player);
     const timer = setTimeout(() => {
       dispatch(getPlayerList());
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
   };
-  console.log(props, playersState);
+  const updateEntry = (status) => {
+    
+    let updateInfoObj = {
+      updatedBy: localAuth?.mobile,
+      upatedOn: formatAppDate(new Date()),
+    };
+    if (currentPlayer.updatedByList) {
+      currentPlayer.updatedByList.push(updateInfoObj);
+    } else {
+      currentPlayer.updatedByList = [{ updateInfoObj }];
+    }
+    updateUser(currentPlayer);
+    const timer = setTimeout(() => {
+      dispatch(getPlayerList());
+    }, 500);
+    return () => clearTimeout(timer);
+  };
+  // console.log(props, playersState);
 
   const updateTShirtStatus =() =>{
     let player = JSON.parse(JSON.stringify(props.player));
@@ -162,6 +182,69 @@ const ViewPlayerComponent = (props) => {
               </Row>
             </div>
           )}
+          {
+            playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (
+              <div>
+                <Row>
+                  <div>
+                    <span>Name : </span><span><input value={currentPlayer.name} 
+                      onChange={(e) =>{
+                        setCurrentPlayer({...currentPlayer, name:e.target.value})
+                      }}
+                    /></span>
+                  </div>
+                  <div>
+                    <span>Club: </span><span><input value={currentPlayer.clubName}
+                    onChange={(e) =>{
+                        setCurrentPlayer({...currentPlayer, clubName:e.target.value})
+                      }}
+                    /></span>
+                  </div>
+                  <div>
+                    <span>UPI : </span><span><input value={currentPlayer.upi}
+                    onChange={(e) =>{
+                        setCurrentPlayer({...currentPlayer, upi:e.target.value})
+                      }}
+                    /></span>
+                  </div>
+                  <div>
+                     <Row className="mb-3">
+                              <Form.Group controlId="gender">
+                                <Form.Label>Gender : </Form.Label>
+                                <div className="gender-options">
+                                  <Form.Check
+                                    inline
+                                    label="MALE"
+                                    name="group1"
+                                    type={'radio'}
+                                    id={`inline-${'Male'}-2`}
+                                    checked={currentPlayer.gender === 'MALE' ? true : false}
+                                    onClick={() => {
+                                      setCurrentPlayer({...currentPlayer, gender:"MALE"})
+                                    }}
+                                  />
+                                  <Form.Check
+                                    inline
+                                    label="FEMALE"
+                                    name="group1"
+                                    type={'radio'}
+                                    checked={currentPlayer.gender === 'FEMALE' ? true : false}
+                                    onClick={() => {
+                                      setCurrentPlayer({...currentPlayer, gender:"FEMALE"})
+                                    }}
+                                    id={`inline-${'FeMale'}-2`}
+                                  />
+                                </div>
+                              </Form.Group>
+                            </Row>
+                  </div>
+                  <div>
+                    <Button onClick={()=>{updateEntry()}}>Update</Button>
+                  </div>
+                </Row>
+              </div>
+            )
+          }
         </Container>
       </Alert>
     </div>
