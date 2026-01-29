@@ -14,6 +14,11 @@ import { db } from '../../firebase-config';
 import { DB } from '../../config/constants';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { async, CONSTANTS } from '@firebase/util';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
+
 
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
@@ -131,7 +136,46 @@ const PlayerListComponent = () => {
       dispatch(getPlayerList());
     }, 1000);
   };
-  return (
+  // const generatePDF = () =>{
+  //   const doc = new jsPDF();
+  //   doc.text("selectEvent", 14, 15);
+
+  //   const tableColumn = ["SNO", "Name", "ClubName"]
+  //   const tableRows =[];
+    
+
+  //   filteredPlayerList.forEach((item, index) =>{
+  //     tableRows.push([
+  //       index+1, item.name, item.clubName
+  //     ])
+  //   })
+
+  //   doc.autoTable({
+  //     head: [tableColumn],
+  //     body: tableRows,
+  //     startY: 20
+  //   });
+
+    
+  //       doc.save("report.pdf");
+
+  // }
+
+  const pdfRef = useRef();
+
+  const generatePDF = () => {
+    html2canvas(pdfRef.current).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("ui-report.pdf");
+    });
+  }
+ return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
       playersState?.authStatus === 'SUPER_ADMIN_ACCESS' || playersState?.authStatus === 'NMS_MEMBER' ? (
@@ -287,7 +331,8 @@ const PlayerListComponent = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div>
+          <div><button onClick={() =>{generatePDF()}}>Download</button></div>
+           <div ref={pdfRef}>
             <Table responsive="sm">
               <thead>
                 <tr>
