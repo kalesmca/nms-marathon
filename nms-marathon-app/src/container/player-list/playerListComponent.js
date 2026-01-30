@@ -48,8 +48,10 @@ const PlayerListComponent = () => {
   } = useContext(PopupContext);
   const dispatch = useDispatch();
   useEffect(() => {
+        dispatch(getPlayerList());
+
     console.log('appSate:', playersState);
-  });
+  },[]);
   useEffect(() => {
     // dispatch(getPlayerList());
     const timer = setTimeout(() => {
@@ -95,7 +97,7 @@ const PlayerListComponent = () => {
       return (
         (!searchKey ||
           player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
-          // player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
+          player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
           String(player.createdBy).includes(searchKey.toLowerCase())) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
@@ -228,52 +230,67 @@ const groupByClub = (list) =>
     acc[item.clubName].push(item);
     return acc;
   }, {});
-const generateChestNumber = () =>{
-  let boysList = allList.filter((item)=>{
-    return (item.gender === "MALE" && (item.paymentStatus === PAYMENT_STATUS[0] || item.paymentStatus === PAYMENT_STATUS[1] || item.paymentStatus === PAYMENT_STATUS[3]))
-  })
-  let girlsList = allList.filter((item)=>{
-    return (item.gender === "FEMALE" && (item.paymentStatus === PAYMENT_STATUS[0] || item.paymentStatus === PAYMENT_STATUS[1] || item.paymentStatus === PAYMENT_STATUS[3]))
-  })
-
-  const boysByClub = groupByClub(boysList);
-  const girlsByClub = groupByClub(girlsList);
-  const finalList = [
-  ...assignChestNumber(boysByClub, "Boy"),
-  ...assignChestNumber(girlsByClub, "Girl")
-];
-console.log(finalList);
-
-// setAllList([...finalList]);
-
-finalList.map((item)=>{
-  setTimeout(()=>{
-    updateUser(item);
-  },200)
-})
 
 
+// const generateChestNumber = () =>{
+//   let myList = JSON.parse(JSON.stringify(allList))
+//   let boysList = myList.filter((item)=>{
+//     return (item.gender?.toLowerCase() == "male" || item.gender?.toLowerCase() == "boys" || item.gender?.toLowerCase() == "boy") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3])
+//   })
+//   let girlsList = myList.filter((item)=>{
+//     return ((item.gender?.toLowerCase() == "female" || item.gender?.toLowerCase() == "girls" || item.gender?.toLowerCase() == "girl") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3]))
+//   })
 
-}
+//   const boysByClub = groupByClub(boysList);
+//   const girlsByClub = groupByClub(girlsList);
+//   const finalList = [
+//   ...assignChestNumber(boysByClub, "Boy"),
+//   ...assignChestNumber(girlsByClub, "Girl")
+// ];
+// console.log(finalList);
 
+// // setAllList([...finalList]);
 
-// const updateEntry = (status) => {
-    
-//     let updateInfoObj = {
-//       updatedBy: localAuth?.mobile,
-//       upatedOn: formatAppDate(new Date()),
-//     };
-//     if (currentPlayer.updatedByList) {
-//       currentPlayer.updatedByList.push(updateInfoObj);
-//     } else {
-//       currentPlayer.updatedByList = [{ updateInfoObj }];
-//     }
-//     updateUser(currentPlayer);
-//     const timer = setTimeout(() => {
-//       dispatch(getPlayerList());
-//     }, 500);
-//     return () => clearTimeout(timer);
-//   };
+// finalList.map((item)=>{
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+// }
+
+// const resetChest = () =>{
+//   allList.map((item)=>{
+//     item.chestNumber = 0;
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+// }
+
+// const generateChest = () =>{
+//   console.log(allList)
+//   let myList = JSON.parse(JSON.stringify(allList))
+//   allList.map((item) => {
+//      if(item.gender?.toLowerCase() == "male" || item.gender?.toLowerCase() == "boys" || item.gender?.toLowerCase() == "boy"){
+//       item.gender = "MALE";
+//      }
+//   })
+
+//    allList.map((item)=>{
+//     if ((item.gender?.toLowerCase() == "female" || item.gender?.toLowerCase() == "girls" || item.gender?.toLowerCase() == "girl") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3]))
+//       item.gender = "FEMALE"
+//   })
+
+//   console.log(allList);
+//   // console.log(girlsList);
+//   allList.map((item)=>{
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+
+// }
+
  return (
     <div>
       {playersState?.authStatus === 'ADMIN_ACCESS' ||
@@ -430,7 +447,7 @@ finalList.map((item)=>{
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div><button onClick={()=>{generateChestNumber()}}>generateChest</button></div>
+          {/* <div><button onClick={()=>{generateChest()}}>generateChestNumber</button></div> */}
           <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
            <div ref={pdfRef}>
             <Table responsive="sm">

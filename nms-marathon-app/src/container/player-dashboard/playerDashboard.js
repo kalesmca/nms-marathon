@@ -102,7 +102,7 @@ const PlayerDashboard = () => {
           </tbody>
         </Table>
       </div>
-      <div>{
+      {/* <div>{
         (playersState && playersState?.authStatus && playersState?.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS || playersState?.authStatus === AUTH_STATUS.ADMIN_ACCESS) && (
           <Button
           className="btn-add-player"
@@ -115,7 +115,7 @@ const PlayerDashboard = () => {
         )
         }
         
-      </div>
+      </div> */}
       <div>
         <Alert variant={'warning'}>
           <div>Contact : ArivuRaja : 9994374553/ Kalimuthu: 9944419808/ Kaleeswaran : 8682890117</div>
