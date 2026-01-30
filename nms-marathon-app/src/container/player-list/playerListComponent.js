@@ -192,8 +192,22 @@ const PlayerListComponent = () => {
 
 
   const downloadExcel = () => {
+    let myAllList = JSON.parse(JSON.stringify(filteredPlayerList));
+    let myFilteredList = [];
+
+    myAllList.map((item, index)=>{
+      let obj ={
+        Sno: index+1,
+        Name: item.name,
+        ChestNumber : item.chestNumber,
+        TShirt : item.tShirtSize,
+        Club : item.clubName
+      }
+      myFilteredList.push(obj);
+    })
+
   // Convert JSON to worksheet
-  const worksheet = XLSX.utils.json_to_sheet(filteredPlayerList);
+  const worksheet = XLSX.utils.json_to_sheet(myFilteredList);
 
   // Create workbook
   const workbook = XLSX.utils.book_new();

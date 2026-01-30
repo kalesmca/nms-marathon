@@ -16,7 +16,7 @@ export const getPlayerList = () => async (dispatch, getState) => {
     console.log('data list:', dataList);
 
     dataList.sort(function (a, b) {
-      return new Date(b.createdOn) - new Date(a.createdOn);
+      return new Date(a.chestNumber) - new Date(b.chestNumber);
     });
 
     const localAuth = JSON.parse(localStorage.getItem('auth'));
