@@ -40,11 +40,15 @@ function PlayerRegistration() {
     if (!localAuth || !localAuth.mobile) {
       navigate('');
     }
+    console.log("playerState",playerState);
+    let chestNumber = playerState.playerList[(playerState.playerList.length ? playerState.playerList.length-1:0)]?.chestNumber+1;
+    console.log("last player =", chestNumber)
     setPlayerObj({
       ...playerObj,
       registerMobile: localAuth?.mobile,
       createdBy: localAuth?.mobile,
       createdOn: formatAppDate(new Date()),
+      chestNumber:chestNumber
     });
   }, []);
 
