@@ -318,6 +318,11 @@ const PlayerListComponent = () => {
 const bulkTShirtUpdate = () => {
   let myList = JSON.parse(JSON.stringify(filteredPlayerList))
   myList.map((player, index) => {
+     player.tShirt = {
+          status : T_SHIRT_STATUS[1],
+          providedBy: JSON.parse(localStorage.getItem("auth")),
+          providedOn: new Date().toString()
+        }
     player.tShirtStatus = T_SHIRT_STATUS[0];
     const timer = setTimeout(() => {
       updateUser(player);
