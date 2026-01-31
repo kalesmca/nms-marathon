@@ -68,10 +68,28 @@ const ViewPlayerComponent = (props) => {
     updateUser(player);
     const timer = setTimeout(() => {
       dispatch(getPlayerList());
-    }, 1000);
+    }, 200);
     return () => clearTimeout(timer);
     
   }
+
+  const revertTshirtUpdate =() =>{
+    setTShirtFlag(true)
+    let player = JSON.parse(JSON.stringify(props.player));
+    player.tShirt = {
+      
+    }
+    player.tShirtStatus = T_SHIRT_STATUS[1];
+    updateUser(player);
+    const timer = setTimeout(() => {
+      dispatch(getPlayerList());
+    }, 200);
+    return () => clearTimeout(timer);
+    
+  }
+
+
+  
   // const providedBy = props.player?.tShirt?.providedBy
 
   return (
@@ -161,7 +179,7 @@ const ViewPlayerComponent = (props) => {
           ) : (
             ''
           )} */}
-          {localAuth?.access === 'SUPER_ADMIN_ACCESS' && props.player.paymentStatus !== "NOT_PAID" && (
+          {(localAuth?.access === 'SUPER_ADMIN_ACCESS' || localAuth?.access === 'ADMIN_ACCESS') && props.player.paymentStatus !== "NOT_PAID" && (
             // {localAuth?.access === 'SUPER_ADMIN_ACCESS'  && (
 
             <div style={{ marginTop: '10px' }}>
@@ -172,6 +190,7 @@ const ViewPlayerComponent = (props) => {
                       T-shirt already provided by : {props.player?.tShirt?.providedBy?.mobile}{' '}
                       <br></br>
                       Time: {props.player?.tShirt?.providedOn}
+                      {localAuth?.access === 'SUPER_ADMIN_ACCESS' ? (<Button onClick={()=> revertTshirtUpdate()}>Revert</Button>) :""}
                     </Alert>
                   ) : (
                     <Button disabled = {tShirtFlag}
@@ -185,7 +204,9 @@ const ViewPlayerComponent = (props) => {
                 </Col>
               </Row>
             </div>
+            
           )}
+         
           {/* {
             playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (
               <div>
