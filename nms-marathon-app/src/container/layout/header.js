@@ -13,14 +13,13 @@ const HeaderComponent = () => {
   const playerState = useSelector((state) => state?.players);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const localAuth = JSON.parse(localStorage.getItem('auth'));
   const [logOutFlag, setLogOutFlag] = useState(false);
-
+  console.log(localAuth)
   const navigation = (path) => {
     navigate(path);
   };
   useEffect(() => {
-    const localAuth = JSON.parse(localStorage.getItem('auth'));
     if (localAuth && localAuth.mobile) {
       setLogOutFlag(true);
     } else {
@@ -74,8 +73,8 @@ const HeaderComponent = () => {
       <div className="header">{global.label.clubName}</div>
       <p className="theme">உலகிற்கே உணவு கொடுக்கும் உன்னதப் பணி செய்பவனே விவசாயி.</p>
       {/* <img src={logoutIcon} alt="SVG Image"></img> */}
-      {playerState?.authStatus === 'ADMIN_ACCESS' ||
-      playerState?.authStatus === 'SUPER_ADMIN_ACCESS' || playerState?.authStatus === 'NMS_MEMBER' ? (
+      {localAuth?.access === 'ADMIN_ACCESS' ||
+      localAuth?.access === 'SUPER_ADMIN_ACCESS' || localAuth?.access === 'NMS_MEMBER' ? (
         // true? (
 
         <div className="nav-links">
@@ -88,10 +87,10 @@ const HeaderComponent = () => {
               {/* <i className="fas fa-address-card" onClick={() => { navigation("/member-list") }}></i> */}
               <Link to="/authed/player-list">Player List ({playerState?.playerList.length})</Link>
             </div>
-            {playerState?.authStatus === 'ADMIN_ACCESS' ||
-              playerState?.authStatus === 'SUPER_ADMIN_ACCESS'  && (<div className="link">
+            {/* {localAuth?.access === 'ADMIN_ACCESS' ||
+              localAuth?.access === 'SUPER_ADMIN_ACCESS'  && (<div className="link">
               <Link to="/authed/registration">Registration</Link>
-            </div>)}
+            </div>)} */}
             <div className="link">
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
               <Link to="/authed/source">Source</Link>
@@ -104,7 +103,7 @@ const HeaderComponent = () => {
       ) : (
         ''
       )}
-      {logOutFlag || playerState.authStatus != AUTH_STATUS.PENDING ? (
+      {logOutFlag || localAuth?.access != AUTH_STATUS.PENDING ? (
         <div
           onClick={() => {
             logout();

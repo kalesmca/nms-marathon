@@ -9,7 +9,7 @@ import { formatAppDate } from '../../../config/utils';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {AUTH_STATUS} from '../../../config/constants';
+import {AUTH_STATUS, T_SHIRT_STATUS} from '../../../config/constants';
 import Form from 'react-bootstrap/Form';
 
 const ViewPlayerComponent = (props) => {
@@ -18,7 +18,7 @@ const ViewPlayerComponent = (props) => {
   const dispatch = useDispatch();
   const playersState = useSelector((state) => state.players);
   const [currentPlayer, setCurrentPlayer] = useState(JSON.parse(JSON.stringify(props.player)))
-
+  const [tShirtFlag, setTShirtFlag] = useState(false);
   const updatePlayer = (status) => {
     let player = JSON.parse(JSON.stringify(props.player));
     player.paymentStatus = status;
@@ -57,12 +57,14 @@ const ViewPlayerComponent = (props) => {
   // console.log(props, playersState);
 
   const updateTShirtStatus =() =>{
+    setTShirtFlag(true)
     let player = JSON.parse(JSON.stringify(props.player));
     player.tShirt = {
-      status : "PROVIDED",
+      status : T_SHIRT_STATUS[1],
       providedBy: JSON.parse(localStorage.getItem("auth")),
       providedOn: new Date().toString()
     }
+    player.tShirtStatus = T_SHIRT_STATUS[0];
     updateUser(player);
     const timer = setTimeout(() => {
       dispatch(getPlayerList());
@@ -106,8 +108,8 @@ const ViewPlayerComponent = (props) => {
             <Col>Created BY</Col>
             <Col>{props?.player?.registerMobile}</Col>
           </Row>
-          {playersState?.authStatus === 'ADMIN_ACCESS' ||
-          playersState?.authStatus === 'SUPER_ADMIN_ACCESS' ? (
+          {/* {localAuth?.access === 'ADMIN_ACCESS' ||
+          localAuth?.access === 'SUPER_ADMIN_ACCESS' ? (
             // true ? (
 
             <Row>
@@ -158,19 +160,21 @@ const ViewPlayerComponent = (props) => {
             </Row>
           ) : (
             ''
-          )}
-          {playersState?.authStatus === 'SUPER_ADMIN_ACCESS' && props.player.paymentStatus === "PAYMENT_VERIFIED" && (
+          )} */}
+          {localAuth?.access === 'SUPER_ADMIN_ACCESS' && props.player.paymentStatus !== "NOT_PAID" && (
+            // {localAuth?.access === 'SUPER_ADMIN_ACCESS'  && (
+
             <div style={{ marginTop: '10px' }}>
               <Row>
                 <Col>
-                  {props.player?.tShirt?.status == 'PROVIDED' ? (
+                  {props.player?.tShirtStatus == T_SHIRT_STATUS[0] ? (
                     <Alert key={'danger'} variant={'danger'}>
                       T-shirt already provided by : {props.player?.tShirt?.providedBy?.mobile}{' '}
                       <br></br>
                       Time: {props.player?.tShirt?.providedOn}
                     </Alert>
                   ) : (
-                    <Button
+                    <Button disabled = {tShirtFlag}
                       onClick={() => {
                         updateTShirtStatus();
                       }}
@@ -182,7 +186,7 @@ const ViewPlayerComponent = (props) => {
               </Row>
             </div>
           )}
-          {
+          {/* {
             playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (
               <div>
                 <Row>
@@ -244,7 +248,7 @@ const ViewPlayerComponent = (props) => {
                 </Row>
               </div>
             )
-          }
+          } */}
         </Container>
       </Alert>
     </div>
