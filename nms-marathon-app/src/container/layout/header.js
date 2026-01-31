@@ -92,6 +92,13 @@ const HeaderComponent = () => {
               playerState?.authStatus === 'SUPER_ADMIN_ACCESS'  && (<div className="link">
               <Link to="/authed/registration">Registration</Link>
             </div>)}
+
+            {playerState?.authStatus === 'ADMIN_ACCESS' ||
+              playerState?.authStatus === 'SUPER_ADMIN_ACCESS'  && (<div className="link">
+              <Link to="/authed/bulk-registration">Bulk-Reg</Link>
+            </div>)}
+
+            
             <div className="link">
               {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
               <Link to="/authed/source">Source</Link>

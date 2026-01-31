@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PlayerListComponent from './container/player-list/playerListComponent';
 import PlayerRegistration from './container/registration/playerRegistration';
+import BulkPlayerRegistration from './container/registration/bulkRegistration';
+
 import PlayerDashboard from './container/player-dashboard/playerDashboard';
 import LayoutContainer from './container/layout/layoutContainer';
 import LoginComponent from './container/login/loginComponent';
@@ -56,6 +58,8 @@ function App() {
                 <Route path="registration" element={<PlayerRegistration />} />
                 <Route path="dashboard" element={<PlayerDashboard />} />
                 <Route path="source" element={<SourceDataComponent />} />
+                <Route path="bulk-registration" element={<BulkPlayerRegistration />} />
+
                 {/* <Route path="*" element={<LayoutContainer />} /> */}
               </Route>
             </Routes>

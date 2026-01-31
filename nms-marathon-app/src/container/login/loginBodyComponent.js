@@ -29,7 +29,8 @@ const LoginBodyComponent = () => {
         <Alert variant={'danger'} className="payment-dashboard-info">
                   
                   <div className="payment-amount">
-                    <span >Registration Closed. <br></br>Please Contact: <b>Shiva : 9965388040 / Paraman : 9944274804 / Ravi : 9790656890</b></span>
+                    <span >இன்று (31 /1/26) மாலை 5 மணிக்கு வந்து தங்களது டீசர்ட் மற்றும் செஸ்ட் நம்பர் வாங்கிச் செல்லவும். இடம்  S. S. H. N ஆரம்பப்பள்ளி <br></br>
+                    Please Contact: <b>Shiva : 9965388040 / Paraman : 9944274804 / Ravi : 9790656890</b></span>
                     
                   </div>
                  
