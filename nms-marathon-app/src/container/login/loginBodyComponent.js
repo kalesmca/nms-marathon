@@ -27,13 +27,14 @@ const LoginBodyComponent = () => {
       </div>
       <div>
         <Alert variant={'danger'} className="payment-dashboard-info">
-                  
-                  <div className="payment-amount">
-                    <span >Registration Closed. <br></br>Please Contact: <b>Shiva : 9965388040 / Paraman : 9944274804 / Ravi : 9790656890</b></span>
-                    
-                  </div>
-                 
-                </Alert>
+          <div className="payment-amount">
+            <span>
+              இன்று (31 /1/26) மாலை 5 மணிக்கு வந்து தங்களது டீசர்ட் மற்றும் செஸ்ட் நம்பர் வாங்கிச்
+              செல்லவும். இடம் S. S. H. N ஆரம்பப்பள்ளி <br></br>
+              Please Contact: <b>Shiva : 9965388040 / Paraman : 9944274804 / Ravi : 9790656890</b>
+            </span>
+          </div>
+        </Alert>
       </div>
       {/* <div>
                 <div className="map-img-header"> </div>
@@ -64,7 +65,7 @@ const LoginBodyComponent = () => {
           <label htmlFor="tab2">Open Girls Route-Map</label>
           <label htmlFor="tab3">U_14 Boys/Girls Route-Map</label>
           <label htmlFor="tab4">U_10 Boys/Girls Route-Map</label>
-           <label htmlFor="tab5">Under 19 Route-Map</label>
+          <label htmlFor="tab5">Under 19 Route-Map</label>
         </div>
 
         <div className="content">
