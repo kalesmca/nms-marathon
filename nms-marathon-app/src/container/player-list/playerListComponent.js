@@ -108,7 +108,9 @@ const PlayerListComponent = () => {
           player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
           player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
-          String(player.createdBy).includes(searchKey.toLowerCase())) &&
+          String(player.createdBy).includes(searchKey.toLowerCase())
+          // String(player.chestNumber).includes(searchKey.toLowerCase())
+        ) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
         && (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
          && (tShirtSize === 'ALL' || player.tShirtSize === tShirtSize)
