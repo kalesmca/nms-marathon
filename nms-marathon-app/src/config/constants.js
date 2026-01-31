@@ -23,6 +23,8 @@ export const AUTH_STATUS = {
   NMS_MEMBER:"NMS_MEMBER"
 };
 
+export const T_SHIRT_STATUS = ["PROVIDED", "NOT_PROVIDED"]
+
 export const EVENTS = {
   U_10_B: [
     {
@@ -119,7 +121,7 @@ export const U_12 = 'U_12';
 export const U_14 = 'U_14';
 export const U_17 = 'U_17';
 export const U_19 = 'U_19';
-export const PAYMENT_STATUS = ['PAYMENT_VERIFIED', 'PAYMENT_NOT_VERIFIED', 'NOT_PAID', 'NMS', 'SPOT_ENTRY'];
+export const PAYMENT_STATUS = ['PAYMENT_VERIFIED', 'PAYMENT_NOT_VERIFIED', 'NOT_PAID', 'NMS'];
 export const PLAYER_STATUS = ['ACTIVE', 'IN_ACTIVE'];
 export const tShirtSizeList = ['Please Select','28', '30', '32', '34', '36', '38', '40', '42'];
 export const initPlayerData = {

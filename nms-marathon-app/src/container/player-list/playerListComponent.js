@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from '../../config/context';
-import { EVENTS, PAYMENT_STATUS, tShirtSizeList, AUTH_STATUS } from '../../config/constants';
+import { EVENTS, PAYMENT_STATUS, tShirtSizeList, AUTH_STATUS, T_SHIRT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -22,10 +22,13 @@ import html2canvas from "html2canvas";
 
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { json } from 'react-router-dom';
 
 
 const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
+    const localAuth = JSON.parse(localStorage.getItem('auth'));
+
   const playersState = useSelector((state) => state.players);
   let allList = structuredClone(playersState.playerList);
   // const allList = structuredClone(playersState.playerList);
@@ -34,9 +37,10 @@ const PlayerListComponent = () => {
   const [events, setEvents] = useState([]);
   const [searchKey, setSearchKey] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('ALL');
-    const [tShirtSize, setTShirtSize] = useState('ALL');
+  const [tShirtSize, setTShirtSize] = useState('ALL');
+  const [selectedTshirtStatus, setSelectedTshirtStatus] = useState("ALL");
 
-  const [filteredPlayerList, setFilteredList] = useState(playersState.playerList)
+  const [filteredPlayerList, setFilteredList] = useState([])
   const [selectedEvent, setSelectedEvent] = useState(initEvent);
   const {
     msgPopupFlag,
@@ -49,6 +53,10 @@ const PlayerListComponent = () => {
   const dispatch = useDispatch();
   useEffect(() => {
         dispatch(getPlayerList());
+        setTimeout(()=>{
+        getFilteredList();
+
+        }, 500)
 
     console.log('appSate:', playersState);
   },[]);
@@ -60,7 +68,7 @@ const PlayerListComponent = () => {
 
     return () => clearTimeout(timer);
     
-  }, [searchKey, paymentStatus, playerCategory, tShirtSize]);
+  }, [searchKey, paymentStatus, playerCategory, tShirtSize, selectedTshirtStatus]);
   useEffect(() => {
     setPlayerList(playersState.playerList);
   }, [playersState]);
@@ -79,6 +87,7 @@ const PlayerListComponent = () => {
   };
 
   const viewPlayer = (player) => {
+    console.log(player);
     setPopupObj({ componentName: 'ViewPlayerComponent', props: player, title: player.name });
     setMsgPopupFlag(true);
   };
@@ -99,10 +108,13 @@ const PlayerListComponent = () => {
           player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
           player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
           String(player.upi).includes(searchKey.toLowerCase()) ||
-          String(player.createdBy).includes(searchKey.toLowerCase())) &&
+          String(player.createdBy).includes(searchKey.toLowerCase()) ||
+          String(player.chestNumber).includes(searchKey.toLowerCase())
+        ) &&
         (playerCategory === 'ALL' || player.playerCategory === playerCategory)
         && (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
          && (tShirtSize === 'ALL' || player.tShirtSize === tShirtSize)
+         && (selectedTshirtStatus === 'ALL' || (selectedTshirtStatus === T_SHIRT_STATUS[1] && player.tShirtStatus != T_SHIRT_STATUS[0]) || (selectedTshirtStatus === T_SHIRT_STATUS[0] && player.tShirtStatus === T_SHIRT_STATUS[0]))
       );
     });
     // }
@@ -175,20 +187,20 @@ const PlayerListComponent = () => {
 
   // }
 
-  const pdfRef = useRef();
+  // const pdfRef = useRef();
 
-  const generatePDF = () => {
-    html2canvas(pdfRef.current).then(canvas => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
+  // const generatePDF = () => {
+  //   html2canvas(pdfRef.current).then(canvas => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
 
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("ui-report.pdf");
-    });
-  }
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save("ui-report.pdf");
+  //   });
+  // }
 
 
   const downloadExcel = () => {
@@ -200,6 +212,7 @@ const PlayerListComponent = () => {
         Sno: index+1,
         Name: item.name,
         ChestNumber : item.chestNumber,
+        PlayerCategroy : item.playerCategory,
         TShirt : item.tShirtSize,
         Club : item.clubName
       }
@@ -227,23 +240,23 @@ const PlayerListComponent = () => {
 
   saveAs(blob, "members.xlsx");
 };
-let chestNumber = 1;
+// let chestNumber = 1;
 
-const assignChestNumber = (groupedData, gender) =>
-  Object.keys(groupedData).sort().flatMap(club =>
-    groupedData[club].map(player => ({
-      ...player,
-      gender,
-      club,
-      chestNumber: chestNumber++
-    }))
-  );
-const groupByClub = (list) =>
-  list.reduce((acc, item) => {
-    acc[item.clubName] = acc[item.clubName] || [];
-    acc[item.clubName].push(item);
-    return acc;
-  }, {});
+// const assignChestNumber = (groupedData, gender) =>
+//   Object.keys(groupedData).sort().flatMap(club =>
+//     groupedData[club].map(player => ({
+//       ...player,
+//       gender,
+//       club,
+//       chestNumber: chestNumber++
+//     }))
+//   );
+// const groupByClub = (list) =>
+//   list.reduce((acc, item) => {
+//     acc[item.clubName] = acc[item.clubName] || [];
+//     acc[item.clubName].push(item);
+//     return acc;
+//   }, {});
 
 
 // const generateChestNumber = () =>{
@@ -304,11 +317,26 @@ const groupByClub = (list) =>
 // })
 
 // }
+const bulkTShirtUpdate = () => {
+  let myList = JSON.parse(JSON.stringify(filteredPlayerList))
+  myList.map((player, index) => {
+     player.tShirt = {
+          status : T_SHIRT_STATUS[1],
+          providedBy: JSON.parse(localStorage.getItem("auth")),
+          providedOn: new Date().toString()
+        }
+    player.tShirtStatus = T_SHIRT_STATUS[0];
+    const timer = setTimeout(() => {
+      updateUser(player);
+    }, 200);
+    return () => clearTimeout(timer);
+  });
+};
 
  return (
     <div>
-      {playersState?.authStatus === 'ADMIN_ACCESS' ||
-      playersState?.authStatus === 'SUPER_ADMIN_ACCESS' || playersState?.authStatus === 'NMS_MEMBER' ? (
+      {localAuth?.access === 'ADMIN_ACCESS' ||
+      localAuth?.access === 'SUPER_ADMIN_ACCESS' || localAuth?.access === 'NMS_MEMBER' ? (
         // true ? (
         <div style={{marginTop:"225px"}}>
           {/* <div> 
@@ -460,20 +488,56 @@ const groupByClub = (list) =>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            <Dropdown className="d-inline mx-2" value={selectedTshirtStatus}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{selectedTshirtStatus}</Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {T_SHIRT_STATUS.map((status, kIndex) => {
+                    return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={status}
+                      onClick={(e) => {
+                        setSelectedTshirtStatus(status);
+                      }}
+                    >
+                      {status}
+                    </Dropdown.Item>
+                  );
+                  
+                  
+                })}
+
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    setSelectedTshirtStatus('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
+          
           {/* <div><button onClick={()=>{generateChest()}}>generateChestNumber</button></div> */}
           <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
-           <div ref={pdfRef}>
-            <Table responsive="sm">
+          {
+            localAuth?.access === 'SUPER_ADMIN_ACCESS' ? (<div>
+              <button onClick={()=>{bulkTShirtUpdate()}}>Bult-Tshirt update</button>
+            </div>) :""
+          }
+         <Table responsive="sm">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>ClubName</th>
                   <th>Category</th>
                   <th>Chest No</th>
-                  {/* <th>Events</th> */}
+                  <th>TShirt</th>
                   <th>Pay Status</th>
+                  <th>ClubName</th>
                   <th>Created_ON</th>
                   {/* <th>Action</th> */}
                 </tr>
@@ -490,10 +554,12 @@ const groupByClub = (list) =>
                         >
                           <td>{pIndex + 1}</td>
                           <td>{player.name}</td>
-                          <td>{player.clubName}</td>
+                          
                           <td>{player.playerCategory}</td>
                           <td>{player.chestNumber}</td>
-                          {player?.selectedEvents?.length ? (
+                          <td>{player.tShirtSize}</td>
+                          {/* for Athletics need to un comment */}
+                          {/* {player?.selectedEvents?.length ? (
                             <td>
                               {player?.selectedEvents.map((event, eIndex) => {
                                 return <div key={eIndex}>{event.eventName}</div>;
@@ -501,12 +567,13 @@ const groupByClub = (list) =>
                             </td>
                           ) : (
                             ''
-                          )}
+                          )} */}
 
                           <td>{player.paymentStatus}</td>
+                          <td>{player.clubName}</td>
                           <td>{player.createdOn}</td>
-                          {/* {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td onClick={()=>deletePlayer(player)}>Delete</td>)}
-                          {playersState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS && (<td><button onClick={(e)=>{
+                          {/* {localAuth?.access === 'SUPER_ADMIN_ACCESS' && (<td onClick={()=>deletePlayer(player)}>Delete</td>)} */}
+                          {/* {localAuth?.access === 'SUPER_ADMIN_ACCESS' && (<td><button onClick={(e)=>{
                             e.stopPropagation()
                             editPlayer(player)
                             }}>Edit</button></td>)} */}
@@ -520,8 +587,9 @@ const groupByClub = (list) =>
                   </tr>
                 )}
               </tbody>
-            </Table>
-          </div>
+          </Table>
+         
+            
         </div>
       ) : (
         ''
