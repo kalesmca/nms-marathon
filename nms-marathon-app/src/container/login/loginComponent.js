@@ -32,7 +32,7 @@ const LoginComponent = () => {
 
   const submit = () => {
     if (isAdmin) {
-      if (password === 'VolleybalL' ||(
+      if (password === 'vOlleybaLl' ||(
         (mobile === '9790656890' || mobile ==='9944274804' ||
 mobile === '6379765207' || mobile ==='9585332562' ||
 mobile === '8428272694' ) && password === "NMS")) {
