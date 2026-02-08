@@ -1,39 +1,26 @@
 // import axios from "axios";
-import { db } from "../../firebase-config";
-import {DB} from '../../config/constants';
-import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-  } from "firebase/firestore";
-import { async } from "@firebase/util";
+import { db } from '../../firebase-config';
+import { DB } from '../../config/constants';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { async } from '@firebase/util';
 
-
-export const  getUserList = async() =>{
+export const getUserList = async () => {
   const usersCollectionRef = collection(db, DB.USERS);
 
   const data = await getDocs(usersCollectionRef);
   const dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   return dataList;
-      
-}
+};
 
-export const  updateUser = async(newObj) =>{
-    const userDoc = doc(db, DB.players, newObj.id);
-    await updateDoc(userDoc, newObj); 
-  
-     
-}
+export const updateUser = async (newObj) => {
+  const userDoc = doc(db, DB.players, newObj.id);
+  await updateDoc(userDoc, newObj);
+};
 
-export const  updateEvent = async(newObj) =>{
+export const updateEvent = async (newObj) => {
   const userDoc = doc(db, DB.EVENTS, newObj.id);
-  await updateDoc(userDoc, newObj); 
-
-   
-}
+  await updateDoc(userDoc, newObj);
+};
 
 // const ApiService ={
 //     saveFund: async(param) =>{

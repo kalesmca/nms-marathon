@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# NMS Marathon Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React-based web application for managing marathon event registrations for NMS Sports Club.
 
-## Available Scripts
+## 🏃 Features
 
-In the project directory, you can run:
+### Public Features (Pre-login)
+- **Login with Mobile Number** - Simple authentication using player's mobile number
+- **Category Maps** - View marathon route maps for different age categories:
+  - Open Category
+  - Under 19
+  - Under 14
+  - Under 10
 
-### `npm start`
+### Registered User Features
+- **Player Registration** - Register for the marathon with personal details
+- **Dashboard** - View registered players and payment status
+- **Multiple Player Registration** - Add more players under the same mobile number
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Admin Features
+- **Player List** - View all registered players
+- **Edit Players** - Modify player details
+- **Payment Status Management** - Update payment confirmations
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+| Technology | Purpose |
+|------------|---------|
+| **React 18** | Frontend framework |
+| **Redux** | State management |
+| **React Router v6** | Navigation |
+| **React Bootstrap** | UI components |
+| **SCSS** | Styling with modern glassmorphism effects |
+| **Firebase** | Backend database & hosting |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📁 Project Structure
 
-### `npm run build`
+```
+nms-marathon-app/
+├── src/
+│   ├── assets/images/          # Images (banner, maps, QR codes)
+│   ├── config/                 # Constants, context, utilities
+│   ├── container/
+│   │   ├── common/modals/      # Reusable modal component
+│   │   ├── layout/             # Authenticated layout & header
+│   │   ├── login/              # Login page components
+│   │   ├── player-dashboard/   # Dashboard for registered users
+│   │   ├── player-list/        # Admin player management
+│   │   └── registration/       # Player registration form
+│   ├── redux/                  # Redux store, actions, reducers
+│   ├── App.js                  # Main app with routing
+│   └── index.js                # Entry point
+├── public/
+└── package.json
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+```bash
+# Clone the repository
+git clone <repository-url>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Navigate to the app directory
+cd nms-marathon-app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Install dependencies
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Start development server
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The app will run at `http://localhost:3000`
 
-## Learn More
+### Available Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Command | Description |
+|---------|-------------|
+| `npm start` | Run development server |
+| `npm run build` | Build for production |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check formatting |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎨 UI Design
 
-### Code Splitting
+The application features a modern UI with:
+- **Glassmorphism** - Frosted glass effect on cards and containers
+- **Gradient accents** - Teal gradient (#1abc9c → #16a085) for buttons and headers
+- **Responsive design** - Mobile-first with card-based layouts on small screens
+- **Square corners** - Clean, modern aesthetic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ☁️ Deployment
 
-### Analyzing the Bundle Size
+### Firebase Hosting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# Build the production bundle
+npm run build
 
-### Making a Progressive Web App
+# Deploy to Firebase
+firebase deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📄 Configuration
 
-### Advanced Configuration
+Firebase configuration is located in `src/firebase-config.js`. Update with your Firebase project credentials for deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 👥 User Roles
 
-### Deployment
+| Role | Access |
+|------|--------|
+| **Player** | Registration, Dashboard |
+| **Admin** | Player List, Edit Players |
+| **Super Admin** | Full access including Source Data |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📱 Responsive Breakpoints
 
-### `npm run build` fails to minify
+| Breakpoint | Description |
+|------------|-------------|
+| < 480px | Mobile - stacked layouts, card views |
+| < 600px | Small tablets - adjusted spacing |
+| ≥ 768px | Desktop - full table views |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🔧 Environment
+
+No external environment variables required. Firebase config is bundled in the app.
+
+---
+
+**NMS Sports Club** - Marathon Event Management System

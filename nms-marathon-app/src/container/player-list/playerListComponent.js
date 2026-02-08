@@ -1,236 +1,601 @@
-import userEvent from "@testing-library/user-event";
-import React, { useState, useEffect, useContext } from "react";
+import userEvent from '@testing-library/user-event';
+import React, { useState, useEffect, useContext } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { PopupContext } from "../../config/context";
-import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
+import { PopupContext } from '../../config/context';
+import { EVENTS, PAYMENT_STATUS, tShirtSizeList, AUTH_STATUS, T_SHIRT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 // import { JsonToExcel } from "react-json-to-excel";
-import { db } from "../../firebase-config";
-import {DB} from '../../config/constants';
-import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-  } from "firebase/firestore";
-  import { async } from "@firebase/util";
+import { db } from '../../firebase-config';
+import { DB } from '../../config/constants';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 
-const initEvent = { eventName: "ALL", eventId: "ALL" };
+import { async, CONSTANTS } from '@firebase/util';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
+
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import { json } from 'react-router-dom';
+
+
+const initEvent = { eventName: 'ALL', eventId: 'ALL' };
 const PlayerListComponent = () => {
-    const playersState = useSelector((state) => state.players)
-    const [playerList, setPlayerList] = useState(playersState.playerList);
-    const [playerCategory, setPlayerCategory] = useState("ALL")
-    const [events, setEvents] = useState([])
-    const [searchKey, setSearchKey] = useState("")
-    const [paymentStatus, setPaymentStatus] = useState("ALL")
+    const localAuth = JSON.parse(localStorage.getItem('auth'));
 
-    const [selectedEvent, setSelectedEvent] = useState(initEvent)
-    const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
-    const dispatch = useDispatch();
-    useEffect(() => {
-        console.log('appSate:', playersState);
-    })
-    useEffect(() => {
-        // dispatch(getPlayerList());
-    }, [])
-    useEffect(() => {
-        setPlayerList(playersState.playerList)
-    }, [playersState])
-    // useEffect(() => {
-    //     setEvents(EVENTS[playerCategory])
-    // }, [playerCategory])
-    const categoryQuery = (e) => {
-        console.log(e);
-        setPlayerCategory(e);
-        setSelectedEvent(initEvent)
-        setEvents(EVENTS[e])
+  const playersState = useSelector((state) => state.players);
+  let allList = structuredClone(playersState.playerList);
+  // const allList = structuredClone(playersState.playerList);
+  const [playerList, setPlayerList] = useState(playersState.playerList);
+  const [playerCategory, setPlayerCategory] = useState('ALL');
+  const [events, setEvents] = useState([]);
+  const [searchKey, setSearchKey] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState('ALL');
+  const [tShirtSize, setTShirtSize] = useState('ALL');
+  const [selectedTshirtStatus, setSelectedTshirtStatus] = useState("ALL");
 
-    }
-    const selectEvent = (event) => {
-        console.log(event)
-        setSelectedEvent(event);
-    }
-
-    const viewPlayer = (player) => {
-        setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
-        setMsgPopupFlag(true)
-    }
-
-    const getQueryValidation = (player) => {
-        let searchKeyFlag = true;
-        searchKeyFlag = !searchKey ? true : (player.name.toLowerCase().includes(searchKey.toLowerCase()) || player.upi.toLowerCase().includes(searchKey.toLowerCase())) ? true : false;
-        if ((playerCategory === "ALL" || player.playerCategory === playerCategory) &&
-            (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
-            (searchKeyFlag) &&
-            (paymentStatus === "ALL" || player.paymentStatus === paymentStatus)
-        ) {
-            return true;
-        } else {
-            return false
-        }
-
-
-    }
-    
-    const editPlayer = (player) =>{
-        setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
-        setMsgPopupFlag(true)
-    }
-
-    const deletePlayer = (player) =>{
-        const userDoc = doc(db, DB.players, player.id);
-        deleteDoc(userDoc);
-        
+  const [filteredPlayerList, setFilteredList] = useState([])
+  const [selectedEvent, setSelectedEvent] = useState(initEvent);
+  const {
+    msgPopupFlag,
+    setMsgPopupFlag,
+    navigationPath,
+    setNavigationPath,
+    popupObj,
+    setPopupObj,
+  } = useContext(PopupContext);
+  const dispatch = useDispatch();
+  useEffect(() => {
+        dispatch(getPlayerList());
         setTimeout(()=>{
-            dispatch(getPlayerList());
-        },1000)
+        getFilteredList();
 
+        }, 500)
+
+    console.log('appSate:', playersState);
+  },[]);
+  useEffect(() => {
+    // dispatch(getPlayerList());
+    const timer = setTimeout(() => {
+      getFilteredList()
+    }, 500); // wait 500ms after last keystroke
+
+    return () => clearTimeout(timer);
+    
+  }, [searchKey, paymentStatus, playerCategory, tShirtSize, selectedTshirtStatus]);
+  useEffect(() => {
+    setPlayerList(playersState.playerList);
+  }, [playersState]);
+  // useEffect(() => {
+  //     setEvents(EVENTS[playerCategory])
+  // }, [playerCategory])
+  const categoryQuery = (e) => {
+    console.log(e);
+    setPlayerCategory(e);
+    setSelectedEvent(initEvent);
+    setEvents(EVENTS[e]);
+  };
+  const selectEvent = (event) => {
+    console.log(event);
+    setSelectedEvent(event);
+  };
+
+  const viewPlayer = (player) => {
+    console.log(player);
+    setPopupObj({ componentName: 'ViewPlayerComponent', props: player, title: player.name });
+    setMsgPopupFlag(true);
+  };
+
+  const updateUser = async (newObj) => {
+  const userDoc = doc(db, DB.players, newObj.id);
+  await updateDoc(userDoc, newObj);
+};
+
+  // This filter method for Marathon
+  const getFilteredList = () => {
+    console.log("after chest", allList);
+    let keyFilteredList = structuredClone(allList);
+    // if (searchKey) {
+    keyFilteredList = allList.filter((player) => {
+      return (
+        (!searchKey ||
+          player?.clubName?.toLowerCase().includes(searchKey.toLowerCase() || player?.clubName?.includes(searchKey)) ||
+          player?.name?.toLowerCase().includes(searchKey?.toLowerCase() || player?.name?.includes(searchKey)) ||
+          String(player.upi).includes(searchKey.toLowerCase()) ||
+          String(player.createdBy).includes(searchKey.toLowerCase()) ||
+          String(player.chestNumber).includes(searchKey.toLowerCase())
+        ) &&
+        (playerCategory === 'ALL' || player.playerCategory === playerCategory)
+        && (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
+         && (tShirtSize === 'ALL' || player.tShirtSize === tShirtSize)
+         && (selectedTshirtStatus === 'ALL' || (selectedTshirtStatus === T_SHIRT_STATUS[1] && player.tShirtStatus != T_SHIRT_STATUS[0]) || (selectedTshirtStatus === T_SHIRT_STATUS[0] && player.tShirtStatus === T_SHIRT_STATUS[0]))
+      );
+    });
+    // }
+    // let categoryFilter = keyFilteredList.filter((player)=>{
+    //   return (playerCategory === "ALL" || player.playerCategory === playerCategory )
+    // })
+    keyFilteredList.sort((a, b) => a.chestNumber - b.chestNumber);
+    setFilteredList(keyFilteredList);
+  };
+
+
+  // this method for Athletics
+  const getQueryValidation = (player) => {
+    let searchKeyFlag = true;
+    searchKeyFlag = !searchKey
+      ? true
+      : player.name.toLowerCase().includes(searchKey.toLowerCase()) ||
+          player.upi.toLowerCase().includes(searchKey.toLowerCase())
+        ? true
+        : false;
+    if (
+      (playerCategory === 'ALL' || player.playerCategory === playerCategory) &&
+      (selectedEvent.eventId === 'ALL' ||
+        selectedEvent.eventId == player.selectedEvents[0].eventId ||
+        selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
+      searchKeyFlag &&
+      (paymentStatus === 'ALL' || player.paymentStatus === paymentStatus)
+    ) {
+      return true;
+    } else {
+      return false;
     }
-    return (
-        <div>
-            {
-                playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
-                    // true ? (
-                    <div>
-                        {/* <div> 
+  };
+
+  const editPlayer = (player) => {
+    setPopupObj({ componentName: 'ViewPlayerComponent', props: player, title: player.name });
+    setMsgPopupFlag(true);
+  };
+
+  const deletePlayer = (player) => {
+    const userDoc = doc(db, DB.players, player.id);
+    deleteDoc(userDoc);
+
+    setTimeout(() => {
+      dispatch(getPlayerList());
+    }, 1000);
+  };
+  // const generatePDF = () =>{
+  //   const doc = new jsPDF();
+  //   doc.text("selectEvent", 14, 15);
+
+  //   const tableColumn = ["SNO", "Name", "ClubName"]
+  //   const tableRows =[];
+    
+
+  //   filteredPlayerList.forEach((item, index) =>{
+  //     tableRows.push([
+  //       index+1, item.name, item.clubName
+  //     ])
+  //   })
+
+  //   doc.autoTable({
+  //     head: [tableColumn],
+  //     body: tableRows,
+  //     startY: 20
+  //   });
+
+    
+  //       doc.save("report.pdf");
+
+  // }
+
+  // const pdfRef = useRef();
+
+  // const generatePDF = () => {
+  //   html2canvas(pdfRef.current).then(canvas => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
+
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save("ui-report.pdf");
+  //   });
+  // }
+
+
+  const downloadExcel = () => {
+    let myAllList = JSON.parse(JSON.stringify(filteredPlayerList));
+    let myFilteredList = [];
+
+    myAllList.map((item, index)=>{
+      let obj ={
+        Sno: index+1,
+        Name: item.name,
+        ChestNumber : item.chestNumber,
+        PlayerCategroy : item.playerCategory,
+        TShirt : item.tShirtSize,
+        Club : item.clubName
+      }
+      myFilteredList.push(obj);
+    })
+
+  // Convert JSON to worksheet
+  const worksheet = XLSX.utils.json_to_sheet(myFilteredList);
+
+  // Create workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Members");
+
+  // Generate Excel file
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+  });
+
+  // Save file
+  const blob = new Blob(
+    [excelBuffer],
+    { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+  );
+
+  saveAs(blob, "members.xlsx");
+};
+// let chestNumber = 1;
+
+// const assignChestNumber = (groupedData, gender) =>
+//   Object.keys(groupedData).sort().flatMap(club =>
+//     groupedData[club].map(player => ({
+//       ...player,
+//       gender,
+//       club,
+//       chestNumber: chestNumber++
+//     }))
+//   );
+// const groupByClub = (list) =>
+//   list.reduce((acc, item) => {
+//     acc[item.clubName] = acc[item.clubName] || [];
+//     acc[item.clubName].push(item);
+//     return acc;
+//   }, {});
+
+
+// const generateChestNumber = () =>{
+//   let myList = JSON.parse(JSON.stringify(allList))
+//   let boysList = myList.filter((item)=>{
+//     return (item.gender?.toLowerCase() == "male" || item.gender?.toLowerCase() == "boys" || item.gender?.toLowerCase() == "boy") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3])
+//   })
+//   let girlsList = myList.filter((item)=>{
+//     return ((item.gender?.toLowerCase() == "female" || item.gender?.toLowerCase() == "girls" || item.gender?.toLowerCase() == "girl") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3]))
+//   })
+
+//   const boysByClub = groupByClub(boysList);
+//   const girlsByClub = groupByClub(girlsList);
+//   const finalList = [
+//   ...assignChestNumber(boysByClub, "Boy"),
+//   ...assignChestNumber(girlsByClub, "Girl")
+// ];
+// console.log(finalList);
+
+// // setAllList([...finalList]);
+
+// finalList.map((item)=>{
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+// }
+
+// const resetChest = () =>{
+//   allList.map((item)=>{
+//     item.chestNumber = 0;
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+// }
+
+// const generateChest = () =>{
+//   console.log(allList)
+//   let myList = JSON.parse(JSON.stringify(allList))
+//   allList.map((item) => {
+//      if(item.gender?.toLowerCase() == "male" || item.gender?.toLowerCase() == "boys" || item.gender?.toLowerCase() == "boy"){
+//       item.gender = "MALE";
+//      }
+//   })
+
+//    allList.map((item)=>{
+//     if ((item.gender?.toLowerCase() == "female" || item.gender?.toLowerCase() == "girls" || item.gender?.toLowerCase() == "girl") && (item.paymentStatus == PAYMENT_STATUS[0] || item.paymentStatus == PAYMENT_STATUS[1] || item.paymentStatus == PAYMENT_STATUS[3]))
+//       item.gender = "FEMALE"
+//   })
+
+//   console.log(allList);
+//   // console.log(girlsList);
+//   allList.map((item)=>{
+//   setTimeout(()=>{
+//     updateUser(item);
+//   },200)
+// })
+
+// }
+const bulkTShirtUpdate = () => {
+  let myList = JSON.parse(JSON.stringify(filteredPlayerList))
+  myList.map((player, index) => {
+     player.tShirt = {
+          status : T_SHIRT_STATUS[1],
+          providedBy: JSON.parse(localStorage.getItem("auth")),
+          providedOn: new Date().toString()
+        }
+    player.tShirtStatus = T_SHIRT_STATUS[0];
+    const timer = setTimeout(() => {
+      updateUser(player);
+    }, 200);
+    return () => clearTimeout(timer);
+  });
+};
+
+ return (
+    <div>
+      {localAuth?.access === 'ADMIN_ACCESS' ||
+      localAuth?.access === 'SUPER_ADMIN_ACCESS' || localAuth?.access === 'NMS_MEMBER' ? (
+        // true ? (
+        <div style={{marginTop:"225px"}}>
+          {/* <div> 
                         <JsonToExcel
                                 title="Download as Excel"
                                 data={playerList}
                                 fileName="sample-file"
                             />
                         </div> */}
-                        <Form >
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="formGridEmail">
+          <Form>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Control
+                  type="text"
+                  placeholder="Search By Player Name"
+                  value={searchKey}
+                  onChange={(e) => {
+                    setSearchKey(e.target.value);
+                  }}
+                />
+              </Form.Group>
+            </Row>
+          </Form>
+          <div>
+            <Dropdown className="d-inline mx-2" value={playerCategory}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{playerCategory}</Dropdown.Toggle>
 
-                                    <Form.Control type="text" placeholder="Search By Player Name" value={searchKey}
-                                        onChange={(e) => { setSearchKey(e.target.value) }}
-                                    />
+              <Dropdown.Menu>
+                {Object.keys(EVENTS).map((key, kIndex) => {
+                  return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={key}
+                      onClick={(e) => {
+                        categoryQuery(key);
+                      }}
+                    >
+                      {key}
+                    </Dropdown.Item>
+                  );
+                })}
 
-                                </Form.Group>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    categoryQuery('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/* {events?.length ? (
+              <Dropdown className="d-inline mx-2" value={selectedEvent.eventName}>
+                <Dropdown.Toggle id="dropdown-autoclose-true">
+                  {selectedEvent.eventName}
+                </Dropdown.Toggle>
 
+                <Dropdown.Menu>
+                  {events.map((event, kIndex) => {
+                    return (
+                      <Dropdown.Item
+                        index={kIndex}
+                        value={event.eventName}
+                        onClick={(e) => {
+                          selectEvent(event);
+                        }}
+                      >
+                        {event.eventName}
+                      </Dropdown.Item>
+                    );
+                  })}
 
-                            </Row>
-                        </Form>
-                        <div>
-                            <Dropdown className="d-inline mx-2" value={playerCategory} >
-                                <Dropdown.Toggle id="dropdown-autoclose-true">
-                                    {playerCategory}
-                                </Dropdown.Toggle>
+                  <Dropdown.Divider />
+                  <Dropdown.Item
+                    value={'ALL'}
+                    onClick={(e) => {
+                      selectEvent({ eventName: 'ALL', eventId: 'ALL' });
+                    }}
+                  >
+                    ALL
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              ''
+            )} */}
 
-                                <Dropdown.Menu>
-                                    {
-                                        Object.keys(EVENTS).map((key, kIndex) => {
-                                            return (<Dropdown.Item index={kIndex} value={key} onClick={(e) => { categoryQuery(key) }}>{key}</Dropdown.Item>)
+            <Dropdown className="d-inline mx-2" value={paymentStatus}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{paymentStatus}</Dropdown.Toggle>
 
-                                        })
-                                    }
+              <Dropdown.Menu>
+                {PAYMENT_STATUS.map((status, kIndex) => {
+                  return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={status}
+                      onClick={(e) => {
+                        setPaymentStatus(status);
+                      }}
+                    >
+                      {status}
+                    </Dropdown.Item>
+                  );
+                })}
 
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item value={"ALL"} onClick={(e) => { categoryQuery("ALL") }}>ALL</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    setPaymentStatus('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            {
-                                events?.length ? (<Dropdown className="d-inline mx-2" value={selectedEvent.eventName} >
-                                    <Dropdown.Toggle id="dropdown-autoclose-true">
-                                        {selectedEvent.eventName}
-                                    </Dropdown.Toggle>
+            <Dropdown className="d-inline mx-2" value={tShirtSize}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{tShirtSize}</Dropdown.Toggle>
 
-                                    <Dropdown.Menu>
-                                        {
-                                            events.map((event, kIndex) => {
-                                                return (<Dropdown.Item index={kIndex} value={event.eventName} onClick={(e) => { selectEvent(event) }}>{event.eventName}</Dropdown.Item>)
+              <Dropdown.Menu>
+                {tShirtSizeList.map((size, kIndex) => {
+                  if(kIndex>0){
+                    return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={size}
+                      onClick={(e) => {
+                        setTShirtSize(size);
+                      }}
+                    >
+                      {size}
+                    </Dropdown.Item>
+                  );
+                  }
+                  
+                })}
 
-                                            })
-                                        }
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    setTShirtSize('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="d-inline mx-2" value={selectedTshirtStatus}>
+              <Dropdown.Toggle id="dropdown-autoclose-true">{selectedTshirtStatus}</Dropdown.Toggle>
 
-                                        <Dropdown.Divider />
-                                        <Dropdown.Item value={"ALL"} onClick={(e) => { selectEvent({ eventName: "ALL", eventId: "ALL" }) }}>ALL</Dropdown.Item>
+              <Dropdown.Menu>
+                {T_SHIRT_STATUS.map((status, kIndex) => {
+                    return (
+                    <Dropdown.Item
+                      index={kIndex}
+                      value={status}
+                      onClick={(e) => {
+                        setSelectedTshirtStatus(status);
+                      }}
+                    >
+                      {status}
+                    </Dropdown.Item>
+                  );
+                  
+                  
+                })}
 
-                                    </Dropdown.Menu>
-                                </Dropdown>) : ""
-                            }
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  value={'ALL'}
+                  onClick={(e) => {
+                    setSelectedTshirtStatus('ALL');
+                  }}
+                >
+                  ALL
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          
+          {/* <div><button onClick={()=>{generateChest()}}>generateChestNumber</button></div> */}
+          <div><button onClick={() =>{downloadExcel()}}>Download</button></div>
+          {
+            localAuth?.access === 'SUPER_ADMIN_ACCESS' ? (<div>
+              <button onClick={()=>{bulkTShirtUpdate()}}>Bult-Tshirt update</button>
+            </div>) :""
+          }
+         <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Chest No</th>
+                  <th>TShirt</th>
+                  <th>Pay Status</th>
+                  <th>ClubName</th>
+                  <th>Created_ON</th>
+                  {/* <th>Action</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                {filteredPlayerList?.length ? (
+                  filteredPlayerList.map((player, pIndex) => {
+                    return (
+                        <tr
+                          key={pIndex}
+                          onClick={() => {
+                            viewPlayer(player);
+                          }}
+                        >
+                          <td>{pIndex + 1}</td>
+                          <td>{player.name}</td>
+                          
+                          <td>{player.playerCategory}</td>
+                          <td>{player.chestNumber}</td>
+                          <td>{player.tShirtSize}</td>
+                          {/* for Athletics need to un comment */}
+                          {/* {player?.selectedEvents?.length ? (
+                            <td>
+                              {player?.selectedEvents.map((event, eIndex) => {
+                                return <div key={eIndex}>{event.eventName}</div>;
+                              })}
+                            </td>
+                          ) : (
+                            ''
+                          )} */}
 
-                            <Dropdown className="d-inline mx-2" value={paymentStatus} >
-                                <Dropdown.Toggle id="dropdown-autoclose-true">
-                                    {paymentStatus}
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    {
-                                        PAYMENT_STATUS.map((status, kIndex) => {
-                                            return (<Dropdown.Item index={kIndex} value={status} onClick={(e) => { setPaymentStatus(status) }}>{status}</Dropdown.Item>)
-
-                                        })
-                                    }
-
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item value={"ALL"} onClick={(e) => { setPaymentStatus("ALL") }}>ALL</Dropdown.Item>
-
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
-                        <div>
-                            <Table responsive="sm">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Chest No</th>
-                                        {/* <th>Events</th> */}
-                                        <th>Pay Status</th>
-                                        <th>Created_ON</th>
-                                        {/* <th>Action</th> */}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        playerList?.length ? playerList.map((player, pIndex) => {
-                                            if (getQueryValidation(player)) {
-                                                return (
-                                                    <tr key={pIndex} onClick={() => { viewPlayer(player) }}>
-                                                        <td>{pIndex + 1}</td>
-                                                        <td>{player.name}</td>
-                                                        <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>{
-                                                            player?.selectedEvents?.length ? 
-                                                            (<td>{player?.selectedEvents.map((event, eIndex) => {
-                                                                return (<div key={eIndex}>{event.eventName}</div>)
-                                                            })}</td>) : ""
-                                                        }
-                                                        
-                                                        <td>{player.paymentStatus}</td>
-                                                        <td>{player.createdOn}</td>
-                                                        {/* <td onClick={()=>deletePlayer(player)}>Delete</td> */}
-                                                        {/* <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td> */}
-                                                    </tr>
-                                                )
-                                            }
-
-                                        }) : <tr>
-                                            <td colSpan={6}> No Data Found</td>
-                                        </tr>
-                                    }
-
-                                </tbody>
-                            </Table>
-                        </div>
-                    </div>
-                ) : ""
-            }
-
+                          <td>{player.paymentStatus}</td>
+                          <td>{player.clubName}</td>
+                          <td>{player.createdOn}</td>
+                          {/* {localAuth?.access === 'SUPER_ADMIN_ACCESS' && (<td onClick={()=>deletePlayer(player)}>Delete</td>)} */}
+                          {/* {localAuth?.access === 'SUPER_ADMIN_ACCESS' && (<td><button onClick={(e)=>{
+                            e.stopPropagation()
+                            editPlayer(player)
+                            }}>Edit</button></td>)} */}
+                        </tr>
+                      );
+                    }
+                  )
+                ) : (
+                  <tr>
+                    <td colSpan={6}> No Data Found</td>
+                  </tr>
+                )}
+              </tbody>
+          </Table>
+         
+            
         </div>
-
-    )
-}
+      ) : (
+        ''
+      )}
+    </div>
+  );
+};
 
 export default PlayerListComponent;
